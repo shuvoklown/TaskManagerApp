@@ -13,7 +13,7 @@ def deleteSelection(listbox, index):
 # user interface
 def deltasks_window():
     main_window = tk.Toplevel()
-    main_window.title("Reminder App")
+    main_window.title("Task Tracker App")
     main_window.geometry("500x500")
 
     tk.Label(main_window, text="Delete existing task:").pack()

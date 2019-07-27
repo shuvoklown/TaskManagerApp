@@ -15,7 +15,9 @@ class DataModel:
         if reminders is None:
             data = []
             data.append ({
-                'name': name, 'time': time, 'desc': desc
+                'name': name,
+                'time': time,
+                'desc': desc
             })
         else:
             reminders.append([name, time, desc])
@@ -44,7 +46,7 @@ class DataModel:
                             name = x['name']
                             time = x['time']
                             desc = x['desc']
-                            dataArray.append([name, date, time])
+                            dataArray.append([name, time, desc])
                             return dataArray
 
                 elif len(data)>=2:

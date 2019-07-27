@@ -22,7 +22,7 @@ def splitstring(string):
 # user interface: child window to modify 1 specific task
 def modifyTaskWindow(listbox, parent, indexValue):
     child_window = tk.Toplevel()
-    child_window.title("TaskApp")
+    child_window.title("Task Tracker App")
     child_window.geometry("300x300")
 
     tk.Label(child_window, text="Modify Task:").pack()
@@ -38,12 +38,12 @@ def modifyTaskWindow(listbox, parent, indexValue):
 
     tk.Label(child_window, text="Change task time:").place(x=35, y=105)
     time_entry = tk.Entry(child_window)
-    time_entry.insert(0, date)
+    time_entry.insert(0, time)
     time_entry.place(x=35, y=140)
 
     tk.Label(child_window, text="Change task description:").place(x=35, y=175)
     desc_entry = tk.Entry(child_window)
-    desc_entry.insert(0, time)
+    desc_entry.insert(0, description)
     desc_entry.place(x=35, y=210)
 
     tk.Button(child_window, text="Submit", command=lambda:closeWindows(child_window, parent, indexValue, name_entry.get(), time_entry.get(), desc_entry.get())).pack(side=tk.BOTTOM)
@@ -59,7 +59,7 @@ def closeWindows(windowA, windowB, indexValue, newName, newTime, newDesc):
 # User Interface: show tasks existing to select and modify 1 task
 def selecttask_window():
     main_window = tk.Toplevel()
-    main_window.title("Reminder App")
+    main_window.title("Task Tracker App")
     main_window.geometry("500x500")
 
     tk.Label(main_window, text = "Select existing task:").pack()

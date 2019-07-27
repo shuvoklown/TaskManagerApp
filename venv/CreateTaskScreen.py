@@ -28,5 +28,5 @@ def createTask(reminders):
 
 # update json file and close window
 def storeData(name, time, desc, window, object):
-    DataModel.DataModel.createJson(object, name, date, time)
+    DataModel.DataModel.createJson(object, name, time, desc)
     WelcomeScreen.closeWindow(window)
