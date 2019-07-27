@@ -27,5 +27,5 @@ def launch(main_window):
     tk.Button(main_window, text = "Create New Task", command=lambda: CreateTaskScreen.createTask(reminders)).place(x=100, y=40)
     tk.Button(main_window, text = "Edit Existing Task", command=EditTaskScreen.selecttask_window).place(x=98, y=80)
     tk.Button(main_window, text = "Delete Existing Task", command=DeleteTaskScreen.deltasks_window).place(x=92, y=120)
-    tk.Button(main_window, text = "Exit", command=lambda: closeWindow(main_window)).place(x=115, y=160)
+    tk.Button(main_window, text = "Exit", command=lambda: closeWindow(main_window)).place(x=110, y=160)
     main_window.mainloop()
