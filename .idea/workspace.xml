@@ -91,9 +91,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="581" />
-    <option name="y" value="75" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="502" />
+    <option name="y" value="32" />
     <option name="width" value="1238" />
     <option name="height" value="1030" />
   </component>
@@ -112,30 +112,8 @@
             </path>
             <path>
               <item name="TaskManagerApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="TaskManagerApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.7 (ReminderApp) &gt;" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="TaskManagerApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.7 (ReminderApp) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="python-skeletons" type="b5f07198:RTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="TaskManagerApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.7 (ReminderApp) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="site-packages" type="b5f07198:RTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="TaskManagerApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.7 (ReminderApp) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="venv" type="b5f07198:RTreeStructureProvider$1" />
+              <item name="ReminderApp" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -236,7 +214,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/ReminderApp.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\steve_partho\PycharmProjects\ReminderApp\venv\TaskTracker.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -354,15 +332,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="465" y="60" width="990" height="824" extended-state="0" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2597826" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16148649" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32932332" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30458972" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3986111" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />

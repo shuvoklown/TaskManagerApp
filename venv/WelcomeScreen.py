@@ -19,7 +19,7 @@ def checkReminders():
 
 # user interface
 def launch(main_window):
-    main_window.title("Reminder App")
+    main_window.title("Task Tracker App")
     main_window.geometry("300x200")
 
     reminders = checkReminders()

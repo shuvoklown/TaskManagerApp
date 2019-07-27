@@ -7,7 +7,7 @@ import teek as te
 # user interface
 def createTask(reminders):
     childwindow = tk.Toplevel()
-    childwindow.title("Reminder App")
+    childwindow.title("Task Tracker App")
     childwindow.geometry("300x300")
 
     tk.Label(childwindow, text = "Create new task:").pack()
