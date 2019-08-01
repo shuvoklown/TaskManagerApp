@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<!-- saved from url=(0194)https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="stndz-style"></style>
+      <title>Lecture 4 - Basic Operating System Services, Terminal Arguments, Simple CLI</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///C:/Users/Brian%20Rogers/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.4.1/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="lecture-4-br-operating-system-controls-command-line-parsing-and-third-party-libraries"><strong>Lecture 4</strong> <br>Operating System Controls, Command Line Parsing, and Third Party Libraries</h1>
+
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-4-br-operating-system-controls-command-line-parsing-and-third-party-libraries"><strong>Lecture 4</strong> <br>Operating System Controls, Command Line Parsing, and Third Party Libraries</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-40-basic-terminology">Lecture 4.0: Basic Terminology</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-41-operating-system-operations">Lecture 4.1: Operating System Operations</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-410-the-os-module">Lecture 4.1.0: The OS Module</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-411-ossystem">Lecture 4.1.1: os.system()</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-412-oslistdir">Lecture 4.1.2: os.listdir()</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-413-file-operations">Lecture 4.1.3: File Operations</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-4131-making-a-directory">Lecture 4.1.3.1: Making a directory</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-4132-navigate-the-file-structure">Lecture 4.1.3.2: Navigate the file structure</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-4133-renaming-files-and-folders">Lecture 4.1.3.3: Renaming Files and Folders</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-4134-removing-files-and-directories">Lecture 4.1.3.4: Removing Files and Directories</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-414-ospath">Lecture 4.1.4: os.path</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-4141-ospathjoin">Lecture 4.1.4.1: os.path.join</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-4142-parts-of-a-path">Lecture 4.1.4.2: Parts of a Path</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-4143-the-absolute-path">Lecture 4.1.4.3: The absolute path</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-4144-testing">Lecture 4.1.4.4: Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-4144-oswalk">Lecture 4.1.4.4: os.walk</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-42-command-line-parsing">Lecture 4.2: Command Line Parsing</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-421-sysargv">Lecture 4.2.1: sys.argv</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-422-argparse">Lecture 4.2.2: argparse</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#try-out">Try Out</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-43-glob">Lecture 4.3: glob</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-44-time">Lecture 4.4: Time</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391405-dt-content-rid-8477872_1/courses/192CSC47011314/Lecture%204%20-%20Basic%20Operating%20System%20Services%2C%20Terminal%20Arguments%2C%20Simple%20CLI.html#lecture-45-third-party-modules">Lecture 4.5: Third Party Modules</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>You have learned the basic syntax of Python and have a working knowledge that you can use to write big projects.  Now we are going to take a look at common modules from the standard library starting with making our programs operating system agnostic, parsing command line options, and how to install third party libraries using pip from PyPi.</p>
+<p>The best place to learn about the Python standard library with examples is to combine the Python documentation with another site, Python Module of the Week.</p>
+<p><a href="https://pymotw.com/3/">Python 3 Module of the Week</a></p>
+<p>We will also be looking at how to install 3rd party modules.  When you use <code>pip</code> on the command line, it connects to PyPi to download the package and install into the Python path.(Additionally, you can install from other locations such as Github or Bitbucket).</p>
+<p><a href="https://pypi.python.org/pypi">PyPi: The Python Package Index</a></p>
+<p>Lastly, this will be a short lecture as I think you should use the documentation and your own experimentation to learn the modules shown here.  Also, Python Module of the Week gives excellent examples.  I will explain when you might want to use these modules and what they are.  I will include some basic examples here but I will not show every possible use case as that would be a practice in insanity.</p>
+<h2 class="mume-header" id="lecture-40-basic-terminology">Lecture 4.0: Basic Terminology</h2>
+
+<p><strong>File System</strong>:  The way an operating system keeps track of files and directories on a disk or partition.</p>
+<p><strong>Absolute Pathing</strong>:  Absolute pathing is a term that is used to indicate the absolute path of a folder or file in a file system.  For instance, <em>C:\users\broge2\Documents\recipes.txt</em> is an absolute path to the file <em>recipes.txt</em> on a Windows machine.  On linux, it would look like this: <em>/home/btcr/Documents/recipes.txt</em>.  Absolute pathing will always contain the root of the file system which in Windows is a drive letter such as _C:_ from the example above (C:\ is also where Windows always installs itself), and in Linux the root directory is a single forward slash, /, known as root.</p>
+<p><strong>Relative Pathing</strong>:  Relative pathing is how we can navigate from one location to another without using absolute pathing.  For instance, if you are in a directory called Projects and inside of this directory you have another directory, Python, you can just type <code>cd Python</code>.  You don't have to give the absolute path to the Python directory.  The path is relative to where you are currently at in the file system.  You can also use a single period, <code>.</code>, to indicate the current directory so <code>cd ./Python</code> would indicate "in this directory move to the Python directory".  You can equally navigate to the parent directory using two periods, <code>..</code>.  If you are in the Python directory and want to move back to the Project directory you do <code>cd ..</code>.  You can string together directories using relative paths to navigate in the file system.  Let's say you have another directory in Projects folder, Java, and you are located in <em>Projects/Python/Calculator</em> directory.  You can <code>cd ../../Java</code> to move to the Java directory in Projects.  This works if we look to see where we are at which is <em>./Projects/Python/Calc</em>.  The first <code>..</code> moves us to <em>/Projects/Python</em>.  The next <code>..</code> moves us to <em>/Projects</em>.  The <em>/Java</em> then moves us to the Java directory in the <em>/Projects</em> folder or <em>/Projects/Java</em>.  This is the power of relative pathing.</p>
+<p>When should you use relative over absolute pathing in your programs?  That depends.  If you have to access a file or folder that is part of the operating system like AppDir in Windows or /usr/share in Linux you should use absolute pathing.  If you have to access a resource folder created by your program that is in the same directory that the script is ran in then you should use relative pathing.</p>
+<p><strong>Folder/Directory</strong>:  Folders and directories are interchangeable names for a special file that contains a list of the location of other folders and files (technical definition).  This is abstracted away by user space and you can just think of folders and directories as a container for other folders and directories.</p>
+<h2 class="mume-header" id="lecture-41-operating-system-operations">Lecture 4.1:  Operating System Operations</h2>
+
+<p>All you need to run other people's Python scripts is the Python interpreter.  As long as you have the Python interpreter installed you can run a .py script file.  There comes some caveats, however, as your code get's passed around it starts to run on different machines with different operating systems installed.  This breaks the write once run anywhere that interpreters provide (including Java).  As developers, we should be thinking about what we expect our code to run on.  The next following modules will allow us to write some OS agnostic code.  Some functionality, however, is only available on certain operating systems so you'll have to check the documentation for what you are trying to perform.</p>
+<h3 class="mume-header" id="lecture-410-the-os-module">Lecture 4.1.0:  The OS Module</h3>
+
+<p>The <code>os</code> module is the very first module on our stop to doing things OS agnostic.  The <code>os</code> module contains functions that allow us to perform actions in an OS independent way.  Some functions are language dependent, however, so be sure to read the documentation.</p>
+<p><a href="https://docs.python.org/3/library/os.html#module-os">Python 3 Documentation: os</a></p>
+<h4 class="mume-header" id="lecture-411-ossystem">Lecture 4.1.1: os.system()</h4>
+
+<p>So you understand what I mean when I say OS agnostic or independent and what you should watch out for, let us look at the system function.  The <code>os.system</code> function allows us to pass in an OS specific commands to run.  Problem is, Linux has a different command for doing something over Windows.  Windows requires you to either be in PowerShell to run certain commands instead of the cmd prompt.  Some Linux users might be in a different shell that requires the use of other commands and so on.  There is so much to worry about that <code>os.system</code> should only be used if you are writing a script file for a very specific reason on a machine that will never change.  Even then, you may want to use other modules to do what you want.  Now that you know some of the variables involved, let us actually take a look at <code>os.system</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">import</span> os
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> os<span class="token punctuation">.</span>system<span class="token punctuation">(</span><span class="token string">"dir"</span><span class="token punctuation">)</span>
+</pre><pre> Volume in drive D is Subsystem
+ Volume Serial Number is 92B6-D23A
+
+ Directory of D:\Workspaces\Python\diceroller
+
+05/31/2018  03:40 PM    &lt;DIR&gt;       .
+05/31/2018  03:40 PM    &lt;DIR&gt;       ..
+05/31/2018  04:03 PM               529 dice.py
+               1 File(s)            529 bytes
+               2 Dir(s)  985,417,072,640 bytes free
+0 #This is returned by the os.system function call
+</pre>
+<p>If you are on Linux, this won't work.  Using this is fine for quick and dirty scripts that you might use once or know for a fact it will only run on one machine for as long as the company you work for remains in business.</p>
+<p>In addition to this not running on a Linux machine, suppose you do a check to see which operating system you are running on to call the appropriate system command.  Either command will have different results which means you will have to handle the parsing of the two ways both systems return results.  You will then have to write and maintain separate codebases for parsing the data.  This starts to become unweildy for something that should be relatively simple.</p>
+<p>How can we fix this?  We can use the functions in the <code>os</code> module to keep things OS independent.</p>
+<h4 class="mume-header" id="lecture-412-oslistdir">Lecture 4.1.2: os.listdir()</h4>
+
+<p>The <code>listdir()</code> function is the language agnostic way to get a list of the files and directories of a passed directory.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> os
+
+<span class="token keyword">for</span> file_ <span class="token keyword">in</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>file_<span class="token punctuation">)</span>
+</pre><pre class="language-text">.ipynb_checkpoints
+Lecture 4 - Basic Operating System Services, Terminal Arguments, Simple CLI.ipynb
+</pre>
+<h4 class="mume-header" id="lecture-413-file-operations">Lecture 4.1.3: File Operations</h4>
+
+<p>One common operation when doing Operating System work is manipulating files and folders.  Making, deleting, and modifying files is common and so we will investigate how to do this with the <code>os</code> module.</p>
+<p>Something you should note is how different operating systems separate files and folders using both relative and absolute pathing.  The main difference is on Windows, you use <strong>\</strong>.  On Linux and Mac you use <strong>/</strong>.  The os module has attributes we can use to use the proper seperator.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> os
+
+<span class="token comment"># Running on Windows so should be \\</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>sep<span class="token punctuation">)</span>
+</pre><pre class="language-text">\
+</pre>
+<h5 class="mume-header" id="lecture-4131-making-a-directory">Lecture 4.1.3.1: Making a directory</h5>
+
+<p><code>os.mkdir()</code> is used to create a directory.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> os
+
+os<span class="token punctuation">.</span>mkdir<span class="token punctuation">(</span><span class="token string">"Sample"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> f <span class="token keyword">in</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span>
+</pre><pre class="language-text">Sample
+</pre>
+<p>You can see here that the <em>Sample</em> directory was created.  We can navigate into that directory now with the <code>os</code> module.</p>
+<h5 class="mume-header" id="lecture-4132-navigate-the-file-structure">Lecture 4.1.3.2: Navigate the file structure</h5>
+
+<p>Now, we would like to move into and out of directories.  We can use <code>os.chdir()</code> to do this and then use <code>os.getcwd()</code> to learn where we are.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> os
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>getcwd<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+os<span class="token punctuation">.</span>chdir<span class="token punctuation">(</span><span class="token string">'.\\Sample'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>getcwd<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">H:\Documents\Course Materials\CSC470-Python\Lecture 4\Lecture 4\Examples
+H:\Documents\Course Materials\CSC470-Python\Lecture 4\Lecture 4\Examples\Sample
+</pre>
+<p>This demonstrates that we were in <em>Lecture 4</em> then moved into <em>Sample</em>.  Now, whenever we do file operations we will do so inside this directory.  (This may include <code>with open(...) as ...</code> blocks or any <code>os</code> module operations or many other modules)</p>
+<h5 class="mume-header" id="lecture-4133-renaming-files-and-folders">Lecture 4.1.3.3: Renaming Files and Folders</h5>
+
+<p>We can rename files and folders by using the <code>os.rename()</code> function.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> os
+
+os<span class="token punctuation">.</span>mkdir<span class="token punctuation">(</span><span class="token string">'RenameMe'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"After Creation"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+os<span class="token punctuation">.</span>rename<span class="token punctuation">(</span><span class="token string">"RenameMe"</span><span class="token punctuation">,</span> <span class="token string">"NewExample"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"After Renaming"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">After Creation
+['RenameMe', 'Sample']
+After Renaming
+['NewExample', 'Sample']
+</pre>
+<p>This simple function creates a folder <em>Sample</em> then renames it <em>NewExample</em>.</p>
+<h5 class="mume-header" id="lecture-4134-removing-files-and-directories">Lecture 4.1.3.4: Removing Files and Directories</h5>
+
+<p>Removing a file or directory is another common operation so we will look at how to do that.  To delete either a directory or file requires two different functions and if a file or folder is passed to wrong function you will receive an error.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> os
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+os<span class="token punctuation">.</span>mkdir<span class="token punctuation">(</span><span class="token string">"RemoveMe"</span><span class="token punctuation">)</span>
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"deleteme.txt"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">pass</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+os<span class="token punctuation">.</span>rmdir<span class="token punctuation">(</span><span class="token string">'RemoveMe'</span><span class="token punctuation">)</span>
+os<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token string">'deleteme.txt'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">['NewExample', 'Sample']
+['deleteme.txt', 'NewExample', 'RemoveMe', 'Sample']
+['NewExample', 'Sample']
+</pre>
+<p>A caveat about deleting folders is that folders need to be empty before being removed (similar to rmdir on Linux and Windows).  This means we need to recursively travel down every subfolder deleting files.  Those of you on Linux will recognize this as <strong>rm -r</strong> command.  On Windows The fact the folder needs to be empty is a safety feature to avoid unintentional removal. We could do this but first we need to talk about another module.  The <code>os.path</code> module.</p>
+<h4 class="mume-header" id="lecture-414-ospath">Lecture 4.1.4: os.path</h4>
+
+<p><code>os.path</code> gives us operations to allow us to construct folder and file paths without needing to the specifics of the OS we are running on.  For instance, we do not need to know whether to use a forward slash or a back slash.  We can also use this module to perform other path based operations such as split, retrieve absolute path, walk a directory tree.</p>
+<p><a href="https://docs.python.org/3/library/os.path.html#module-os.path">Python 3 Documentation: os.path</a></p>
+<h5 class="mume-header" id="lecture-4141-ospathjoin">Lecture 4.1.4.1: os.path.join</h5>
+
+<p>The <code>join</code> function takes as many arguments as necessary and constructs a string path using the appropriate path separator for the operating system you are working on.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> os
+
+os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token string">'C:\\'</span><span class="token punctuation">,</span> <span class="token string">'Windows'</span><span class="token punctuation">,</span> <span class="token string">'System32'</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">'C:\\Windows\\System32'
+</pre>
+<p>Running this on Windows, you get the above.  On Linux, you will have something different.  You might have noticed that I had to include the path separator <strong>\</strong> which I said you wouldn't have to do.  The docs do explain this which you can find here:</p>
+<p><a href="https://docs.python.org/3/library/os.path.html#os.path.join">https://docs.python.org/3/library/os.path.html#os.path.join</a></p>
+<p>To properly place the path separator we can use <code>os.sep</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> os
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token string">'C:'</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span>sep<span class="token punctuation">,</span> <span class="token string">'Windows'</span><span class="token punctuation">,</span> <span class="token string">'System32'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment">#Similaraly on Linux for root directory</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>os<span class="token punctuation">.</span>sep<span class="token punctuation">,</span> <span class="token string">'home'</span><span class="token punctuation">,</span> <span class="token string">'broge2'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment">#Keep in mind that I am running this on Windows so the Linux example is</span>
+<span class="token comment">#not entirely correct.  It uses / as a path separator.</span>
+</pre><pre class="language-text">C:\Windows\System32
+\home\broge2
+</pre>
+<h5 class="mume-header" id="lecture-4142-parts-of-a-path">Lecture 4.1.4.2: Parts of a Path</h5>
+
+<p>We can get different parts of a path such as the directory name of the containing path, the base name of a path, or by splitting the path.</p>
+<p>The directory name of a path is the path of the containing directory whether the last part of a path is a file or directory.  Or, given <strong>C:\Windows\System32</strong> the directory path is <strong>C:\Windows</strong>.</p>
+<p>The base name is the last bit of of a path.  Given <strong>C:\Windows\System32</strong>, the base name is <strong>System32</strong>.</p>
+<p>Split returns a tuple in which the first part is the directory path and the second is the base path.</p>
+<ul>
+<li>The base path of *<em>C:*</em> is an empty string <code>''</code>.</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> os
+
+foo_path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token string">'C:'</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span>sep<span class="token punctuation">,</span> <span class="token string">'Foo'</span><span class="token punctuation">,</span> <span class="token string">'Bar'</span><span class="token punctuation">,</span> <span class="token string">'foobar.txt'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Full Path:"</span><span class="token punctuation">,</span> foo_path<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Directory Name:"</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>dirname<span class="token punctuation">(</span>foo_path<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Base Name:"</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>basename<span class="token punctuation">(</span>foo_path<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Split Path:"</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>split<span class="token punctuation">(</span>foo_path<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">Full Path: C:\Foo\Bar\foobar.txt
+Directory Name: C:\Foo\Bar
+Base Name: foobar.txt
+Split Path: ('C:\\Foo\\Bar', 'foobar.txt')
+</pre>
+<h5 class="mume-header" id="lecture-4143-the-absolute-path">Lecture 4.1.4.3: The absolute path</h5>
+
+<p>This one is simply calling the abspath function.  This isn't necessarily useful if you crafted your path like in the above examples but is useful if you need to get the absolute path from a relative one.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> os
+
+rel_path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">,</span> <span class="token string">'foo.txt'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Relative Path:"</span><span class="token punctuation">,</span> rel_path<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Asolute Path:"</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>abspath<span class="token punctuation">(</span>rel_path<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">Relative Path: .\foo.txt
+Asolute Path: C:\Users\Brian Rogers\Google Drive\Classes\CSC470 - Python\Lectures\LectureNotebooks\Lecture 4\foo.txt
+</pre>
+<h6 class="mume-header" id="lecture-4144-testing">Lecture 4.1.4.4: Testing</h6>
+
+<p>We can check if a given path leads to a folder or a file or even exists.  Whether using relative or absolute pathing, we can use this for conditional file/folder operations.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> os
+
+directory <span class="token operator">=</span> <span class="token string">'foo'</span>
+new_file <span class="token operator">=</span> <span class="token string">'bar.txt'</span>
+
+<span class="token keyword">if</span> <span class="token keyword">not</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span>directory<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    os<span class="token punctuation">.</span>mkdir<span class="token punctuation">(</span>directory<span class="token punctuation">)</span>
+
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>new_file<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">pass</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"{} exists: {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>directory<span class="token punctuation">,</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span>directory<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"{} exists: {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>new_file<span class="token punctuation">,</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span><span class="token string">'bar.txt'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"FooBar.txt exists:"</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span><span class="token string">'FooBar.txt'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"{} (directory) is a directory: {}"</span>
+      <span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>directory<span class="token punctuation">,</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>isdir<span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"{} (file) is a file: {}"</span>
+      <span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>new_file<span class="token punctuation">,</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>isfile<span class="token punctuation">(</span><span class="token string">'bar.txt'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"{} (file) is a directory: {}"</span>
+      <span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>new_file<span class="token punctuation">,</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>isdir<span class="token punctuation">(</span>new_file<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"{} (directory) is a file: {}"</span>
+      <span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>directory<span class="token punctuation">,</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>isfile<span class="token punctuation">(</span>directory<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+</pre><pre class="language-text">foo exists: True
+bar.txt exists: True
+FooBar.txt exists: False
+foo (directory) is a directory: True
+bar.txt (file) is a file: True
+bar.txt (file) is a directory: False
+foo (directory) is a file: False
+</pre>
+<h4 class="mume-header" id="lecture-4144-oswalk">Lecture 4.1.4.4: os.walk</h4>
+
+<p>The <code>walk</code> function of the <code>os</code> module is our next stop. It is a generator that walks down the directories returning a tuple containing the root directory, list of directories in that directory, and the list of files in the directory. Let's just see what is returned first</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> os
+<span class="token keyword">import</span> pprint
+
+pretty_print <span class="token operator">=</span> pprint<span class="token punctuation">.</span>PrettyPrinter<span class="token punctuation">(</span>indent<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">)</span>
+
+walker <span class="token operator">=</span> os<span class="token punctuation">.</span>walk<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span>
+
+pretty_print<span class="token punctuation">.</span>pprint<span class="token punctuation">(</span><span class="token builtin">next</span><span class="token punctuation">(</span>walker<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">(   '.',
+    ['.ipynb_checkpoints', 'Examples', 'foo'],
+    [   'bar.txt',
+        'bar1.txt',
+        'Lecture 4 - Basic Operating System Services, Terminal Arguments, '
+        'Simple CLI.ipynb'])
+</pre>
+<p><strong>I decided to use a module here called <em>pprint</em> to print out the full tuple and list data structures in a nice format so you can see the different elements.</strong></p>
+<p>The first element of the tuple is a simple string containing the root, which in this case is the current directory.  The next element of the tuple is a list of directories inside the root directory.  The last element is a list of files in the root directory.  Here is how you can easily traverse an entire directory tree using the walk generator.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> os
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span>root<span class="token punctuation">,</span> directories<span class="token punctuation">,</span> files<span class="token punctuation">)</span> <span class="token keyword">in</span> os<span class="token punctuation">.</span>walk<span class="token punctuation">(</span><span class="token string">'.\\CardLib'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> d <span class="token keyword">in</span> directories<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'\t'</span><span class="token punctuation">,</span> d<span class="token punctuation">,</span> <span class="token string">'- Directory'</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> f <span class="token keyword">in</span> files<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'\t'</span><span class="token punctuation">,</span> f<span class="token punctuation">,</span> <span class="token string">'- File'</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">.\CardLib
+	 cardlib - Directory
+	 pokerlib - Directory
+.\CardLib\cardlib
+	 deckmanipulations - Directory
+	 card.py - File
+	 deck.py - File
+	 __init__.py - File
+.\CardLib\cardlib\deckmanipulations
+	 bottomdeal.py - File
+	 shuffle.py - File
+	 topdeal.py - File
+	 __init__.py - File
+.\CardLib\pokerlib
+	 cheat - Directory
+	 PokerCard.py - File
+	 PokerDeck.py - File
+	 __init__.py - File
+.\CardLib\pokerlib\cheat
+	 five_aces.py - File
+	 peak.py - File
+	 __init__.py - File
+</pre>
+<p>This simple script file traverses the file tree of the CardLib directory.</p>
+<p><a href="https://docs.python.org/3/library/os.html#os.walk">Python 3 Documentation: OS Walk</a></p>
+<h2 class="mume-header" id="lecture-42-command-line-parsing">Lecture 4.2: Command Line Parsing</h2>
+
+<p>If you've ever used the command line to perform tasks like grep, ssh, curl, netstat, nslookup, and many many many other operations one might have done as a super user then you know that these programs don't print questions to the user to manipulate how the program behaves.  If that were the case, they would have to ask questions about every possible operation these commands can do which is not fast for people that just want to get something done.  Instead, you can pass arguments to the program on the call line of the terminal you are using, press ENTER, and watch it go to work.  We can do the same thing in Python using various modules.</p>
+<p>For the examples in this section, it is best you write and run from a script file.</p>
+<h3 class="mume-header" id="lecture-421-sysargv">Lecture 4.2.1: sys.argv</h3>
+
+<p><code>sys</code> is the simplest module that has a variable, <code>argv</code>, that contains a list of arguments passed to the program.  Here is a very simple example.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">from</span> sys <span class="token keyword">import</span> argv
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>argv<span class="token punctuation">)</span>
+</pre><p>Now, call this with some arguments separated by spaces.</p>
+<p><code>python scriptfile.py a b c d e</code></p>
+<p>You should get something like this</p>
+<p><code>['.\\scriptfile.py', 'a', 'b', 'c', 'd', 'e']</code></p>
+<p>If you are wondering how you can pass a single argument that may contain spaces, you can surround the entire argument with double quotes.</p>
+<p>Notice, the first item is the name of the script file.  This is useful for us because we can use that in messages to the user and since they can rename the script file we won't have to bother doing checks or being vague.  Here is an expansion that requires the user to pass at least 2 arguments.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">from</span> sys <span class="token keyword">import</span> argv
+
+PROG_NAME <span class="token operator">=</span> argv<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+
+ARGUMENTS <span class="token operator">=</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+
+<span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>ARGUMENTS<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Usage: </span><span class="token interpolation"><span class="token punctuation">{</span>PROG_NAME<span class="token punctuation">}</span></span><span class="token string"> arg1 arg2"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>ARGUMENTS<span class="token punctuation">)</span>
+</pre><p>Call this the same way you normally run a Python file and only pass it 1 or no arguments.  You should get a usage message that says</p>
+<p><code>Usage: .\scriptfile.py arg1 arg2</code></p>
+<p>Try changing the name of the scriptfile to something else and make the same call.  You should see the usage message use the name of the new script file name.</p>
+<p>Now call the script file with the right number of arguments.  Suppose you pass it this.</p>
+<p><code>python .\scriptfile.py This is a cool "Script File"</code></p>
+<p>Instead, you should now get</p>
+<p><code>['This', 'is', 'a', 'cool', 'Script File']</code> #Notice the "Script File" is one element instead of two</p>
+<p>Now, let's write a script called <a href="http://makefiles.py/">makefiles.py</a>.  This script file will take a list of filenames and create them.  This is kind of like <em>touch</em> in Linux that simply creates an empty file only we will make several empty files.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">from</span> sys <span class="token keyword">import</span> argv
+
+PROG_NAME <span class="token operator">=</span> argv<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+
+ARGUMENTS <span class="token operator">=</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+
+<span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>ARGUMENTS<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Usage: </span><span class="token interpolation"><span class="token punctuation">{</span>PROG_NAME<span class="token punctuation">}</span></span><span class="token string"> file1...fileN"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> filename <span class="token keyword">in</span> ARGUMENTS<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Creating'</span><span class="token punctuation">,</span> filename<span class="token punctuation">)</span>
+        <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">pass</span>
+</pre><p>When you run this with 1 or more arguments, you will create files with the name of the passed arguments.  Now suppose you want to expand this to make directories.  You need to allow the user to indicated whether they want a directory or file.  The concept of changing how the program works is usually called a switch or flag.  Windows convention uses a / to indicate a switch on the command line, however, we will use the Linux convention as this is also the convention used for the Python modules later.  Linux uses a hyphen, commonly stated as tack or dash, to indicate a switch.  Some switches accept other arguments while others are just indicators.  For this example, we will simply use a switch as an indicator of whether to create files or folders.</p>
+<p><code>-f</code> for files and <code>-d</code> for directories.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">from</span> sys <span class="token keyword">import</span> argv
+<span class="token keyword">import</span> os
+
+<span class="token keyword">def</span> <span class="token function">make_files</span><span class="token punctuation">(</span>filenames<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> filename <span class="token keyword">in</span> filenames<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Creating file'</span><span class="token punctuation">,</span> filename<span class="token punctuation">)</span>
+        <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">pass</span>
+
+<span class="token keyword">def</span> <span class="token function">make_directories</span><span class="token punctuation">(</span>directories<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> directory <span class="token keyword">in</span> directories<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Creating directory"</span><span class="token punctuation">,</span> directory<span class="token punctuation">)</span>
+        os<span class="token punctuation">.</span>mkdir<span class="token punctuation">(</span>directory<span class="token punctuation">)</span>
+
+PROG_NAME <span class="token operator">=</span> argv<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+
+ARGUMENTS <span class="token operator">=</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+
+<span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>ARGUMENTS<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Usage: </span><span class="token interpolation"><span class="token punctuation">{</span>PROG_NAME<span class="token punctuation">}</span></span><span class="token string"> arg1 arg2"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">elif</span> ARGUMENTS<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'-f'</span><span class="token punctuation">:</span>
+    make_files<span class="token punctuation">(</span>ARGUMENTS<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">elif</span> ARGUMENTS<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'-d'</span><span class="token punctuation">:</span>
+    make_directories<span class="token punctuation">(</span>ARGUMENTS<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Usage: </span><span class="token interpolation"><span class="token punctuation">{</span>PROG_NAME<span class="token punctuation">}</span></span><span class="token string"> -[f or d] name...nameN"</span></span><span class="token punctuation">)</span>
+</pre><p>Now our script is getting more complicated but also a little restrictive.  For instance, the switch -f and -d must be the first thing passed to the program.  Switches can sometimes be placed anywhere on the command line when passed to a program.  Also, with this code we can only create folders and files instead of say mixing the switches to allow both for a single call.  We most certainly can add logic to do this and much more, however, the Python developers have us covered.  We can use the much more powerful <code>argparse</code> module.</p>
+<p><a href="https://docs.python.org/3/library/sys.html">Python 3 Documentation: sys module</a></p>
+<h4 class="mume-header" id="lecture-422-argparse">Lecture 4.2.2: argparse</h4>
+
+<p>The <code>argparse</code> module allows us to construct a set of rules for how to parse incoming arguments to our program.  There is a lot that you can do so I will cover the basics of creating and using argparse and some of the options you can use to create a command line program.</p>
+<p>We start by creating an ArgumentParser object.  The constructor for the ArgumentParser object can take many arguments.</p>
+<p><a href="https://docs.python.org/3/library/argparse.html#argumentparser-objects">Python 3 Documentation: ArgumentParser Constructor</a></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> argparse
+
+parser <span class="token operator">=</span> argparse<span class="token punctuation">.</span>ArgumentParser<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">"A program that accepts arguments via the command line"</span><span class="token punctuation">)</span>
+
+parser<span class="token punctuation">.</span>print_help<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><p>The call to <code>print_help</code> will be the same as if we passed <code>-h</code> or <code>--help</code> to our program but we have not actually parsed anything yet.  When you run this program you should get a usage line, the description as stated in the program, and the list of arguments.  The only arguments right now are optional arguments -h and --help but again, these do nothing.  (Remove the call to print_help and pass -h or --help to see what I mean).</p>
+<p>Once you have an ArgumentParser object you need to start adding switches and how the behave such as how they store data, how much data should they store if they even do store datay, are the switches required, and many other options.  We can also specify regular arguments.  Remember, switches are designated by being preceded with a hyphen or two.  Before we begin, let me go over some terminology.</p>
+<p><strong>Switch</strong>: This is a type of argument to our program that dictates how our program behaves.  A switch is designated by one or two hyphens.</p>
+<p><strong>Short Name</strong>:  A short name for a switch is a single letter and is preceded by a single hyphen.  For instance, -h is the shortname.</p>
+<p><strong>Long Name</strong>: A long name for a switch is preceded by two hyphens and is usually a word or multiple names.  For instance, --help is the long name.</p>
+<p><strong>Argument</strong>: This refers to items that are both switches and regular items.  For instance, in our previous program that takes a list of names and creates files or folders, -f or -d are switches and the names of the files and folders are just for the program to create those.  There are subtypes of arguments as well.</p>
+<pre class="language-text">Positional Argument:  This is a type of argument that in the command line has meaning depending on where it is placed.  These typically are not flags or switches but switches can come before or after a positional argument for processing.
+
+Optional Arguments:  These are not necessary and are usually only used to change the behavior of the program.
+
+Required Arguments:  These arguments are required by your program in order to run.  Positional arguments are by default required.
+</pre>
+<p>After you are done adding arguments, you need to parse the arguments and a Namespace object is returned.  Your switches then become instance variables of the Namespace object that we can use like normal variables that store information.  Let's try a simple example.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> argparse
+
+parser <span class="token operator">=</span> argparse<span class="token punctuation">.</span>ArgumentParser<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">"A program that accepts arguments via the command line"</span><span class="token punctuation">)</span>
+
+parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">'firstname'</span><span class="token punctuation">)</span>
+
+args <span class="token operator">=</span> parser<span class="token punctuation">.</span>parse_args<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"firstname is"</span><span class="token punctuation">,</span> args<span class="token punctuation">.</span>firstname<span class="token punctuation">)</span>
+</pre><p>Call your script file with your first name and see what is returned.  Also, try passing -h and --help.  You will see that <code>firstname</code> is a positional argument.  Let's expand this to accept our last name but is optional by using a switch <code>-l</code> or <code>--lastname</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> argparse
+
+parser <span class="token operator">=</span> argparse<span class="token punctuation">.</span>ArgumentParser<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">"A program that accepts arguments via the command line"</span><span class="token punctuation">)</span>
+
+parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">'firstname'</span><span class="token punctuation">)</span>
+parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">'-l'</span><span class="token punctuation">,</span> <span class="token string">'--lastname'</span><span class="token punctuation">)</span>
+
+args <span class="token operator">=</span> parser<span class="token punctuation">.</span>parse_args<span class="token punctuation">(</span><span class="token punctuation">)</span>
+full_name <span class="token operator">=</span> args<span class="token punctuation">.</span>firstname
+
+<span class="token keyword">if</span> args<span class="token punctuation">.</span>lastname<span class="token punctuation">:</span>
+    full_name <span class="token operator">+=</span> <span class="token string">' '</span> <span class="token operator">+</span> args<span class="token punctuation">.</span>lastname
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Full name is"</span><span class="token punctuation">,</span> full_name<span class="token punctuation">)</span>
+</pre><p>Now when you call this program, you can pass your last name using -l.  For example</p>
+<p><code>python namer.py -l Rogers Brian</code></p>
+<p>OR</p>
+<p><code>python namer.py Brian -l Rogers</code></p>
+<p>Notice, that the switch -l can come before or after the positional argument.</p>
+<p>There is a lot we can do with the add_argument function. I'm only going to cover a few more options but please to go over the documentation just so you know what you can do.</p>
+<p><a href="https://docs.python.org/3/library/argparse.html#the-add-argument-method">Python 3 Documentation: add_argument</a></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> argparse
+
+parser <span class="token operator">=</span> argparse<span class="token punctuation">.</span>ArgumentParser<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">"A program that accepts arguments via the command line"</span><span class="token punctuation">)</span>
+
+parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">'firstname'</span><span class="token punctuation">)</span>
+parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">'-l'</span><span class="token punctuation">,</span> <span class="token string">'--lastname'</span><span class="token punctuation">)</span>
+parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">'-a'</span><span class="token punctuation">,</span> <span class="token string">'--age'</span><span class="token punctuation">,</span> <span class="token builtin">type</span><span class="token operator">=</span><span class="token builtin">int</span><span class="token punctuation">,</span> default<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">'-n'</span><span class="token punctuation">,</span> <span class="token string">'--nicknames'</span><span class="token punctuation">,</span> nargs<span class="token operator">=</span><span class="token string">'+'</span><span class="token punctuation">)</span>
+
+args <span class="token operator">=</span> parser<span class="token punctuation">.</span>parse_args<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+full_name <span class="token operator">=</span> args<span class="token punctuation">.</span>firstname
+
+<span class="token keyword">if</span> args<span class="token punctuation">.</span>lastname<span class="token punctuation">:</span>
+    full_name <span class="token operator">+=</span> <span class="token string">' '</span> <span class="token operator">+</span> args<span class="token punctuation">.</span>lastname
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Full name is"</span><span class="token punctuation">,</span> full_name<span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> args<span class="token punctuation">.</span>age<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"You are </span><span class="token interpolation"><span class="token punctuation">{</span>args<span class="token punctuation">.</span>age<span class="token punctuation">}</span></span><span class="token string"> years old and will be </span><span class="token interpolation"><span class="token punctuation">{</span>args<span class="token punctuation">.</span>age <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">}</span></span><span class="token string"> in 10 years"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> args<span class="token punctuation">.</span>nicknames<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Your nicknames are </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token string">', '</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>args<span class="token punctuation">.</span>nicknames<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+</pre><p>Using the <code>type</code> option we can change the type expected by the parser.  By default, types of all parameters are <code>str</code> or string.  Using <code>type=int</code> we should expect a value of int.  This will throw an error otherwise.</p>
+<p>Using default, we can say what the default value should be.  In this case, I explicitly state <code>None</code> since the default of an int could be 0. If the argument is not used then it will be set to <code>None</code> in the Namespace object.</p>
+<p>Using nargs, I can specify how many arguments after the switch I am expecting.  In this case, if you use the -n or --nicknames on the command line I expect 1 or more items.  This will be stored as a list by the Namespace object.</p>
+<p>ArgParse is a powerful CLI (Command Line Interface) library to allow us to create command line programs and focus on the actual program instead of worrying about the parsing logic.  If you are doing something simple, this may be overkill but if you want to expand what your command line program does then this is definitely the goto.</p>
+<h6 class="mume-header" id="try-out">Try Out</h6>
+
+<ol>
+<li>
+<p>Now that you know about argparse, try to recreate the sys example where you are to create either folders or directories.  Make it so you can specify both folders and directories to create with their own set of names.</p>
+</li>
+<li>
+<p>Write a program that takes a directory and traverses down the directory printing the directory tree.</p>
+</li>
+<li>
+<p>Create a program that takes the name of project and creates a directory that contains the structure mentioned in this article</p>
+</li>
+</ol>
+<p><a href="http://docs.python-guide.org/en/latest/writing/structure/">The Hitchhiker's Guide to Python: Structuring Your Project</a></p>
+<p>Add options to allow people to change the names or extensions of different items such as <em>README.rst</em> could be changed to <em><a href="http://readme.md/">README.md</a></em>.</p>
+<h2 class="mume-header" id="lecture-43-glob">Lecture 4.3: glob</h2>
+
+<p>This section of the lecture  should go with the files and folders but I wanted to introduce argument parsing so you can attempt the try out problems.</p>
+<p>The <code>glob</code> module allows us to specify a pattern to match a list of files and folders.  Suppose you have a large project that uses many different languages and files and you only want the .py or .json files or have directories with -debug in their name to indicate that they are only debug modules that should not be sent with production code. Instead of having to list all of the files and folders and going through by hand you can use pattern matching.</p>
+<p><a href="https://docs.python.org/3/library/glob.html">Python 3 Documentation: glob</a></p>
+<p>When pattern matching we use the following</p>
+<p><strong>*</strong>: The asterisks is a wildcard that matches 0 or more characters.</p>
+<p><strong>?</strong>: The question mark is also a wildcard but matches 0 or 1 characters.</p>
+<p><strong>Ranges</strong>:  Ranges can be specified using square brackets.  For instance, [a-h] matches all lowercase characters from a to h or manually, [ostz] which skips some letters.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> glob
+
+<span class="token keyword">for</span> g <span class="token keyword">in</span> glob<span class="token punctuation">.</span>glob<span class="token punctuation">(</span><span class="token string">'*/*.py'</span><span class="token punctuation">,</span> recursive<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>g<span class="token punctuation">)</span>
+</pre><p>First, I specified explictly to be recursive which means it should traverse directories and subdirectories that match the pattern, in this the wildcard *.</p>
+<p>Second, this will look for any and all .py files and print them.</p>
+<p>Since glob does pattern matching on files and folders then I needed to explicitly specify any and all directories in order to be recursive.  Remove the */ and notice that it may not traverse directories and subdirectories even though recursive is set to True.</p>
+<p>If we wanted to traverse other directories, regardless of pattern, use <code>os.walk</code> and <code>os.path</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> glob
+<span class="token keyword">import</span> os
+
+<span class="token keyword">for</span> root<span class="token punctuation">,</span> dirs<span class="token punctuation">,</span> _ <span class="token keyword">in</span> os<span class="token punctuation">.</span>walk<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> directory <span class="token keyword">in</span> dirs<span class="token punctuation">:</span>
+        path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>abspath<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>root<span class="token punctuation">,</span> directory<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> g <span class="token keyword">in</span> glob<span class="token punctuation">.</span>glob<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>path<span class="token punctuation">,</span> <span class="token string">'*.py'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>g<span class="token punctuation">)</span>
+</pre><p>There is still hardcoded stuff here such as the directory to walk and the pattern to search.  Use what the information from the argument parsing section to try to write a program the searches for files and folders in a given directory based on some pattern.  Expand it to only list files or folders if a special switch is specified and if that switch doesn't appear in the arguments passed, print both.</p>
+<h2 class="mume-header" id="lecture-44-time">Lecture 4.4: Time</h2>
+
+<p>Time is a weird construct that is actually hard to get right.  I recommend this Computerphile video.</p>
+<p><a href="https://www.youtube.com/watch?v=-5wpm-gesOY">Computerphile: The problem with Time and Timezones</a></p>
+<p>That's why I wanted to talk about it here.  The different calls will return different results.  The one you need to watch out for is <code>clock</code> as it doesn't return what you think it returns.</p>
+<p><strong>time()</strong> returns the number of seconds since the epoch.<br>
+<strong>ctime()</strong> returns a human readable version of time.<br>
+<strong>clock()</strong> returns processor clock time.  Returns seconds.<br>
+<strong>sleep()</strong> takes seconds and pauses the program for that many seconds.  Seconds is a float so you can pause for half seconds or .333 seconds, etc.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> time
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Epoch"</span><span class="token punctuation">,</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Readable"</span><span class="token punctuation">,</span> time<span class="token punctuation">.</span>ctime<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Processor"</span><span class="token punctuation">,</span> time<span class="token punctuation">.</span>clock<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Prints after 5 seconds"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">Epoch 1528333359.971539
+Readable Wed Jun  6 20:02:39 2018
+Processor 2.4380925631593975e-07
+Prints after 5 seconds
+</pre>
+<p>To demonstrate that <code>time.sleep</code> works (and to have a little fun) we can do a little animation.  In a script file, write the following.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> os
+<span class="token keyword">import</span> time
+
+CLEAR_TERM <span class="token operator">=</span> <span class="token boolean">None</span>
+
+<span class="token comment">#So much for language agnostic command calls</span>
+<span class="token keyword">if</span> os<span class="token punctuation">.</span>name <span class="token operator">==</span> <span class="token string">'nt'</span><span class="token punctuation">:</span>
+    CLEAR_TERM <span class="token operator">=</span> <span class="token string">'cls'</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    CLEAR_TERM <span class="token operator">=</span> <span class="token string">'clear'</span>
+
+dance_anim <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"&lt;('u'&lt;)"</span><span class="token punctuation">,</span> <span class="token string">"(^'u'^)"</span><span class="token punctuation">,</span> <span class="token string">"(&gt;'u')&gt;"</span><span class="token punctuation">,</span> <span class="token string">"(v'u'v)"</span><span class="token punctuation">]</span>
+
+anim_frame <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    _ <span class="token operator">=</span> os<span class="token punctuation">.</span>system<span class="token punctuation">(</span>CLEAR_TERM<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>dance_anim<span class="token punctuation">[</span>anim_frame<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    anim_frame <span class="token operator">=</span> <span class="token punctuation">(</span>anim_frame <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token builtin">len</span><span class="token punctuation">(</span>dance_anim<span class="token punctuation">)</span>
+    time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">.500</span><span class="token punctuation">)</span>
+</pre><p>Run this and watch as the little guy does his dance.  Once you are convinced of such a majestical dance routine, remove the <code>time.sleep(.500)</code> line and run the file.  He goes crazy.</p>
+<h2 class="mume-header" id="lecture-45-third-party-modules">Lecture 4.5: Third Party Modules</h2>
+
+<p>Everything you have seen so far is located in the standard library.  Now we will talk about how we can install third party modules that others wrote not installed here.  It is simple as we just need to use the <code>pip</code> command.  First, to ensure you have pip, run the following.</p>
+<p><strong>WARNING</strong> Do not overwrite the default pip used by your operating system.  If you are on Linux or Mac then any <code>pip</code> command will be <code>pip3</code>.  For the below, be sure to use <code>python3 -m ensurepip</code> if python3 is not your default.</p>
+<p><code>python -m ensurepip --default-pip</code></p>
+<p>Now say we want to install the <code>requests</code> module.  You simply need to run</p>
+<p><code>pip install requests</code></p>
+<p>Voila!  Simple.  Other useful commands are</p>
+<p><code>pip list</code> will list all installed modules.<br>
+<code>pip install --upgrade [package]</code> will upgrade any packages.<br>
+<code>python -m pip install --upgrade pip</code> will upgrade pip.</p>
+<p>This installs packages from PyPi by default, however, if you give a URL instead of a package, say from github, then it will install from there.</p>
+<p>Finally, if the package doesn't reside on github or PyPi or from any other place that you can easily have pip handle then make sure to read the README of the project.  If it does not contain a README then chances are it's not a complete or full release package yet.</p>
+<p>For more information, visit this page.  Also, meander over to the section that talks about creating your own packages.  When you want to share your libraries or programs with others, this will become handy.</p>
+<p><a href="https://packaging.python.org/tutorials/installing-packages/">Python Packaging Documentation</a></p>
+<hr>
+<blockquote>
+<p>University of Illinois at Springfield <br><br>
+Instructor: Brian-Thomas Rogers <br><br>
+Course: CSC 470</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python"></pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

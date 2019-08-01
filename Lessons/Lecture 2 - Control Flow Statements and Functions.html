@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<!-- saved from url=(0158)https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="stndz-style"></style>
+      <title>Lecture 2 - Control Flow Statements and Functions</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///C:/Users/Brian%20Rogers/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.4.1/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="lecture-2-br-control-flow-statements-and-functions"><strong>Lecture 2</strong> <br>Control Flow Statements and Functions</h1>
+
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-2-br-control-flow-statements-and-functions"><strong>Lecture 2</strong> <br>Control Flow Statements and Functions</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-21-pep-python-enhancement-proposals">Lecture 2.1: PEP (Python Enhancement Proposals)</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-22-comments">Lecture 2.2: Comments</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-221-inline-comments">Lecture 2.2.1: Inline Comments</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-222-docstrings">Lecture 2.2.2: Docstrings</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-23-booleans-and-none">Lecture 2.3: Booleans and None</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-24-block-statement-syntax">Lecture 2.4: Block Statement Syntax</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-25-conditional-statements">Lecture 2.5: Conditional Statements</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-251-boolean-operations-and-comparisons">Lecture 2.5.1: Boolean Operations and Comparisons</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-2511-boolean-operations">Lecture 2.5.1.1: Boolean Operations</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#try-out">Try Out</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-2512-comparison-operations">Lecture 2.5.1.2: Comparison Operations</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#try-out-1">Try Out</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-252-if-elif-else">Lecture 2.5.2: If-Elif-Else</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-253-ternary-operator">Lecture 2.5.3: Ternary Operator</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-26-looping">Lecture 2.6: Looping</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-261-while-loop">Lecture 2.6.1: While Loop</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-262-for-loop">Lecture 2.6.2: For Loop</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-2621-list-comprehension">Lecture 2.6.2.1: List Comprehension</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#try-out-2">Try Out</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-2622-file-objects-and-for-loops">Lecture 2.6.2.2: File Objects and For-Loops</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-263-break-continue-and-else">Lecture 2.6.3: Break, Continue, and Else</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-27-functions">Lecture 2.7: Functions</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-271-def-keyword">Lecture 2.7.1: Def Keyword</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-272-anonymous-functions">Lecture 2.7.2: Anonymous Functions</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-273-generators">Lecture 2.7.3: Generators</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#try-out-3">Try Out</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-274-argument-types">Lecture 2.7.4: Argument Types</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-275-problem-with-functions-and-the-isinstance-function">Lecture 2.7.5: Problem With Functions and the isinstance() Function</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-276-functional-programming">Lecture 2.7.6: Functional Programming</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#lecture-277-unpacking">Lecture 2.7.7: Unpacking</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391395-dt-content-rid-8477868_1/courses/192CSC47011314/Lecture%202%20-%20Control%20Flow%20Statements%20and%20Functions.html#exercises">Exercises</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="mume-header" id="lecture-21-pep-python-enhancement-proposals">Lecture 2.1: PEP (Python Enhancement Proposals)</h2>
+
+<p>The Python Enhancement Proposals, referred to as PEP, is a collection of developer guides written by Python developers and reviewed by the community.  The guides are numbered so they are easy to find.  While these guides do not need to be followed, they are here to help keep Python easy to read, easy to write, and easy to maintain.  I will be referring to them in this lecture along with the documentation pages.  I do not expect you follow each and every PEP as you are just learning the language  but once you feel comfortable in the syntax do take a look at it. Also, sometimes when programming, you need to write dirty code to get the results you want first and then refactor later.  There are only a few PEP's I expect you to follow and they are mostly in the PEP 8 index and will be explicitly stated that I want you to follow.</p>
+<p>The guides can be found here</p>
+<p><a href="https://www.python.org/dev/peps/" title="Python Enhancement Proposal Index">PEP Index</a></p>
+<h2 class="mume-header" id="lecture-22-comments">Lecture 2.2: Comments</h2>
+
+<p>There are only two kinds of comments in Python.  One is an inline comment.  The other is a docstring.  A docstring is short for document string and can be used as a regular multi-line string or, more commonly, to document your program so anyone using the help function will be given a nice laid out explanation of your modules.</p>
+<h3 class="mume-header" id="lecture-221-inline-comments">Lecture 2.2.1: Inline Comments</h3>
+
+<p>To make a single line comment, simply use the octothorpe character, <code>#</code>, and any characters after, up to a new line, will be considered a single line comment and won't run.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># Python Version 2</span>
+<span class="token comment"># FILENAME: comment_ex.py</span>
+<span class="token comment"># print "My favorite fruit is the lemon"</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"You'll never see my secret"</span><span class="token punctuation">)</span>
+</pre><p>Where and what the comment should be can make or break a programmer and their team's friendship.  Firstly, the <a href="https://www.python.org/dev/peps/pep-0008/#inline-comments" title="PEP8 Style Guide for Inline Comments">PEP8 Style Guide</a> (More on PEP below) states that inline comments should be used sparingly.  If you over comment your code it becomes more of a burden to read.  The example on the page shows an inline comment that points out the obvious.</p>
+<p><strong>A Bad Use</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># Imports ARGV</span>
+<span class="token keyword">from</span> sys <span class="token keyword">import</span> argv
+
+<span class="token comment"># Assigns variables prog and user_in</span>
+prog<span class="token punctuation">,</span> user_in <span class="token operator">=</span> argv<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+
+<span class="token comment"># Loops through user_in assigning each element to plain</span>
+<span class="token keyword">for</span> plain <span class="token keyword">in</span> user_in<span class="token punctuation">:</span>
+    <span class="token comment"># Sets res to empty string</span>
+	res <span class="token operator">=</span> <span class="token string">""</span>
+    
+    <span class="token comment"># Loops through plain assigning each element to c</span>
+	<span class="token keyword">for</span> c <span class="token keyword">in</span> plain<span class="token punctuation">:</span>
+        <span class="token comment"># Add-Assigns res to a result</span>
+		res <span class="token operator">+=</span> <span class="token builtin">hex</span><span class="token punctuation">(</span><span class="token builtin">ord</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'0x'</span><span class="token punctuation">,</span> <span class="token string">'%'</span><span class="token punctuation">)</span>
+    <span class="token comment"># Prints plain and res with a '&gt;' in between</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span>plain<span class="token punctuation">,</span> <span class="token string">'&gt;'</span><span class="token punctuation">,</span> res<span class="token punctuation">)</span>
+</pre><p>The above example doesn't give you anymore information about the program than the program itself and only serves to give you more to parse through.</p>
+<p><strong>A Slightly Better Use</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># This program reads arguments from</span>
+<span class="token comment"># the console passed to the program</span>
+<span class="token comment"># and converts each passed string</span>
+<span class="token comment"># to its URL Encoded form. </span>
+<span class="token comment"># %hexadecimal_of_ascii_values.</span>
+<span class="token comment"># Usage: python urlenc.py Just some strings</span>
+
+<span class="token keyword">from</span> sys <span class="token keyword">import</span> argv
+
+prog<span class="token punctuation">,</span> user_in <span class="token operator">=</span> argv<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+
+<span class="token keyword">for</span> plain <span class="token keyword">in</span> user_in<span class="token punctuation">:</span>
+	res <span class="token operator">=</span> <span class="token string">""</span>
+	<span class="token keyword">for</span> c <span class="token keyword">in</span> plain<span class="token punctuation">:</span>
+		res <span class="token operator">+=</span> <span class="token builtin">hex</span><span class="token punctuation">(</span><span class="token builtin">ord</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'0x'</span><span class="token punctuation">,</span> <span class="token string">'%'</span><span class="token punctuation">)</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span>plain<span class="token punctuation">,</span> <span class="token string">'&gt;'</span><span class="token punctuation">,</span> res<span class="token punctuation">)</span>
+</pre><p>This example shows a much better use.  It explains what the program is meant to do and how to use it.  There is, however, a much better commenting system we can use called docstrings.</p>
+<h3 class="mume-header" id="lecture-222-docstrings">Lecture 2.2.2: Docstrings</h3>
+
+<p>Docstrings are used to describe a python module, method, class, function, or as multiline strings.  Docstrings are created with either three single quotes or three double quotes. <code>'''This is a docstring'''</code> and <code>"""This is a docstring"""</code> are both docstrings.  You can use docstrings as regular strings.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">multiline_string <span class="token operator">=</span> <span class="token triple-quoted-string string">'''This is a multiline string.
+With the use of a docstring, you write out paragraphs of information.
+	The only downside (if you consider this a downside)
+		is that any and all formatting is kept so the spaces
+			before this line and the previous lines
+would be kept in the print out.'''</span>
+multiline_string
+</pre><pre class="language-text">'This is a multiline string.\nWith the use of a docstring, you write out paragraphs of information.\n\tThe only downside (if you consider this a downside)\n\t\tis that any and all formatting is kept so the spaces\n\t\t\tbefore this line and the previous lines\nwould be kept in the print out.'
+</pre>
+<p>The more common use of docstrings is for commenting our code.  Docstrings are parsed by the <code>help()</code> function and will be displayed in the printout.  Write this in a file and make sure you have your indentations exactly like the example.</p>
+<p><strong>Script File</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment">#FILENAME: doc_test.py</span>
+
+<span class="token triple-quoted-string string">"""This Python module is used to demonstrate docstrings as comments"""</span>
+
+<span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""This function will do something important.
+	More explanation should be given but this is just
+    a demonstration."""</span>
+    <span class="token keyword">pass</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Test</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""This is a test class to demonstrate docstrings."""</span>
+    <span class="token keyword">def</span> <span class="token function">method</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""This is a method of the test class"""</span>
+        <span class="token keyword">pass</span>
+</pre><p>For this test, you will need to <code>exit()</code> your Python interpreter and navigate to where you have the script file saved.  Then, start your interpreter at that location.  If you saved the script file on your desktop, this is how you might navigate to it.</p>
+<pre>C:\Users\broge2&gt;cd Desktop
+
+C:\Users\broge2\Desktop&gt;python
+</pre>
+<p>Now, do the following,</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">import</span> doc_test <span class="token comment">#This should be whatever you named the script file.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token builtin">help</span><span class="token punctuation">(</span>doc_test<span class="token punctuation">)</span>
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span> <span class="token comment"># Should see the docstrings we typed for everything.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token builtin">help</span><span class="token punctuation">(</span>doc_test<span class="token punctuation">.</span>func<span class="token punctuation">)</span>
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span> <span class="token comment"># Should see only the docstring for the function, func()</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token builtin">help</span><span class="token punctuation">(</span>doc_test<span class="token punctuation">.</span>Test<span class="token punctuation">)</span>
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span> <span class="token comment"># Should only see the docstring for the Test class and method.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token builtin">help</span><span class="token punctuation">(</span>doc_test<span class="token punctuation">.</span>Test<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>method<span class="token punctuation">)</span>
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span> <span class="token comment"># Should only see the docstring for the method in the Test class.</span>
+</pre><p>If you are working on a team that utilizes Python, it's a great idea to provide docstrings where possible.</p>
+<p>More information can be found</p>
+<p><a href="https://www.python.org/dev/peps/pep-0008/#documentation-strings" title="PEP 8 Style Guide for Docstrings">PEP 8 Style Guide for Docstrings</a></p>
+<p><a href="https://www.python.org/dev/peps/pep-0257/" title="PEP 257 Docstring Conventions">PEP 257 Docstring Conventions</a></p>
+<h2 class="mume-header" id="lecture-23-booleans-and-none">Lecture 2.3: Booleans and None</h2>
+
+<p>Later in the section, you will be dealing with testing.  Booleans are the data types that are returned by conditionals and None is another data type that can be tested for.  Let's take a look at booleans first.</p>
+<p>There are only two kinds of boolean objects, <code>True</code> and <code>False</code> and yes, they must be capitalized.  Things that equate to true, like <code>2==2</code> or <code>'a' in ['a', 'b', 'c']</code>, will return a <code>True</code> object.  Anything that equates to false will return a <code>False</code>.  There are many objects that equate to <code>False</code> other than false expressions and same goes for <code>True</code>, there are many things that are <code>True</code> other than true expressions.</p>
+<p>Objects that equate to False include</p>
+<ul>
+<li>None</li>
+<li>Zero of any numeric type, 0, 0.0, 0j.</li>
+<li>Any empty sequence, [], {} (empty dictionary), '' (empty string), set().</li>
+<li>Any empty mapping, {}.</li>
+<li>instances of user-defined classes, if the class defines a <strong>nonzero</strong>() or <strong>len</strong>() method, when that method returns the integer zero or bool value False.</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">if</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"None was printed"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"None is not printed"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">None is not printed
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">if</span> <span class="token number">0</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"0 is printed"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"0 is not printed"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">0 is not printed
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Empty list printed"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Empty list not printed"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">Empty list not printed
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">if</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Empty dictionary printed"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Empty dictionary not printed"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">Empty dictionary not printed
+</pre>
+<p>The last bullet will be explained in the lessons on object oriented programming.</p>
+<p>Anything else is considered <code>True</code>.  This is because <code>True</code> and <code>False</code> are C style Booleans.  C Style Booleans have the characteristic that a 0 value is false and any non-zero value is true.  Python is the same way in that <code>False</code> is a constant variable that stores 0 and <code>True</code> is a constant variable that stores 1.  You can test this by issuing <code>False == 0</code> and <code>True == 1</code> in the interpreter.  Finally, you can also do <code>True + 1</code> and get 2 as a result or <code>(False + 1) == True</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token boolean">False</span> <span class="token operator">==</span> <span class="token number">0</span>
+</pre><pre class="language-text">True
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token boolean">True</span> <span class="token operator">==</span> <span class="token number">1</span>
+</pre><pre class="language-text">True
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token boolean">True</span> <span class="token operator">+</span> <span class="token number">1</span>
+</pre><pre class="language-text">2
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token punctuation">(</span><span class="token boolean">False</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">True</span>
+</pre><pre class="language-text">True
+</pre>
+<p><code>None</code> is a special constant, like <code>True</code> and <code>False</code> that represents no value.  You can think of it like <code>null</code> in other languages.  I only bring up <code>None</code> because you will encounter it often when functions don't return a value or something is incorrect in your statements and a NoneType is the result when you were expecting something different. (This happens way too often to me).  You can also test to make sure objects aren't <code>None</code> before continuing on with your program or set variables to None like in default arguments for functions.</p>
+<p><a href="https://docs.python.org/3/library/stdtypes.html#truth-value-testing" title="Python 3 Truth Value Testing">Python 3 Truth Value Testing</a></p>
+<p><a href="https://docs.python.org/3/library/constants.html" title="Python 3 Constants">Python 3 Constants</a></p>
+<h2 class="mume-header" id="lecture-24-block-statement-syntax">Lecture 2.4: Block Statement Syntax</h2>
+
+<p>Block statements in Python are created with a colon at the end of the statement.  Then, indentation level dictates what is part of the block and what isn't.  Here is an example using a function that divides numbers.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">divide</span><span class="token punctuation">(</span>numerator<span class="token punctuation">,</span> denominator<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> denominator <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token boolean">None</span>
+    <span class="token keyword">return</span> numerator <span class="token operator">/</span> denominator
+
+numer <span class="token operator">=</span> <span class="token builtin">float</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Numerator: "</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+denom <span class="token operator">=</span> <span class="token builtin">float</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Denominator: "</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>divide<span class="token punctuation">(</span>numer<span class="token punctuation">,</span> denom<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">Numerator: 9
+Denominator: 2
+4.5
+</pre>
+<p>The first block statement is the function definition.  We know this because it ends with a colon <code>:</code>.  The next statement falls under the function so it is indented with 4 spaces (1 tab).  It is itself a block statement so the next statement is indented twice with 8 spaces (2 tabs).  This statement will only run if the condition is true.  The last statement, <code>return numerator / denominator</code> is part of function definition and will run last (unless the first return is ran).</p>
+<p>The next three statements are not part of the function definition as they are unindented and are considered to be at the same level as the function definition.  To give a general example:</p>
+<pre>block_statement:
+_ _ _ _ inner_statement_1
+_ _ _ _ inner_statement_2
+_ _ _ _ inner_block_statement:
+_ _ _ _ _ _ _ _ inner_inner_statement_1
+_ _ _ _ _ _ _ _ inner_inner_statement_2
+_ _ _ _ inner_statement_3
+statement
+</pre>
+<p>The underscores represent a space.  A block statement ends with the first unindented statement that resides on the same level as the block statement.</p>
+<p>Finally, when you create a block statement, you cannot mix tabs and spaces.  I recommend, as well as the recommendation of the PEP 8 style guide, to use spaces of multiples of 4.  You can change your editor to convert tabs to spaces so when you hit TAB on the keyboard it will just put 4 spaces in place for you.</p>
+<p><a href="https://www.python.org/dev/peps/pep-0008/#code-lay-out" title="PEP 8 Style Guide on Code Layout">PEP 8 Style Guide on Code Layout</a></p>
+<h2 class="mume-header" id="lecture-25-conditional-statements">Lecture 2.5: Conditional Statements</h2>
+
+<p>Conditional statements are one way to change the path of logic in our program.  We can have certain functions called, expressions performed, or nothing happen under a certain condition.  This is usually demonstrated using flowcharts.</p>
+<img width="400" height="200" src="data:image/png;base64,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Dl/TisFTqkyBa6nDRylwVL00Sp+DDl/TisFTqkyBa6nDRylwVL00Sp+DDl/TisFTqkyBa6nDRylwVL00Sp+DDl/TisFTqkyBa6nDRylwVL00Sp+DDl/TisFTqkyBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/Tio1SOEmFOEqBa6nDRylwVL00Sp+DDl/T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">
+<p>This flow chart is generic but shows how conditionals can be used to take separate paths of logic. Either path could lead to another conditional statement with 2 or more separate paths of logic.  Before learning how to create these paths we need to know how to compare objects.</p>
+<h3 class="mume-header" id="lecture-251-boolean-operations-and-comparisons">Lecture 2.5.1: Boolean Operations and Comparisons</h3>
+
+<p>Boolean operations operate on Boolean values <code>True</code> and <code>False</code>.  These have a low priority and will execute last after comparison operators.  Comparison operators work on all objects.  When we create our own classes, we can override how the operators work using "magic methods".  Let's start with boolean operations.</p>
+<h4 class="mume-header" id="lecture-2511-boolean-operations">Lecture 2.5.1.1: Boolean Operations</h4>
+
+<p>There are only 3 boolean operations, <code>and</code>, <code>or</code>, and <code>not</code>.  You use these keywords.  The <code>and</code> operator will only return a <code>True</code> if both expressions are true.  The table demonstrates what happens when you and two booleans (bool_1 and bool_2 in this case) that contain either a True or a False and you perform the boolean operation <code>and</code>.</p>
+<table>
+<thead>
+<tr>
+<th>bool1</th>
+<th>bool2</th>
+<th>bool1 and bool2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr>
+<td>False</td>
+<td>True</td>
+<td>False</td>
+</tr>
+<tr>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token boolean">False</span> <span class="token keyword">and</span> <span class="token boolean">False</span>
+</pre><pre class="language-text">False
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token boolean">False</span> <span class="token keyword">and</span> <span class="token boolean">True</span>
+</pre><pre class="language-text">False
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token boolean">True</span> <span class="token keyword">and</span> <span class="token boolean">False</span>
+</pre><pre class="language-text">False
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token boolean">True</span> <span class="token keyword">and</span> <span class="token boolean">True</span>
+</pre><pre class="language-text">True
+</pre>
+<p>The <code>or</code> operator will only return a <code>True</code> if one or both expressions are true.  The table demonstrates what happens when you and two booleans (bool_1 and bool_2 in this case) that contain either a True or a False and you perform the boolean operation <code>or</code>.</p>
+<table>
+<thead>
+<tr>
+<th>bool1</th>
+<th>bool2</th>
+<th>bool1 or bool2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr>
+<td>False</td>
+<td>True</td>
+<td>True</td>
+</tr>
+<tr>
+<td>True</td>
+<td>False</td>
+<td>True</td>
+</tr>
+<tr>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token boolean">False</span> <span class="token keyword">or</span> <span class="token boolean">False</span>
+</pre><pre class="language-text">False
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token boolean">False</span> <span class="token keyword">or</span> <span class="token boolean">True</span>
+</pre><pre class="language-text">True
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token boolean">True</span> <span class="token keyword">or</span> <span class="token boolean">False</span>
+</pre><pre class="language-text">True
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token boolean">True</span> <span class="token keyword">or</span> <span class="token boolean">True</span>
+</pre><pre class="language-text">True
+</pre>
+<p>The <code>not</code> operator negates an expression so that <code>not True</code> returns false and <code>not False</code> returns true.</p>
+<table>
+<thead>
+<tr>
+<th>bool</th>
+<th>not bool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>False</td>
+<td>True</td>
+</tr>
+<tr>
+<td>True</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">not</span> <span class="token boolean">False</span>
+</pre><pre class="language-text">True
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">not</span> <span class="token boolean">True</span>
+</pre><pre class="language-text">False
+</pre>
+<p><a href="https://docs.python.org/3/library/stdtypes.html#boolean-operations-and-or-not" title="Python 3 Boolean Operations Documentation">Python 3 Boolean Operations Documentation</a></p>
+<h5 class="mume-header" id="try-out">Try Out</h5>
+
+<ol>
+<li>String together Trues and Falses separated by <code>and</code>, <code>or</code>, and <code>not</code>.  Before pressing <strong>ENTER</strong> try to predict the outcome.  Surround operations with parenthesis like in <code>(True and False) or not (True and (False or False))</code></li>
+</ol>
+<h4 class="mume-header" id="lecture-2512-comparison-operations">Lecture 2.5.1.2: Comparison Operations</h4>
+
+<p>Comparison operators allow us to test object values against other like object values.  One string could be greater or equal to another string.  A list could be less than another list.  The operators you might be used to using comparing numbers can be used to compare non-numeric objects like in the previous sentences.  You will have to experiment with the different objects.  I am just going to show the operators and how they work.</p>
+<p><strong>Greater Than / Greater Than or Equal To</strong></p>
+<p>You check to see if the value of an object is greater than another value.  The operator for this is <code>&gt;</code>.  If you append an equals sign then it will check for greater than or equal to, <code>&gt;=</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">3</span> <span class="token operator">&gt;</span> <span class="token number">2</span>
+</pre><pre class="language-text">True
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">2</span> <span class="token operator">&gt;</span> <span class="token number">3</span>
+</pre><pre class="language-text">False
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">3</span> <span class="token operator">&gt;=</span> <span class="token number">3</span>
+</pre><pre class="language-text">True
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token string">'a'</span> <span class="token operator">&gt;</span> <span class="token string">'A'</span>
+</pre><pre class="language-text">True
+</pre>
+<p><strong>Less Than / Less Than or Equal To</strong></p>
+<p>You can check to see if the value of an object is less than another value.  The operator is <code>&lt;</code>.  You can append an equals sign to perform a less than or equal to operation, <code>&lt;=</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">3</span> <span class="token operator">&lt;</span> <span class="token number">2</span>
+</pre><pre class="language-text">False
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">2</span> <span class="token operator">&lt;</span> <span class="token number">3</span>
+</pre><pre class="language-text">True
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">3</span> <span class="token operator">&lt;=</span> <span class="token number">3</span>
+</pre><pre class="language-text">True
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token string">'a'</span> <span class="token operator">&lt;</span> <span class="token string">'A'</span>
+</pre><pre class="language-text">False
+</pre>
+<p><strong>Equal / Not Equal</strong></p>
+<p>To check for value equality we use a double equal sign, <code>==</code>.  This will test to see if the value of the objects are the same.  If we replace the first equals with an exclamation point we can perform a not equals operation, <code>!=</code>.  This will test to see if the values of the objects are not the same.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">3</span> <span class="token operator">==</span> <span class="token number">2</span>
+</pre><pre class="language-text">False
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">3</span> <span class="token operator">!=</span> <span class="token number">2</span>
+</pre><pre class="language-text">True
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">3</span> <span class="token operator">==</span> <span class="token number">3</span>
+</pre><pre class="language-text">True
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token string">'a'</span> <span class="token operator">==</span> <span class="token string">'A'</span>
+</pre><pre class="language-text">False
+</pre>
+<p><strong>Object Identity</strong></p>
+<p>This is probably the most confusing.  Object identity does not test for value equality like <code>==</code>.  Object identity tests for memory location.  You use the <code>is</code> keyword to test for object identity.  You can negate by either doing <code>not</code> before the expression or more Englishy <code>is not</code>.  You might get unexpected results if you use object identity when you meant to use value comparison.  Let me give an example.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">string_1 <span class="token operator">=</span> <span class="token string">'a string'</span>
+string_2 <span class="token operator">=</span> <span class="token string">'a string'</span>
+string_1 <span class="token keyword">is</span> string_2
+</pre><pre class="language-text">False
+</pre>
+<p>In this case, both <code>string_1</code> and <code>string_2</code> refer to different strings in memory.  Sometimes, the interpreter will optimize and notice that both strings are the same and have similar variables refer to the same object to save memory space.  This is a cautionary tale NOT to use <code>is</code> for value equality checks.</p>
+<p>Why would object identity be useful? One use is in the creation and use of data structures.  Another use is for low level memory management.  We can use it in Python to test for aliases.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">string_1 <span class="token operator">=</span> <span class="token string">'a string'</span>
+string_2 <span class="token operator">=</span> string_1
+string_1 <span class="token keyword">is</span> string_2
+</pre><pre class="language-text">True
+</pre>
+<p>In this case <code>string_2</code> is an alias for <code>string_1</code>.  When we checked for object identity, both variables refer to the same memory location and return <code>True</code>.</p>
+<p>Don't worry if this doesn't make much sense.  Just know that you should use <code>==</code> and <code>!=</code> for value checking.</p>
+<p><strong><code>in</code> Operator</strong></p>
+<p>There is another operator that is not in the list of operators in the documentation.  You have to navigate down to sequences for it but it works for mappings and sets.  The operator uses the keyword <code>in</code>.  This checks to see if a value is in some container.  Here are some basic examples</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token string">'abc'</span> <span class="token keyword">in</span> <span class="token string">'abcdefg'</span>
+</pre><pre class="language-text">True
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token string">'ade'</span> <span class="token keyword">in</span> <span class="token string">'abcdefg'</span>
+</pre><pre class="language-text">False
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span> <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">False
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span> <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">True
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">3</span> <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">True
+</pre>
+<p>This is easy to follow.  You are checking if one sequence or value is within another sequence.  But what about dictionaries?  Is it testing against the values or keys or both?  Let's find out!</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">d <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'a'</span><span class="token punctuation">:</span><span class="token string">'b'</span><span class="token punctuation">}</span>
+<span class="token string">'a'</span> <span class="token keyword">in</span> d
+</pre><pre class="language-text">True
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token string">'b'</span> <span class="token keyword">in</span> d
+</pre><pre class="language-text">False
+</pre>
+<p>Here, I have a simple dictionary containing a single key-value pair.  The first test tests for the key of the dictionary.  Here we get a <code>True</code> response so we know that <code>in</code> tests for keys, however, we get a <code>False</code> for the test for the value when we expected a <code>True</code>, therefore, we know <code>in</code> doesn't work for values.</p>
+<p><a href="https://docs.python.org/3/library/stdtypes.html#comparisons" title="Python 3 Comparison Operators Documentation">Python 3 Comparison Operators Documentation</a><br><br>
+<a href="https://docs.python.org/3/library/stdtypes.html#common-sequence-operations" title="Python 3 in Operator Documentation (See Table)">Python 3 <code>in</code> Operator Documentation (See the table)</a></p>
+<h5 class="mume-header" id="try-out-1">Try Out</h5>
+
+<ol>
+<li>Test out the operators with other objects that you have learned about.</li>
+<li>Mix-and-Match the object types like comparing a string with a tuple and see what happens.</li>
+</ol>
+<h3 class="mume-header" id="lecture-252-if-elif-else">Lecture 2.5.2: If-Elif-Else</h3>
+
+<p>When we want our program to do something based on some condition we create paths it can follow using if-elif-else statements. To write an <code>if</code> condition we use the <code>if</code> keyword followed by a boolean expression (an expression that returns either a true or false equivalent).  We do not need to surround our expression with parentheses like other languages.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token number">3</span>
+<span class="token keyword">if</span> a <span class="token operator">*</span> <span class="token number">3</span> <span class="token operator">==</span> <span class="token number">9</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"You have a correct value"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">You have a correct value
+</pre>
+<p>Here, the expression first starts with multiplication (math operators have higher precedence than comparison operators).  <code>a * 3</code> results in a 9 and we test the result against another number object <code>9 == 9</code> and get <code>True</code> as a result.  Because this is <code>True</code> the statement inside executes.  This will display the string.</p>
+<p>Let's say the result of the expression is False (change the <code>==</code> to <code>!=</code> or the <code>9</code> to something else).  Then nothing will happen.  If we want something to happen we can include an <code>else</code> as part of the entire statement.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token number">3</span>
+<span class="token keyword">if</span> a <span class="token operator">==</span> <span class="token number">9</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"You have a correct value"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"You have a bad value"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">You have a bad value
+</pre>
+<p>Here, <code>'You have a bad value</code> is the result because the expression <code>a == 9</code> results in False and no other path of execution is <code>True</code> so the statements under <code>else</code> happens.</p>
+<p>Finally, let's say we want to test for several conditions that perform some separate task.  We use the <code>elif</code> which is short for else-if in other languages.  We then treat it like a normal if and include a boolean expression.  <code>elif</code> only runs if the previous test failed (returned a False).</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">cmd <span class="token operator">=</span> <span class="token number">3</span>
+<span class="token keyword">if</span> cmd <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Command 1 is running"</span><span class="token punctuation">)</span>
+<span class="token keyword">elif</span> cmd <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Command 2 is running"</span><span class="token punctuation">)</span>
+<span class="token keyword">elif</span> cmd <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Command 3 is running"</span><span class="token punctuation">)</span>
+<span class="token keyword">elif</span> cmd <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Command 4 is running"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Invalid Command:"</span><span class="token punctuation">,</span> cmd<span class="token punctuation">)</span>
+</pre><pre class="language-text">Command 3 is running
+</pre>
+<p>If the <code>else</code> was not there, any value other than 1, 2, 3, or 4 would do nothing.  The else is acting as a catchall in this case.</p>
+<p><a href="https://docs.python.org/3/tutorial/controlflow.html#if-statements" title="Python 3 If-Statement Documentation">Python 3 If-Statement Documentation</a></p>
+<h3 class="mume-header" id="lecture-253-ternary-operator">Lecture 2.5.3: Ternary Operator</h3>
+
+<p>This is called an operator but it's a short statement you can use to return certain values on one line.  You should only use this if a value can only be one of two values based on some condition.  It works kind of like English.</p>
+<p>The ternary operator works syntactically by <code>x if condition else y</code> wherein x is returned if the condition is True else y is returned.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token string">"Is Greater"</span> <span class="token keyword">if</span> <span class="token number">3</span> <span class="token operator">&gt;</span> <span class="token number">2</span> <span class="token keyword">else</span> <span class="token string">"Not is Greater"</span>
+a
+</pre><pre class="language-text">'Is Greater'
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token string">"Is Greater"</span> <span class="token keyword">if</span> <span class="token number">2</span> <span class="token operator">&gt;</span> <span class="token number">3</span> <span class="token keyword">else</span> <span class="token string">"Not is Greater"</span>
+a
+</pre><pre class="language-text">'Not is Greater'
+</pre>
+<p>You can chain ternary operations but it is ill advised.  This makes code hard to read.  If you need to perform multiple checks, just use the normal if-elif-else statements.</p>
+<p>There is no extensive documentation on this form of operation.  Just the syntax shown here.  You can read more about the PEP for conditional statements here, though.</p>
+<p><a href="https://www.python.org/dev/peps/pep-0308/" title="PEP 308: Conditional Expressions">PEP 308: Conditional Expressions</a></p>
+<h2 class="mume-header" id="lecture-26-looping">Lecture 2.6: Looping</h2>
+
+<p>There are 3 looping constructs provided to us by Python, two of which have keywords.  The first way we will look at is the <code>while</code> loop.  The <code>while</code> loop will loop over code as long as some conditional is <code>True</code>.  The second way is a <code>for</code> loop.  The <code>for</code> loop is nothing like other languages where you have 3 control statements that determines how the for-loop runs.  Python's for loops loop over an iterable.  Iterables are any object that can be iterated over like a list or string.  The third way will not be discussed explicitly is the use of recursion.  Recursion is when a function calls itself.  You need a base case and a recursive call that reaches the base case to ensure no infinite loop occurs.</p>
+<p>With that, let's take a look at the while loop.</p>
+<h3 class="mume-header" id="lecture-261-while-loop">Lecture 2.6.1: While Loop</h3>
+
+<p>The while loop runs statements inside of it as long as some condition is true.  To make a while loop you simply use the <code>while</code> keyword.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token string">"This is an infinite loop"</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span> <span class="token comment"># Will print forever (or until you press CTRL+C)</span>
+</pre><p>The example shows what happens when you run an infinite loop.  I did this in case you accidentally write a program that does this.  Simply press <strong>CTRL+C</strong> (control plus C) to stop the execution.</p>
+<p>Let's write something that has a bit more substance to it.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">cmd <span class="token operator">=</span> <span class="token string">""</span>
+<span class="token keyword">while</span> cmd<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token string">"exit"</span><span class="token punctuation">:</span>
+    cmd <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Command &gt;&gt; "</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> cmd <span class="token operator">==</span> <span class="token string">"smile"</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">":-)"</span><span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> cmd <span class="token operator">==</span> <span class="token string">"angry"</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"&gt;:-("</span><span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> cmd <span class="token operator">==</span> <span class="token string">"dance"</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"&lt;('_'&lt;)&lt;('_')&gt;(&gt;'_')&gt;"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">Command &gt;&gt; dance
+&lt;('_'&lt;)&lt;('_')&gt;(&gt;'_')&gt;
+Command &gt;&gt; angry
+&gt;:-(
+Command &gt;&gt; smile
+:-)
+Command &gt;&gt; funny
+Command &gt;&gt; exit
+</pre>
+<p>In this example, the while loop will test the variable <code>cmd</code> for a lowercase string containing <code>"exit"</code>.  While it does not contain exit continue running the stuff inside.  If it does contain exit, the expression becomes False and stops running.</p>
+<p>What happens if you place an <code>else</code> and print invalid command then exit?  If indicating an invalid command is necessary we can use <code>break</code>.  This will be explained later in the lecture.</p>
+<p>The while loop doesn't have detailed documentation, just syntax.</p>
+<h3 class="mume-header" id="lecture-262-for-loop">Lecture 2.6.2: For Loop</h3>
+
+<p>Python has a for construct that is different than what most are use to.  Take your time to try to break it down and you'll get it eventually.</p>
+<p>For loops take the form of</p>
+<pre>for variable in iterable:
+    expression
+</pre>
+<p>Python's for loop acts more like a foreach statement in that foreach element in an iterable assign it to this variable for the next iteration of the loop.  What is an iterable?  An iterable is something that elements that can be "visited".  This is dictated by a "magic method" implemented for the object in question. In any case, Sets, Dictionaries, any sequence type, generators, and many more.  First, let's take a look using a list as this is the easiest case.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">lst <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> elem <span class="token keyword">in</span> lst<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span>
+</pre><pre class="language-text">3
+4
+5
+6
+7
+</pre>
+<p>Here, the variable <code>elem</code> was assigned each element <code>in lst</code> and printed to the screen.  You can, of course, use any other sequence type.  This is all the for loop consists of in Python.  You assign a variable to each element of an iterable.</p>
+<p>We could use multiple variables if we know that multiple items are returned.  This is related to unpacking (we haven't discussed this yet).  Here is an example of that using a dictionary and displaying the key and value using a for loop.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">d <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"a"</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">"apple"</span><span class="token punctuation">,</span> <span class="token string">"aerospace"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">"banana"</span><span class="token punctuation">,</span> <span class="token string">"binomial"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">"cherry"</span><span class="token punctuation">,</span> <span class="token string">"convex"</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+<span class="token keyword">for</span> k<span class="token punctuation">,</span> v <span class="token keyword">in</span> d<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Key"</span><span class="token punctuation">,</span> k<span class="token punctuation">,</span> <span class="token string">"points to"</span><span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+</pre><pre class="language-text">Key b points to ['banana', 'binomial']
+Key a points to ['apple', 'aerospace']
+Key c points to ['cherry', 'convex']
+</pre>
+<p>Here, I separated the variables with a comma.  The <code>items()</code> method returns a list (an iterable) of tuples in which the first item is the key and second item is the value.  The tuples are visited in each iteration and the elements in the tuple are placed in the variables respectively (ie the first element is placed in the first variable, second element in the second variable, etc.)  Let's see what happens when we use only one variable.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">d <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"a"</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">}</span>
+<span class="token keyword">for</span> elem <span class="token keyword">in</span> d<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span>
+</pre><pre class="language-text">('b', 2)
+('a', 1)
+('c', 3)
+</pre>
+<p>Notice how this time tuples are displayed with the key as the first element and the value as the second.  This was expected from the explanation above I just wanted you to see that is the case.</p>
+<p>This is all well and good but how can we get the for loop to iterate a given number of times?  We could write a while loop to do this but that would require us making a variable each time to keep track of the iteration and we must make sure to have the proper conditional and to make our variable head toward a making the condition false.  Any part of that could result in a bug if you forget a step or use the wrong check.</p>
+<p>Instead, we can use the range or xrange (Python 2) function.</p>
+<p><strong>Range</strong></p>
+<p>If you give it a single number we get a result that will go from 0 to that number.  If you pass it two numbers, we get a result from the first number up to, but not including, the second number.  If you pass it three numbers, we get a result from the first number up to, but not including, the second number stepping every third number.</p>
+<p>Here, we receive a range type object that will return a set of values from 0 to 9.  (Looping through it will demonstrate this)</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">range(0, 10)
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">for</span> number <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span>
+</pre><pre class="language-text">0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre>
+<p>Here, we receive a range type object that will return a set of values from 0 to 9.  (Looping through it will demonstrate this)</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">range(5, 10)
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">for</span> number <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span>
+</pre><pre class="language-text">5
+6
+7
+8
+9
+</pre>
+<p>Here, we receive a range type object that will return a set of values from 0 to 20 that will step 2.  (Looping through it will demonstrate this)</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">range(0, 20)
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">for</span> number <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span>
+</pre><pre class="language-text">0
+2
+4
+6
+8
+10
+12
+14
+16
+18
+</pre>
+<p><a href="https://docs.python.org/3/reference/compound_stmts.html#the-for-statement">Python 3 For-Loop Documentation</a><br><br>
+<a href="https://docs.python.org/3/library/stdtypes.html#typesseq-range">Python 3 Range Sequence Type</a></p>
+<h4 class="mume-header" id="lecture-2621-list-comprehension">Lecture 2.6.2.1: List Comprehension</h4>
+
+<p>Now that you know how to use a for loop, you can use it to create a list using what is called a list comprehension.  This is a useful way for creating a list programmatically.  It contains several parts so let me give you a simple example, break it down, and then apply complexity.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">lst <span class="token operator">=</span> <span class="token punctuation">[</span>i <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+lst
+</pre><pre class="language-text">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</pre>
+<p>I've wrapped the statement with square brackets, <code>[]</code>.  This is the indicator we would like a list.  Next, I have a variable, <code>i</code>, that will be the elements added to the list.  Next is the for statement which has the same <code>i</code> variable that is set to each element produced by range.  At each iteration, <code>i</code> will be set to the next value produced by range and then added to the list.  Now, this is only the beginning of list comprehensions.  A more syntactical way to represent a list comprehension is the following.</p>
+<pre>[expression for variable in iterable if conditional]
+</pre>
+<p>The conditional part is optional.  Let's take a look at more interesting example.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">lst <span class="token operator">=</span> <span class="token punctuation">[</span>i <span class="token operator">**</span> <span class="token number">2</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+lst
+</pre><pre class="language-text">[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+</pre>
+<p>This time, i've applied <code>**2</code> to <code>i</code>.  I now have a list of squared numbers from 0 to 9.  We can also apply a conditional after the for statement to only allow certain values.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">lst <span class="token operator">=</span> <span class="token punctuation">[</span>i <span class="token operator">**</span> <span class="token number">2</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">if</span> i <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">]</span>
+lst
+</pre><pre class="language-text">[0, 4, 16, 36, 64]
+</pre>
+<p>Now, I have added the <code>if i % 2 == 0</code> which will only be true when <code>i</code> is an even number.  I now have a list of even numbers that are squared from 0 to 9.</p>
+<p>Let me show you a more interesting example breaking up a string and storing information about it.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">words <span class="token operator">=</span> <span class="token string">"This is a string"</span>
+info <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>w<span class="token punctuation">.</span>upper<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> w<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>w<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">for</span> w <span class="token keyword">in</span> words<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+info
+</pre><pre class="language-text">[('THIS', 'this', 4), ('IS', 'is', 2), ('A', 'a', 1), ('STRING', 'string', 6)]
+</pre>
+<p>Here, I created a list of tuples that contains information about a string that was split using whitespace (default of split method).</p>
+<p>We can use list comprehension to create multidimensional lists as well (lists within lists).</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token punctuation">[</span><span class="token punctuation">[</span>x <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token keyword">for</span> y <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">[[0, 1, 2], [0, 1, 2], [0, 1, 2], [0, 1, 2]]
+</pre>
+<p>My last final example using two for loops to create every permutation of size 2 of a set of characters.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">alpha <span class="token operator">=</span> <span class="token string">"abc"</span>
+<span class="token punctuation">[</span><span class="token string">''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> alpha <span class="token keyword">for</span> y <span class="token keyword">in</span> alpha<span class="token punctuation">]</span>
+</pre><pre class="language-text">['aa', 'ab', 'ac', 'ba', 'bb', 'bc', 'ca', 'cb', 'cc']
+</pre>
+<p><a href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">Python 3 List Comprehension Documentation</a></p>
+<h5 class="mume-header" id="try-out-2">Try Out</h5>
+
+<ol>
+<li>Try to take each of the example list comprehensions and expand them to use a normal for loop.  They should modify a list that contains the end result.</li>
+</ol>
+<h4 class="mume-header" id="lecture-2622-file-objects-and-for-loops">Lecture 2.6.2.2: File Objects and For-Loops</h4>
+
+<p>I wanted to make a special section for file objects and for-loops.  File objects are iterable in that you can iterate over each line using a for loop.  This makes reading a file very easy line-by-line.</p>
+<p><strong>Normal Text File: sample.txt</strong></p>
+<pre>This is a file.
+You can read files using for loops.
+The returned item is a string containing
+the line we are at in the loop.  We can
+then process the file however we want.
+Pretty simple, eh?
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"sample.txt"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> file_h<span class="token punctuation">:</span>
+    <span class="token keyword">for</span> line <span class="token keyword">in</span> file_h<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>line<span class="token punctuation">)</span>
+</pre><pre class="language-text">This is a file.
+
+You can read files using for loops.
+
+The returned item is a string containing
+
+the line we are at in the loop.  We can
+
+then process the file however we want.
+
+Pretty simple, eh?
+</pre>
+<p>WOAH! Why do we have so many blank lines?  Let's change the print line real quick and print <code>repr(line)</code> and see what's going on.  The repr function will display all characters in a string as a literal, including newlines.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"sample.txt"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> file_h<span class="token punctuation">:</span>
+    <span class="token keyword">for</span> line <span class="token keyword">in</span> file_h<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">repr</span><span class="token punctuation">(</span>line<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">'This is a file.\n'
+'You can read files using for loops.\n'
+'The returned item is a string containing\n'
+'the line we are at in the loop.  We can\n'
+'then process the file however we want.\n'
+'Pretty simple, eh?'
+</pre>
+<p>Ahhhh.  Do you notice that?  The extra <code>\n</code> at the end of the strings.  Remember, the print statement automatically appends a new line along with the new lines already in the file.  This will result in two new lines at the end of each string resulting in the extra new lines.  Let us remove that using the <code>.strip()</code> method of a string.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"sample.txt"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> file_h<span class="token punctuation">:</span>
+    <span class="token keyword">for</span> line <span class="token keyword">in</span> file_h<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>line<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">This is a file.
+You can read files using for loops.
+The returned item is a string containing
+the line we are at in the loop.  We can
+then process the file however we want.
+Pretty simple, eh?
+</pre>
+<p>Much better!  When reading from a file we must be aware of the new line at the end of each line.  Remember to take care of this otherwise you may end up with incorrect results.</p>
+<h3 class="mume-header" id="lecture-263-break-continue-and-else">Lecture 2.6.3: Break, Continue, and Else</h3>
+
+<p>There are a couple more keywords we can use to control the flow of logic.  We will take a look at them separately.</p>
+<p><strong>Break</strong></p>
+<p>The break keyword will jump us out of a loop no matter what the conditions are.  If the break is inside an inner loop, we will only jump out of the inner loop and continue the outer loop.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">cmd <span class="token operator">=</span> <span class="token string">""</span>
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    cmd <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Command: "</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> cmd <span class="token operator">==</span> <span class="token string">"smile"</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">":-)"</span><span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> cmd <span class="token operator">==</span> <span class="token string">"angry"</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"&gt;:-("</span><span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> cmd <span class="token operator">==</span> <span class="token string">"dance"</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"&lt;('_'&lt;)&lt;('_')&gt;(&gt;'_')&gt;"</span><span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> cmd <span class="token operator">==</span> <span class="token string">"exit"</span><span class="token punctuation">:</span>
+        <span class="token keyword">break</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Invalid command"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">Command: dance
+&lt;('_'&lt;)&lt;('_')&gt;(&gt;'_')&gt;
+Command: smile
+:-)
+Command: angry
+&gt;:-(
+Command: funny
+Invalid command
+Command: exit
+</pre>
+<p>This above example is similar to the while loop from before only instead we are breaking out of the loop instead of checking it as a condition.  When <code>cmd</code> is <strong>exit</strong> then we <code>break</code> out of the loop.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">cmd <span class="token operator">=</span> <span class="token string">""</span>
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        cmd <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Inner Command: "</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> cmd <span class="token operator">==</span> <span class="token string">"exit"</span><span class="token punctuation">:</span>
+            <span class="token keyword">break</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Still going"</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Inner loop broken out of"</span><span class="token punctuation">)</span>
+    cmd <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Outer Command: "</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> cmd <span class="token operator">==</span> <span class="token string">"quit"</span><span class="token punctuation">:</span>
+        <span class="token keyword">break</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Starting inner loop again"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Outer loop broken out of"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">Inner Command: stop
+Still going
+Inner Command: exit
+Inner loop broken out of
+Outer Command: exit
+Starting inner loop again
+Inner Command: exit
+Inner loop broken out of
+Outer Command: quit
+Outer loop broken out of
+</pre>
+<p>In order to break out of this, you need to first type exit to break out of the inner loop then quit to break out of the outer loop.  Break statements only break out of the inner most loop that they reside in.  This is the same for <code>for</code> loops.</p>
+<p><strong>Continue</strong></p>
+<p>Continue will move to the next iteration of the loop skipping the rest of the statements after continue.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> i <span class="token operator">%</span> <span class="token number">3</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">continue</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Iteration:"</span><span class="token punctuation">,</span> <span class="token builtin">str</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">Iteration: 1
+Iteration: 2
+Iteration: 4
+Iteration: 5
+Iteration: 7
+Iteration: 8
+Iteration: 10
+Iteration: 11
+Iteration: 13
+Iteration: 14
+</pre>
+<p>The loop will go from 0 to 14 printing its iteration number UNLESS the iteration is a multiple of 3 (0 included).  When the continue statement was hit it started back at the next iteration of the loop.</p>
+<p><strong>Else</strong></p>
+<p>Else is part of the loop constructs.  I introduce it here because it's kind of odd coming from other languages.  An else clause can be created after the loop construction and it will run only if no break statement executes.  If a break statement executes, it will not run.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">from</span> random <span class="token keyword">import</span> randint
+lst <span class="token operator">=</span> <span class="token punctuation">[</span>randint<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+lst
+</pre><pre class="language-text">[1, 10, 1, 7, -2]
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">for</span> elem <span class="token keyword">in</span> lst<span class="token punctuation">:</span>
+    <span class="token keyword">if</span> elem <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Stopping"</span><span class="token punctuation">)</span>
+        <span class="token keyword">break</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Processing element"</span><span class="token punctuation">,</span> <span class="token builtin">str</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"All items processed"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">Processing element 1
+Processing element 10
+Processing element 1
+Processing element 7
+Processing element -2
+All items processed
+</pre>
+<p>Your result may vary.  Here, I have a program that iterates over a list of items.  If it encounters a 0 in the list it stops prematurely.  If it processes all elements it will print <code>'All items processed'</code>.</p>
+<p>The else statement can also be used with while loops.</p>
+<p><a href="https://docs.python.org/3/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops">Python 3 Break, Continue, and Else Documentation</a></p>
+<h2 class="mume-header" id="lecture-27-functions">Lecture 2.7: Functions</h2>
+
+<p>Functions are another path of execution that performs some task.  Python provides 3 kinds of functions.  The first is just a regular function created using the <code>def</code> keyword.  A real quick aside, a function does not belong to a class.  If the function is part of a class then it is called a method.  I make this distinction, even in the first lecture, to ensure understanding that you must use an object to call method, <code>my_string.split()</code> where <code>split()</code> is a string method, while a function does not need an object to be called, <code>sum([1,2,3])</code> where <code>sum()</code> is a function.  Both are created using the def keyword.</p>
+<p>The second kind of function is an anonymous function.  This kind of function has no name and is created using the <code>lambda</code> keyword.</p>
+<p>The third type of function is created using the <code>def</code> keyword but uses a <code>yield</code> statement instead of <code>return</code>.  This kind of function is called a generator and maintains its state, even after returning a value.</p>
+<h3 class="mume-header" id="lecture-271-def-keyword">Lecture 2.7.1: Def Keyword</h3>
+
+<p>The <code>def</code> keyword is used to define a function name.  Functions should be used to create recallable sections of code.  Along with the function name we need to specify what arguments, if any, must be passed.  There are some interesting kinds of arguments that we can create but for now we'll show basic arguments.  Arguments are just variables surrounded by a set of parenthesis' and separated with a comma.  When you call a function you must supply it with the right number of arguments.  The function can <code>return</code> a value.  If you do not specify a return line then it will return <code>None</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">urlenc</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    result <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token keyword">for</span> c <span class="token keyword">in</span> text<span class="token punctuation">:</span>
+        result <span class="token operator">+=</span> <span class="token builtin">hex</span><span class="token punctuation">(</span><span class="token builtin">ord</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'0x'</span><span class="token punctuation">,</span> <span class="token string">'%'</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> result
+urlenc<span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">'%74%65%73%74'
+</pre>
+<p>I've taken the urlenc program we wrote earlier under comments and converted it to be a function.  Now, I can call the function and pass it a string and receive the url encoded result.  We can store this result in a string and use it later in our program, of course.  As a rule of thumb, functions should do one thing and do it well.  This will make debugging significantly easier.</p>
+<p>Finally, keep in mind that once a return statement is hit, anything below it will not execute.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> number <span class="token operator">&gt;</span> <span class="token number">10</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"That's a big number"</span>
+    <span class="token keyword">return</span> <span class="token string">"That's a small number"</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>func<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>func<span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">That's a small number
+That's a big number
+</pre>
+<p>Here, the function accepts a number and returns <code>"That's a small number"</code> if the number is less than or equal to 10.  If the number is greater than 10 then it returns <code>"That's a big number"</code> and exits the function.</p>
+<h3 class="mume-header" id="lecture-272-anonymous-functions">Lecture 2.7.2: Anonymous Functions</h3>
+
+<p>Anonymous functions do not have a name.  They are used mostly for quick calculations.  They aren't as powerful as normal functions as they only allow a single line of execution (unless you chain them but that becomes unreadable and unmaintainable).  To create an anonymous function we use the <code>lambda</code> keyword.  Now, this is a little different from a normal function.  Let me give an example and then break it down.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> x<span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">5
+</pre>
+<p>Here, we have a function that takes one argument, <code>x</code>, and adds 3 to it.  I then passed this anonymous function an argument, 2, and it returns 5.  The parenthesis' around the lambda part is only necessary in a case like this where we are calling it upon creation.  We can store the location of an anonymous function within a variable, however, and call it any time.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">add_three <span class="token operator">=</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> x <span class="token operator">+</span> <span class="token number">3</span>
+add_three<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">5
+</pre>
+<p>Here, I am aliasing the function to <code>add_three</code>.  I can then call it just like I call a normal function.  Now, again, anonymous functions are not as powerful as normal functions.  They are only really useful for functional programming when you need to pass a function to another function.  In the case of passing a function to another function, you do not need to store it in a variable.  If you do, you are better off just creating a function using def.</p>
+<p>Here is an example that utilizes multiple variables</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">middle_value <span class="token operator">=</span> <span class="token keyword">lambda</span> a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">:</span> <span class="token builtin">min</span><span class="token punctuation">(</span><span class="token builtin">max</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">max</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">max</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">)</span>
+middle_value<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">2
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">middle_value<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">2
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">middle_value<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">2
+</pre>
+<p>Here, I created an anonymous function that returns the middle value of 3 inputs.  One more example to hit it home.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">ops <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'add'</span><span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">,</span>y<span class="token punctuation">:</span> x<span class="token operator">+</span>y<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'sub'</span><span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">,</span>y<span class="token punctuation">:</span> x<span class="token operator">-</span>y<span class="token punctuation">)</span><span class="token punctuation">}</span>
+ops<span class="token punctuation">[</span><span class="token string">'add'</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">3
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">ops<span class="token punctuation">[</span><span class="token string">'sub'</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">15
+</pre>
+<p>In this case, I have defined a dictionary that contains anonymous functions that can be used if you supply the correct key to the dictionary.</p>
+<p><a href="https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions">Python 3 Lambda Documentation</a></p>
+<h3 class="mume-header" id="lecture-273-generators">Lecture 2.7.3: Generators</h3>
+
+<p>Generators are their own class of functions.  Even though they are started off with the <code>def</code> keyword, their behavior is separate from a normal function.  When you return from a normal function the local variables inside the function are cleaned up (with a slight exception in the homework).  In a generator, the state of function is maintained after the <code>yield</code> statement.  This ultimately means that the data in a generator is stored somewhere in memory until it is called again in which it will act accordingly with its previous data.  The state includes code location (what it last ran) and local variable values.  Generators are used to create iterators. (It is not the only way, however).</p>
+<p>Let's see this in action.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">gen</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">yield</span> i <span class="token operator">**</span> <span class="token number">2</span>
+
+<span class="token keyword">for</span> i <span class="token keyword">in</span> gen<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+</pre><pre class="language-text">0
+1
+4
+9
+16
+</pre>
+<p>Here, the generator takes a value and creates a range up to, but not including, that value.  It then yields <code>i ** 2</code> where in it will return the result and then store its state.  Let's actually slow this down so we can see that in action.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">ten_gen <span class="token operator">=</span> gen<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+<span class="token builtin">next</span><span class="token punctuation">(</span>ten_gen<span class="token punctuation">)</span>
+</pre><pre class="language-text">0
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">next</span><span class="token punctuation">(</span>ten_gen<span class="token punctuation">)</span>
+</pre><pre class="language-text">1
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">next</span><span class="token punctuation">(</span>ten_gen<span class="token punctuation">)</span>
+</pre><pre class="language-text">4
+</pre>
+<p>If you keep calling next on ten_gen you will eventually receive the following.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">next</span><span class="token punctuation">(</span>ten_gen<span class="token punctuation">)</span>
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+StopIteration                             Traceback (most recent call last)
+
+&lt;ipython-input-107-d31af62fcc7a&gt; in &lt;module&gt;()
+----&gt; 1 next(ten_gen)
+
+
+StopIteration: 
+</pre>
+<p><code>next()</code> is a built-in function that takes an iterator and performs the next call until a StopIteration error is thrown.</p>
+<p><a href="https://docs.python.org/3/howto/functional.html?highlight=lambda#generators">Python 3 Generator Documentation</a></p>
+<h4 class="mume-header" id="try-out-3">Try Out</h4>
+
+<ol>
+<li>Define the following generator and call next on a generator object and see what happens with the string statements.<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">def</span> <span class="token function">gen</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token string">"Before yielding"</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token keyword">yield</span> i
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token string">"After yielding"</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token string">"End of generator"</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> iterate <span class="token operator">=</span> gen<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+</pre></li>
+<li>Create a generator that does something and assign two variables with that generator but different arguments and call next on each.</li>
+</ol>
+<h3 class="mume-header" id="lecture-274-argument-types">Lecture 2.7.4: Argument Types</h3>
+
+<p>There are 3 kinds of argument types that we can create for functions and generators.  The one we saw earlier is called a positional argument in which the order we pass the items indicates which variable get's which value.  the first one is called a default argument.  A default argument is an argument that starts with a value unless one is passed to it from the caller.  This makes it so we don't need to constantly overload a function or method with different inputs. We can also pass arguments using keyword arguments.  We can even tell the function to accept arbitrary 'variables' using keyword argument syntax.  The next method of accepting arguments is by a list of passed parameters (no, I don't just mean a list object).  This is called an Arbitrary Argument List.</p>
+<p><strong>Default Arguments</strong></p>
+<p>To create a default argument, simply assign it a value in the list of parameters where it is created.  If no argument is passed to this variable then it will retain its default value.  If a value is passed to it, then it will take that as its value instead.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span>val<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> val
+<span class="token keyword">print</span><span class="token punctuation">(</span>func<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>func<span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">10
+13
+</pre>
+<p>Here, I have the local variable <code>val</code> set to a default value 10 if no value is passed to the function.</p>
+<p><strong>Keyword Arguments</strong></p>
+<p>Keyword arguments allow us to manually set the variables of a function if we know the name of the variables.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">math</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> a <span class="token operator">+</span> b <span class="token operator">*</span> c
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>math<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>math<span class="token punctuation">(</span>c<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> b<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> a<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">7
+5
+</pre>
+<p>Here, I have created a function that accepts three arguments <code>a, b, c</code>.  I call that function setting each variable manually.  With this, I don't need to pass in the values in the order the function expects.</p>
+<p>We can force a user to have to specify the keyword arguments in their call to the function by putting a single asterisks as the very first argument.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> a <span class="token operator">+</span> b <span class="token operator">+</span> c
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>func<span class="token punctuation">(</span>c<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> b<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> a<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">6
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span>func<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-115-4e16fa97ad7b&gt; in &lt;module&gt;()
+----&gt; 1 print(func(1, 2, 3))
+
+
+TypeError: func() takes 0 positional arguments but 3 were given
+</pre>
+<p><strong>Keyword Arguments: Advanced</strong></p>
+<p>We can accept arbitrary keyword arguments that the user defines into our function if we so desire.  All we need to define is a variable that starts with double asterisks like <code>**var</code>.  The typical name that is given to this variable is <code>**kwargs</code> for keyword arguments.  When this is present, we can pass arbitrary variable names that weren't defined.  Python will collect these in a dictionary pointed to by kwargs.  Pretty neat, huh?</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    result <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token keyword">for</span> key<span class="token punctuation">,</span> value <span class="token keyword">in</span> kwargs<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        result <span class="token operator">+=</span> key <span class="token operator">+</span> <span class="token string">" -&gt; "</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"\n"</span>
+        result <span class="token operator">+=</span> <span class="token string">"type(key) = "</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" | "</span>
+        result <span class="token operator">+=</span> <span class="token string">"type(value) = "</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        result <span class="token operator">+=</span> <span class="token string">"\n\n"</span>
+    <span class="token keyword">return</span> result
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>func<span class="token punctuation">(</span>var1<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span> var2<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span> var3<span class="token operator">=</span><span class="token string">"something"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">var2 -&gt; 20
+type(key) = &lt;class 'str'&gt; | type(value) = &lt;class 'int'&gt;
+
+var3 -&gt; something
+type(key) = &lt;class 'str'&gt; | type(value) = &lt;class 'str'&gt;
+
+var1 -&gt; 10
+type(key) = &lt;class 'str'&gt; | type(value) = &lt;class 'int'&gt;
+</pre>
+<p>Here, I created a function that accepts keyword arguments and prints out the the keys and the values.  The keys are all string types but the values will maintain their original type.  When you allow for keyword arguments like this you must have it as your last argument and you can only have one of these types of arguments.</p>
+<p><strong>Arbitrary List Arguments</strong></p>
+<p>Just like with keyword arguments, we can just accept a list of arguments except they will have no variable names.  Instead, they will be gathered using a list.  We can accept such an argument by prepending a single asterisk to a variable like so, <code>*var</code>.  Python programmers also have a common name for such a variable which is <code>*args</code>.</p>
+<p>Here's how it works.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    result <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token keyword">for</span> elem <span class="token keyword">in</span> args<span class="token punctuation">:</span>
+        result <span class="token operator">+=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span>
+        result <span class="token operator">+=</span> <span class="token string">" | type(elem) = "</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        result <span class="token operator">+=</span> <span class="token string">"\n\n"</span>
+    <span class="token keyword">return</span> result
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>func<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">3 | type(elem) = &lt;class 'int'&gt;
+
+2 | type(elem) = &lt;class 'int'&gt;
+
+['a', 'b'] | type(elem) = &lt;class 'list'&gt;
+
+{1, 2, 3} | type(elem) = &lt;class 'set'&gt;
+</pre>
+<p>Here, the function accepts an arbitrary list of arguments that we can iterate over if we want to.  The items passed maintain their type.  Arbitrary argument list variables must be created after positional arguments and before keyword arguments.</p>
+<p>There is another way we can pass arguments to functions using a form of unpacking, talked about further down, in which we can pass a list object that contains the same number of elements as there are arguments in the function.</p>
+<p><a href="https://docs.python.org/3/tutorial/controlflow.html#more-on-defining-functions">Python 3 Argument Types Documentation</a></p>
+<p><strong>The use of *args must come before the **kwargs in the argument list.  For example</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment">#This is okay</span>
+    <span class="token keyword">pass</span>
+
+<span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token operator">**</span>kwargs<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment">#This will throw an invalid syntax error</span>
+    <span class="token keyword">pass</span>
+</pre><h3 class="mume-header" id="lecture-275-problem-with-functions-and-the-isinstance-function">Lecture 2.7.5: Problem With Functions and the isinstance() Function</h3>
+
+<p>There is an inherent problem with functions, and with Python.  It's very subtle at first but you'll start to realize it the more you program in it.  It's both a blessing and a curse.  Not having to declare variable types.  This seems likes a good thing but what happens if someone passes object types you weren't expecting? Think of a math function in which you expect number types to be passed.  What happens if a string type is passed? Or a list type?  We may end up with a result we didn't want or our program crashing.  If we want to force a certain type to only be allowed we should use the <code>isinstance()</code> built-in function.  <code>isinstance()</code> accepts two arguments.  The first is the variable we are testing.  The second is the type/class we are testing against.  Here is an example.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">isinstance</span><span class="token punctuation">(</span><span class="token string">'abcd'</span><span class="token punctuation">,</span> <span class="token builtin">str</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">True
+</pre>
+<p>We can pass as a second argument to isinstance a tuple containing the types we want to test for. (Python 3 only needs to test for int but might want to check for float as well).</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">isinstance</span><span class="token punctuation">(</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">float</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">True
+</pre>
+<p>This makes writing the conditional logic a bit easier.  You can then use the assert statement to do a quick check and assert correct value types.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">math</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">assert</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">float</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">str</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" is not a number"</span>
+    <span class="token keyword">assert</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">float</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">str</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" is not a number"</span>
+    <span class="token keyword">assert</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>c<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">float</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">str</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" is not a number"</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>a <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>b <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>c <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">)</span>
+
+math<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">14
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">math<span class="token punctuation">(</span><span class="token string">"1"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+AssertionError                            Traceback (most recent call last)
+
+&lt;ipython-input-123-637e52f048b6&gt; in &lt;module&gt;()
+----&gt; 1 math("1", 2, 3)
+
+
+&lt;ipython-input-122-db2b0283cb60&gt; in math(a, b, c)
+      1 def math(a, b, c):
+----&gt; 2     assert isinstance(a, (int, float)), str(a) + " is not a number"
+      3     assert isinstance(b, (int, float)), str(b) + " is not a number"
+      4     assert isinstance(c, (int, float)), str(c) + " is not a number"
+      5     return (a ** 2) + (b ** 2) + (c ** 2)
+
+
+AssertionError: 1 is not a number
+</pre>
+<p>Later, we will learn how to raise our own errors so that we don't get AssertionError (which doesn't give us much information) and will be able to handle the error better.</p>
+<p>This idea that we shouldn't care about the type just that it can do what we want is known as Duck Typing (If it looks like a duck, quacks like a duck, it must be a duck).  Since Duck typing is the standard for Python, we shouldn't worry so much about asserting an object is a specific type.</p>
+<p><a href="https://docs.python.org/3/library/functions.html#isinstance">Python 3 isinstance Built-In Function</a><br></p>
+<p><a href="https://wiki.python.org/moin/UsingAssertionsEffectively">Python Using Assert Effectively</a></p>
+<h3 class="mume-header" id="lecture-276-functional-programming">Lecture 2.7.6: Functional Programming</h3>
+
+<p>Functional programming is not something that is Python specific.  It is a programming paradigm that treats functions like mathematical functions.  Functional programming breaks a problem down into functions.  (A pure functional language will have no looping construct like for or while, just recursion.)  Python allows us to program like a functional programmer.  I've already covered some aspects of functional programming like generators, anonymous functions, and list comprehensions.  Another aspect is the ability to pass a function to another function.  How does this work?  Well, remember, everything in Python is an object.  If you call a function without providing parenthesis' you will receive information about that function like it's location in memory.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword">pass</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> func
+<span class="token operator">&lt;</span>function func at <span class="token number">0x0000000002C5FC80</span><span class="token operator">&gt;</span>
+</pre><p>We can actually alias the function to a variable.</p>
+<p>We can actually alias the function to a variable.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword">pass</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> func
+<span class="token operator">&lt;</span>function func at <span class="token number">0x0000000002C5FC80</span><span class="token operator">&gt;</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> not_the_func <span class="token operator">=</span> func
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> not_the_func
+<span class="token operator">&lt;</span>function func at <span class="token number">0x0000000002C5FC80</span><span class="token operator">&gt;</span>
+</pre><p>Notice that <code>not_the_func</code> is at the same location (that's because it's a variable that points to that location in memory)</p>
+<p>With this, we can pass functions to other functions.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">func1</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> f<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">func2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"Function 2 called"</span>
+
+func1<span class="token punctuation">(</span>func2<span class="token punctuation">)</span>
+</pre><pre class="language-text">'Function 2 called'
+</pre>
+<p>Here, <code>func1</code> accepts a callable and returns that callables value.  <code>func2</code> simply returns a string.  Then I call func1 passing func2.</p>
+<p>Why is this a powerful feature? Let's take a look at the <code>map()</code> built-in.  <code>map()</code> takes a function (can be anonymous) and an iterable and runs the function on each element.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> val <span class="token operator">**</span> val
+
+lst <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span>
+<span class="token builtin">map</span><span class="token punctuation">(</span>func<span class="token punctuation">,</span> lst<span class="token punctuation">)</span>
+</pre><pre class="language-text">&lt;map at 0x24198ff18d0&gt;
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token punctuation">[</span>i <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">map</span><span class="token punctuation">(</span>func<span class="token punctuation">,</span> lst<span class="token punctuation">)</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">[1, 4, 27, 256]
+</pre>
+<p>There are several other functions like this and you can create ones as well.  This is only the tip of the iceberg for this topic so I'll leave the documentation up to you to read.</p>
+<p><a href="https://docs.python.org/3/howto/functional.html">Python 3 Functional Programming Documentation</a></p>
+<h3 class="mume-header" id="lecture-277-unpacking">Lecture 2.7.7: Unpacking</h3>
+
+<p>This last lecture is on the syntax for unpacking.  Unpacking is a simple concept in which we have a list (not the object type) of variables on the left hand side of an assignment and a list or a tuple on the right that contain the same number of elements as there are variables.  The variables will then be assigned to the values in the container respectively.  Let's see this in action.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a<span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span>
+a
+</pre><pre class="language-text">1
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">b
+</pre><pre class="language-text">2
+</pre>
+<p>A simple example but shows how it works.  The list has two elements so we have two variables that the list will get unpacked to.  <code>a</code> becomes 1 and <code>b</code> becomes 2. What happens if we try to unpack with too few variables?</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a<span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-130-c702cf699c19&gt; in &lt;module&gt;()
+----&gt; 1 a, b = [1, 2, 3]
+
+
+ValueError: too many values to unpack (expected 2)
+</pre>
+<p>We get a ValueError that says too many values to unpack.  If we are unsure of the number of values, our last variable can have an asterisks before it to take a list of the remaining items.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> <span class="token operator">*</span>c <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span>
+a
+</pre><pre class="language-text">1
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">b
+</pre><pre class="language-text">2
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">c
+</pre><pre class="language-text">[3, 4, 5, 6]
+</pre>
+<p>What about too few elements?</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a<span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-135-605f28859c6e&gt; in &lt;module&gt;()
+----&gt; 1 a, b = [1]
+
+
+ValueError: not enough values to unpack (expected 2, got 1)
+</pre>
+<p>Again, we get an error.  We can use the asterisks trick again, however, to mitigate this.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> <span class="token operator">*</span>c <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span>
+a
+</pre><pre class="language-text">1
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">b
+</pre><pre class="language-text">2
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">c
+</pre><pre class="language-text">[]
+</pre>
+<p>Why is this useful?  We can unpack onto functions but we need special syntax for that.  Firstly, we need to be passing either a list or tuple.  Second, we need to pass the list prepended with a single asterisk.  This will unpack the values for us.  Pretty neat, huh?</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> a <span class="token operator">+</span> b <span class="token operator">+</span> c
+
+lst <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+func<span class="token punctuation">(</span><span class="token operator">*</span>lst<span class="token punctuation">)</span>
+</pre><pre class="language-text">6
+</pre>
+<p>One use for this is if you have a function that returns a tuple with a set number of elements and want to pass the result to another function.  You could just prepend the call to the first function with an asterisk and pass that to the other function.  Here's an example of that.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> a <span class="token operator">+</span> b <span class="token operator">+</span> c
+
+<span class="token keyword">def</span> <span class="token function">numbers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+
+func<span class="token punctuation">(</span><span class="token operator">*</span>numbers<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">6
+</pre>
+<p><a href="https://docs.python.org/3/tutorial/controlflow.html#unpacking-argument-lists">Python 3 Unpacking Arguments</a></p>
+<h3 class="mume-header" id="exercises">Exercises</h3>
+
+<p>For these exercises, try to incorporate what you learned in the lesson.  Remember, these are just for you to practice.  You do not need to turn these in.</p>
+<ol>
+<li>Write a program that plays paper, rock, scissors...and always wins.</li>
+<li>Write a program that generates the next <a href="https://www.mathsisfun.com/algebra/triangular-numbers.html">Triangle Number</a> up to the N<sup>th</sup> number.</li>
+<li>(<strong>Challenge</strong>) Write a program that generates N number of primes.
+<ol>
+<li>If you didn't do it the first time, use a generator to generate the primes.</li>
+</ol>
+</li>
+<li>Write a guessing game that plays against you!</li>
+<li>Write a program that reads in a file that contains a list of names and sees if a name is in that list.</li>
+</ol>
+<hr>
+<blockquote>
+<p>University of Illinois at Springfield<br><br>
+Instructor: Brian-Thomas Rogers<br><br>
+Course: CSC 470</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python"></pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

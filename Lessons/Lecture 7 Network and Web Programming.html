@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<!-- saved from url=(0142)https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="stndz-style"></style>
+      <title>Lecture 7 Network and Web Programming</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///C:/Users/btcr/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.4.3/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="lecture-7-part-1-network-programming"><strong>Lecture 7 Part 1</strong> <br> Network programming</h1>
+
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#lecture-7-part-1-network-programming"><strong>Lecture 7 Part 1 Network programming</strong></a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#network-programming">Network Programming</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#networking-basics">Networking Basics</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#client-vs-server">Client vs. Server</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#how-do-clients-connect-to-servers">How do clients connect to servers?</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#mac-address">MAC Address</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#ip-address">IP Address</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#ipv4">IPv4</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#ipv6">IPv6</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#hostnames">Hostnames</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#ports">Ports</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#tcp-and-udp">TCP and UDP</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#udp">UDP</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#tcp">TCP</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#python-clientserver">Python Client/Server</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#our-first-clientserver">Our First Client/Server</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#udp-echo-server">UDP Echo Server</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#udp-echo-Client">UDP Echo Client</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#what-to-watch-out-for">What to watch out for</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#the-blocking-server-problem">The Blocking Server Problem</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#tcp-echo-Server">TCP Echo Server</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#tcp-echo-Client">TCP Echo Client</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#enhancing-tcp-socket-code">Enhancing TCP Socket Code</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1406659-dt-content-rid-8604354_1/courses/192CSC47011314/Lecture%207%20Network%20and%20Web%20Programming.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="mume-header" id="network-programming">Network Programming</h2>
+
+<p>With network programming in Python, we are able to write our own server client code constructing our own protocol for the messaging between the two.  This isn't necessarily the lowest level as Scapy let's you craft network packets to be sent but it is considered low level.  To give an analogy, socket programming is to packet crafting as assembly is to machine code.  With that said, we need to go over some basics (and I mean the absolute basics) of networking.  For anyone already doing networking, you may skip to <strong>Python Client/Server</strong>.  Once we get an understanding of these concepts we will write our first client/server application.</p>
+<p><strong>NOTE</strong> - If you plan on working on network programming with Python you will want to visit the resources at the bottom.</p>
+<h3 class="mume-header" id="networking-basics">Networking Basics</h3>
+
+<p>Before we being programming our sockets we must discuss some basics of networking.  What is the difference between a client and a server?  How do they connect?  What's the difference between an IPv4, IPv6, Hostname, or MAC address?  What's the difference between TCP and UDP?  This section will try to answer these questions.</p>
+<h4 class="mume-header" id="client-vs-server">Client vs. Server</h4>
+
+<p>What is the difference between a client and server?  Well, in this day not much anymore but let's separate the two and try to understand both.  The client connects and makes requests to the server.  The server accepts these requests and responds accordingly.  Think of your browser.  When you connect to a website, you are connecting to server.  The browser, or client, the requests for files, sometimes passing in key/value pairs that will return different results by the server.  The website accepts these requests and tries to respond correctly.  Clients may connect to many servers and servers may accept connections from many clients.</p>
+<p>I mentioned that in this day client/servers don't have much differences between themselves and that's mostly true.  This applies only by an application basis but clients can be servers as well.  One example of such an application is a P2P (Peer to Peer) applications.  For instance, in a filesharing P2P application, the client can both host files and request files from another host.  Another example would be a P2P multiplayer game (though, those aren't as popular anymore to prevent cheating).  This blending of the client/server model allows for powerful network applications that only require the initial application and not two or more.</p>
+<p>We will be making a client/server application in the strictest sense in that, the client connects to the server, the client sends a request and the server responds accordingly.  This will allow us to understand the basics, keeping things simple, but allowing you to expand the concepts into workable applications.</p>
+<h4 class="mume-header" id="how-do-clients-connect-to-servers">How do clients connect to servers?</h4>
+
+<p>To truly understand how this works, study the OSI model then learn about routing, routing tables, ARP, and various ways to connect multiple networks together.  We will only be discussing TCP, UDP, ports, hostnames, and MAC and IP addresses.  Just enough to get our client and server to connect and start sending messages to each other.</p>
+<h5 class="mume-header" id="mac-address">MAC Address</h5>
+
+<p>Not necessarily needed for our uses but I figured I'd go ahead and talk about the MAC address.  This address is the physical address to your network card.  Every network card has a unique MAC address that is 6 bytes and looks like <code>AB:CD:EF:01:23:45</code>.  The bytes are represented with hexadecimal digits 0-F.  The first three bytes are the manufacturer of the network card.  You can look up yours at the following site</p>
+<p><a href="https://macvendors.com/">MAC Vendors</a></p>
+<p>You can get the MAC address of your device by using either</p>
+<p>Windows: <code>ipconfig /all</code> - look for <strong>Physical Address</strong>. Alternatively, <code>ipconfig /all | findstr Physical</code></p>
+<p>Linux/Mac: Two options</p>
+<ul>
+<li><code>ifconfig</code> - Look for <strong>HWaddr</strong>.  Alternatively, <code>ipconfig | grep -i hwaddr</code></li>
+<li><code>ip link</code> - Look for <strong>link/ether</strong>.</li>
+</ul>
+<p>You may see several network adapters.  Some are virtual and one is loopback.</p>
+<p>Why is this important?  Because the MAC address will never change (but can be spoofed) while IP addresses can change.  You might also see mention of MAC addresses in the socket documentation so you should at least know what they are referring to.  It has nothing to do with your Operating System.</p>
+<h5 class="mume-header" id="ip-address">IP Address</h5>
+
+<p>There are two types of IP Addresses.  IPv4 and IPv6.  I will talk about both here but will only be using IPv4 when we get to making our server and client.  An IP address is given either by what's called a DHCP server or is set statically via your operating system.  The IP address is a routing number that tells routers what network you belong to.  We have the two kinds of IP addresses mentioned earlier.</p>
+<h6 class="mume-header" id="ipv4">IPv4</h6>
+
+<p>32 bit address<br>
+Represeneted by 4 bytes separted by a period.  An IPv4 typically looks like <code>127.0.210.32</code>.  You may also see something like <code>192.168.0.0/24</code> which represents a range of IP addresses (<code>192.168.0.0</code> - <code>192.168.0.255</code>).  We will be using the loopback address of your network card which is most likely <code>127.0.0.1</code> (unless you did something to change it for whatever reason.  Just use your loopback address)</p>
+<p>You can see your own IPv4 address for each network card on your computer.</p>
+<p>Windows: <code>ipconfig</code> - look for <strong>IPv4 Address</strong>.  Alternatively, <code>ipconfig | findstr IPv4</code>.</p>
+<p>Linux/Mac: Two options</p>
+<ul>
+<li><code>ifconfig</code> - look for <strong>inet addr</strong>.  Alternatively, <code>ifconfig | grep "inet addr"</code>.</li>
+<li><code>ip -4 a</code> - look for <strong>inet</strong>.</li>
+</ul>
+<h6 class="mume-header" id="ipv6">IPv6</h6>
+
+<p>128 bit address<br>
+Represented by a grouping of eight 4 byte groups separated by a colon.  Typically looks something like <code>ABCD:EF01:2345:6789:0123:4567:89AB:CDEF</code>, though, there are some rules that may leave sections out.  For instance, if there is a grouping of all 0's you don't have to include that section.  The loopback address in IPv6 is<br>
+<code>0000:0000:0000:0000:0000:0000:0000:0001</code> which reduces to <code>::1</code>.</p>
+<p>You can see your IPv6 addresses by issuing the following commands</p>
+<p>Windows: <code>ipconfig</code> - look for <strong>IPv6 Address</strong>.  Alternatively, <code>ipconfig | findstr IPv6</code></p>
+<p>Linux/Mac: Two options</p>
+<ul>
+<li><code>ifconfig</code> - look for <strong>inet6 addr</strong>. Alternatively, `ifconifg | grep "inet6 addr"</li>
+<li><code>ip -6 a</code> - look for <strong>inet6</strong>.</li>
+</ul>
+<p><strong>Resource</strong> - Python has a module for handling IP addresses.  The module is <a href="https://docs.python.org/3/howto/ipaddress.html">ipaddress introduction</a> - <a href="https://docs.python.org/3/library/ipaddress.html#module-ipaddress">ipaddress documentation</a></p>
+<h5 class="mume-header" id="hostnames">Hostnames</h5>
+
+<p>A hostname is a human readable name for your machine (you can also change it).  This may be used if your application is ran on the same network.  You would have to configur either a hosts file or setup your own DNS.  Instead of using an IP address, you may be able to use a hostname.  You can get the hostname of your machine by issuing <code>hostname</code>.  Yes, this works for Windows, Linux, and Mac.</p>
+<h5 class="mume-header" id="ports">Ports</h5>
+
+<p>Your computer has 65,356 TCP and 65,356 UDP ports. (More on TCP and UDP later).  If we think about IP addresses like street addresses that lead to apartment buildings then Ports are like room numbers.  We need to know the IP address (or the hostname) and the port number to reach our specific server.  Now the analogy kind of breaks down when we talk about the client in a server/client model since the client also uses a port (so the server can respond) but we don't need to know it.  The client will communicate what port it is on when it connects to the server.  The first 1024 ports are considered standard ports for protocols like HTTP, FTP, SSH, DNS, and so on but that doesn't mean we can't use them (except port 0.  We cannot (read should not) use port 0).</p>
+<p>The port is often tacked onto the end of an IP address with a colon.  Because IPv6 uses colons to separate it's parts you will see IPv6 address surrounded by square brackets first.</p>
+<p><code>192.168.0.1:80</code> - IPv4 address 192.168.0.1 at port 80<br>
+<code>[2607:f8b0:4009:8030:0000:2004:0000:0000]:443</code> - IPv6 address 2607:f8b0:4009:8030:0000:2004:0000:0000 at port 443</p>
+<p>When we utilize IP addresses and ports in Python, they will be separate values in a tuple passed to a socket object.</p>
+<h4 class="mume-header" id="tcp-and-udp">TCP and UDP</h4>
+
+<p>There are two protocols commonly used to perform network communications between two machines.  The first is UDP.</p>
+<h5 class="mume-header" id="udp">UDP</h5>
+
+<p>UDP is what is known as a connectionless protocol.  That is, the protocol does not establish that there is a connection that can be made.  Instead, when network communications use UDP the message is sent down the wire with the hope that it get's to it's destination.  UDP is useful for when you don't care if one side or the other of a communication doesn't get all the data being sent or if you are directly connecting two devices.  Some example usages are streaming services, DNS, tunneling, and more.</p>
+<p>You can view what UDP connections you have on your machine by issuing the following commands in a terminal/command prompt.</p>
+<p>Windows: <code>netstat -p udp</code> for IPv4 connections or <code>netstat -p udpv6</code> for IPv6 connections.</p>
+<p>Linux/Mac: <code>netstat -u</code> or <code>netstat --udp</code></p>
+<h5 class="mume-header" id="tcp">TCP</h5>
+
+<p>TCP establishes a connection and much more.  There are entire books written about just TCP.  What it means by TCP establishes a connection is that the protocol performs what is known as a 3-way handshake.  During this handshake, one side of a network communication asks if the server exists along with a random number.  The server then responds that it does in fact exist (or it times out) taking the first number and adds 1 to it and returns that in addition to it's own random number.  Finally, the first communicator responds with the servers random number plus 1.  Then communication can begin.</p>
+<p>You'll want to use TCP when you need to guarantee a connection.  Ask a networker which protocol is easier to detect dropped packets.</p>
+<p>Windows: <code>netstat -p tcp</code> for IPv4 connections or <code>netstat -p tcpv6</code> for IPv6 connections.</p>
+<p>Linux/Mac: <code>netstat -t</code> or <code>netstat --tcp</code></p>
+<h4 class="mume-header" id="python-clientserver">Python Client/Server</h4>
+
+<p>When you write your server, you will need to decide if it will be UDP or TCP and create a client that also utilizes UDP or TCP.</p>
+<p>We are going to write our client and server code all in one Python module.  The following is base code to get us started.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">from</span> argparse <span class="token keyword">import</span> ArgumentParser
+<span class="token keyword">from</span> socket <span class="token keyword">import</span> socket<span class="token punctuation">,</span> AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">,</span> SOCK_STREAM
+<span class="token keyword">from</span> ipaddress <span class="token keyword">import</span> IPv4Address<span class="token punctuation">,</span> AddressValueError
+<span class="token keyword">from</span> sys <span class="token keyword">import</span> exit
+
+<span class="token comment">######################### Needs implemented #########################</span>
+
+<span class="token keyword">def</span> <span class="token function">create_udp_server</span><span class="token punctuation">(</span>ipaddr<span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'Creating UDP server at </span><span class="token interpolation"><span class="token punctuation">{</span>ipaddr<span class="token punctuation">}</span></span><span class="token string"> on </span><span class="token interpolation"><span class="token punctuation">{</span>port<span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">create_udp_client</span><span class="token punctuation">(</span>server_ipaddr<span class="token punctuation">,</span> server_port<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'Client sending data to UDP server </span><span class="token interpolation"><span class="token punctuation">{</span>server_ipaddr<span class="token punctuation">}</span></span><span class="token string"> on </span><span class="token interpolation"><span class="token punctuation">{</span>server_port<span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">create_tcp_server</span><span class="token punctuation">(</span>ipaddr<span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'Creating TCP server at </span><span class="token interpolation"><span class="token punctuation">{</span>ipaddr<span class="token punctuation">}</span></span><span class="token string"> on </span><span class="token interpolation"><span class="token punctuation">{</span>port<span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">create_tcp_client</span><span class="token punctuation">(</span>server_ipaddr<span class="token punctuation">,</span> server_port<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'Connecting to TCP server </span><span class="token interpolation"><span class="token punctuation">{</span>server_ipaddr<span class="token punctuation">}</span></span><span class="token string"> on </span><span class="token interpolation"><span class="token punctuation">{</span>server_port<span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
+
+<span class="token comment">#####################################################################</span>
+
+<span class="token keyword">def</span> <span class="token function">validate_ipaddress</span><span class="token punctuation">(</span>ipaddr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        IPv4Address<span class="token punctuation">(</span>ipaddr<span class="token punctuation">)</span>
+    <span class="token keyword">except</span> AddressValueError<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Not a valid IPv4 Address: </span><span class="token interpolation"><span class="token punctuation">{</span>ipaddr<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+        exit<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">validate_port</span><span class="token punctuation">(</span>port<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> <span class="token number">0</span> <span class="token operator">&lt;=</span> port <span class="token operator">&lt;=</span> <span class="token number">65535</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'Not a valid port: </span><span class="token interpolation"><span class="token punctuation">{</span>port<span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
+        exit<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    parser <span class="token operator">=</span> ArgumentParser<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">'Create a TCP or UDP echo server or client.'</span><span class="token punctuation">)</span>
+
+    parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">'-s'</span><span class="token punctuation">,</span> <span class="token string">'--server'</span><span class="token punctuation">,</span> action<span class="token operator">=</span><span class="token string">'store_true'</span><span class="token punctuation">,</span> <span class="token builtin">help</span><span class="token operator">=</span><span class="token string">'Creates a server.'</span><span class="token punctuation">)</span>
+    parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">'-u'</span><span class="token punctuation">,</span> <span class="token string">'--udp'</span><span class="token punctuation">,</span> action<span class="token operator">=</span><span class="token string">'store_true'</span><span class="token punctuation">,</span> <span class="token builtin">help</span><span class="token operator">=</span><span class="token string">'Will use UDP.'</span><span class="token punctuation">)</span>
+    parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">'ipaddress'</span><span class="token punctuation">,</span> <span class="token builtin">help</span><span class="token operator">=</span><span class="token string">'The IPv4 address to connect or bind to.'</span><span class="token punctuation">)</span>
+    parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">'port'</span><span class="token punctuation">,</span> <span class="token builtin">type</span><span class="token operator">=</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">help</span><span class="token operator">=</span><span class="token string">'The port to use for communication.'</span><span class="token punctuation">)</span>
+
+    args <span class="token operator">=</span> parser<span class="token punctuation">.</span>parse_args<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    validate_ipaddress<span class="token punctuation">(</span>args<span class="token punctuation">.</span>ipaddress<span class="token punctuation">)</span>
+    validate_port<span class="token punctuation">(</span>args<span class="token punctuation">.</span>port<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> args<span class="token punctuation">.</span>server<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> args<span class="token punctuation">.</span>udp<span class="token punctuation">:</span>
+            create_udp_server<span class="token punctuation">(</span>args<span class="token punctuation">.</span>ipaddress<span class="token punctuation">,</span> args<span class="token punctuation">.</span>port<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            create_tcp_server<span class="token punctuation">(</span>args<span class="token punctuation">.</span>ipaddress<span class="token punctuation">,</span> args<span class="token punctuation">.</span>port<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> args<span class="token punctuation">.</span>udp<span class="token punctuation">:</span>
+            create_udp_client<span class="token punctuation">(</span>args<span class="token punctuation">.</span>ipaddress<span class="token punctuation">,</span> args<span class="token punctuation">.</span>port<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            create_tcp_client<span class="token punctuation">(</span>args<span class="token punctuation">.</span>ipaddress<span class="token punctuation">,</span> args<span class="token punctuation">.</span>port<span class="token punctuation">)</span>
+    
+</pre><p><strong>NOTE</strong>: You do not need client and server code in the same Python file.  You can separate the two if you want.  The inspiration for this setup is the <em>netcat</em> program which can set up a basic server or connect to a server.</p>
+<p>You run the above code in a terminal/command prompt.  For example, to setup a UDP server on port 8080 at IP address 127.0.0.1 you would issue the following</p>
+<p><code>python pynet.py -u -s 127.0.0.1 8080</code></p>
+<p><em><a href="http://pynet.py/">pynet.py</a></em> is the name of the file I have this code in.  Please use the name you gave your Python file.  To connect to this server, you would open another command prompt/terminal and issue the following</p>
+<p><code>python pynet.py -u 127.0.0.1 8080</code></p>
+<p>Also, you'll notice this code isn't complete.  That's because we need to complete it.  Particularly, the first 4 functions.</p>
+<p>But first, let's see what is already given skipping the lines you should be familiar with already.</p>
+<p>Line 2<br>
+<code>from socket import socket, AF_INET, SOCK_DGRAM, SOCK_STREAM</code><br>
+This is the most important line and it's the first one we are going to look at.  The line imports from the socket module the socket function which creates socket object, AF_INET which is just a constant that tells the socket object to use IPv4 addressing, SOCK_DGRAM which tells the socket to use UDP, and SOCK_STREAM which tells the socket to use TCP.</p>
+<p>What is a socket?  It's an abstraction layer given to us by the operating system to perform networking in code.  Rather than having to hand craft each packet, we can just use a socket to handle that for us only dealing with the messages.</p>
+<p>Line 3<br>
+<code>from ipaddress import IPv4Address, AddressValueError</code><br>
+This line imports some modules from ipaddress.  We don't need these for our purposes but the code does use the imported code to test for valid IPv4 addresses passed to the program.  Taking care of errors elegantly will ensure a sane network programmer. (Though, that's easier said than done).</p>
+<p>Lines 7-17<br>
+These are the lines where we will work to create the necessary server or client code.</p>
+<p>The rest of the lines do not need to be worked on.  They are there to parse the arguments from the command line and to call the necessary function based on the arguments passed in.</p>
+<p>Okay, now that you have some code to work with, let's begin.</p>
+<h3 class="mume-header" id="our-first-clientserver">Our First Client/Server</h3>
+
+<p>So, the "Hello world" of socket programming is creating an echo server and client.  That is, a server receives a message from a client and returns that same message to the client.  While this may seem boring or easy, it keeps things simple enough so we can focus on the basics of writing servers and clients with sockets.</p>
+<p>We will start with the server.  This will give us something we can connect our client to and test.  Debugging is often difficult with socket programming so we will have many print statements where it makes sense.</p>
+<p>Let us begin!</p>
+<h4 class="mume-header" id="udp-echo-server">UDP Echo Server</h4>
+
+<p>Before we begin, we need to know a few pieces of information.  That is, the IPv4 address and port we would like to connect to.</p>
+<p>The first piece of information is what kind of addressing are we utilizing.  For our purposes, we are using IPv4 which in the socket module is <code>AF_INET</code>.  This will tell the socket to use IPv4.</p>
+<p>The next piece of information we need to know is what kind of protocol.  There are more protocols than TCP or UDP but we will be using UDP for this section of the lecture.  In the socket library, we tell the socket to use UDP with the <code>SOCK_DGRAM</code> option.</p>
+<p>Now that we know what kind of server we need the IP address and port.  For our purposes, we will be connecting to the loopback address, 127.0.0.1, but if you plan on having two different machines talking to eachother then you need to use the IP address of the network device connected to the network.</p>
+<p>As for the port, pick anyone you don't already have something running on.  Just a hint, the first 1024 (that is, ports 0 - 1023) ports are standardized for various applications so avoid those.  Also, don't try to use port 0.  I'm going to be using port 8080.</p>
+<p>The reason you have to know the IP address and port is that when the server is started, it will bind itself to that IP address and port number and wait for connections.  Any other server that requests that port will not be able to since there is already a service listening.  The nice thing is that if you have a UDP server on port 8080, you can have a TCP server on the same port.  You normally can't have two servers of the same type on the same port. (I tested this with netcat and learned about the SO_REUSEADDR and SO_REUSEPORT options).</p>
+<p>Because of how the program works above, we don't need to hardcode the IP address and Port.  These options will be passed to the program via arguments to the program.</p>
+<p>Now that we have these pieces of information, it's time to create the socket object.  When using the socket function, we pass it what kind of addressing and server protocol we are using</p>
+<p><code>server = socket(AF_INET, SOCK_DGRAM)</code></p>
+<p>Then we bind the socket to the IP address and port number.</p>
+<p><code>server.bind(('127.0.0.1', 8080))</code></p>
+<p>The IP address and port must be a tuple hence the double parentheses.</p>
+<p>Once done with the server, we would have to close.  We can use a <code>with</code> statement to create the socket and bind after.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">)</span> <span class="token keyword">as</span> server<span class="token punctuation">:</span>
+    server<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span> <span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><p>Inside this <code>with</code> block, we can write our Echo server.</p>
+<p>Once bound, we can start waiting for messages.  Now, because UDP is connectionless, we just wait to receive a specified amount of data.  We must specify how much data we are waiting for.  This can be a problem if the data sent is more than the data is waiting to be received for.  This stems from the problem of "how does one end know how much data to expect?"  We'll come back and visit this a bit later.  There are many methods we can use to receive data.  The two we will use are</p>
+<p><a href="https://docs.python.org/3/library/socket.html#socket.socket.recv">Python Documentation: recv</a><br>
+<a href="https://docs.python.org/3/library/socket.html#socket.socket.recvfrom">Python Documentation: recvfrom</a></p>
+<p><code>recv</code> for a UDP socket will return the data up to bufsize.</p>
+<p><code>data = server.recv(4096) #bufsize is 4096 so at most 4096 bytes are returned</code></p>
+<p><code>recvfrom</code> for a UDP socket will return the address of the sender and data up to bufsize.</p>
+<p><code>data, address = recvfrom(4096)</code></p>
+<p>Let us use <code>recvfrom</code> since we can use the address to report back who sent the message.  The address returned contains an IP address and port in a tuple object.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">)</span> <span class="token keyword">as</span> server<span class="token punctuation">:</span>
+    server<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span> <span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    data<span class="token punctuation">,</span> address <span class="token operator">=</span> server<span class="token punctuation">.</span>recvfrom<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">)</span>
+</pre><p>If we were to run our code with the above it would start then end.  We need to put our code inside a <code>while True</code> block.  Furthermore, because of some lower level happenings (blocking IO) if you were to try to stop the server with CTRL+C like a normal Python application, you'll find that you can't stop it (without using non-blocking IO which is arguably more difficult).  To stop a blocking IO server you have a few options.  The first is pressing CTRL+Pause/Break on Windows and CTRL+SHIFT+\ on Linux and Mac (Though, try CTRL+C as it may work for Linux or Mac).  The other option is to close your terminal and open a new one.  We'll get to a server that can be elegantly stopped with CTRL+C a bit later as it deals with two more Python modules, <code>select</code> and <code>selectors</code></p>
+<p>Anyways, the code becomes</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">)</span> <span class="token keyword">as</span> server<span class="token punctuation">:</span>
+    server<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span> <span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        data<span class="token punctuation">,</span> address <span class="token operator">=</span> server<span class="token punctuation">.</span>recvfrom<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Received </span><span class="token interpolation"><span class="token punctuation">{</span>data<span class="token punctuation">}</span></span><span class="token string"> from </span><span class="token interpolation"><span class="token punctuation">{</span>address<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+</pre><p>You will notice, when we run this code and send some data from a client, that the data printed will contain some additional parts.  It may look something like</p>
+<p><code>b'Data sent\n'</code></p>
+<p>The <code>b</code> means we have a bytes object and not a string <a href="https://docs.python.org/3/library/stdtypes.html#bytes">Python Documentation: Bytes Object</a>.  The socket object deals with bytes and doesn't assume anything about the data.  After all, we could have unicode data or have a way to translate the bytes ourselves.  We can, however, decode the bytes using already standardized.  You can find a list at the following link</p>
+<p><a href="https://docs.python.org/3/library/codecs.html#standard-encodings">Python Documentation: Standard Encodings</a></p>
+<p>We will use UTF-8.  So, to decode the data, we do the following</p>
+<p><code>data.decode('utf-8')</code></p>
+<p>It's better to store this result in another variable so that we can use the raw bytes object to send back to the client (since it is an echo server).  The resulting code now looks like</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">)</span> <span class="token keyword">as</span> server<span class="token punctuation">:</span>
+    server<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span> <span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        data<span class="token punctuation">,</span> address <span class="token operator">=</span> server<span class="token punctuation">.</span>recvfrom<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">)</span>
+        dec_dat <span class="token operator">=</span> data<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Received </span><span class="token interpolation"><span class="token punctuation">{</span>dec_dat<span class="token punctuation">}</span></span><span class="token string"> from </span><span class="token interpolation"><span class="token punctuation">{</span>address<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+</pre><p>Finally, we need to send the data back to complete the echo server.  Just like there are many ways to receive data, there are many ways to send data.  We will focus on one function.</p>
+<p><a href="https://docs.python.org/3/library/socket.html#socket.socket.sendto">Python Documentation: sendto</a></p>
+<p>We need to use this function because remember, UDP is connectionless.  It just sends messages to an IP address and port and hopes the message gets to the recipient.  The call to the method looks like</p>
+<p><code>server.sendto(data, address)</code></p>
+<p>The complete code will become</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">)</span> <span class="token keyword">as</span> server<span class="token punctuation">:</span>
+    server<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span> <span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        data<span class="token punctuation">,</span> address <span class="token operator">=</span> server<span class="token punctuation">.</span>recvfrom<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">)</span>
+        dec_data <span class="token operator">=</span> data<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Received </span><span class="token interpolation"><span class="token punctuation">{</span>dec_data<span class="token punctuation">}</span></span><span class="token string"> from </span><span class="token interpolation"><span class="token punctuation">{</span>address<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+        server<span class="token punctuation">.</span>sendto<span class="token punctuation">(</span>data<span class="token punctuation">,</span> address<span class="token punctuation">)</span>
+</pre><p>Finally, we only need to change the bind call to use the passed IP address and port value in the function.  The completed UDP echo server code becomes</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">create_udp_server</span><span class="token punctuation">(</span>ipaddr<span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'Client sending data to UDP server </span><span class="token interpolation"><span class="token punctuation">{</span>server_ipaddr<span class="token punctuation">}</span></span><span class="token string"> on </span><span class="token interpolation"><span class="token punctuation">{</span>server_port<span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">)</span> <span class="token keyword">as</span> server<span class="token punctuation">:</span>
+        server<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span>ipaddr<span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+            data<span class="token punctuation">,</span> address <span class="token operator">=</span> server<span class="token punctuation">.</span>recvfrom<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">)</span>
+            dec_data <span class="token operator">=</span> data<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Received </span><span class="token interpolation"><span class="token punctuation">{</span>dec_data<span class="token punctuation">}</span></span><span class="token string"> from </span><span class="token interpolation"><span class="token punctuation">{</span>address<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+            server<span class="token punctuation">.</span>sendto<span class="token punctuation">(</span>data<span class="token punctuation">,</span> address<span class="token punctuation">)</span>
+</pre><p>You can now set call the Python module with the arguments <code>-u</code> and <code>-s</code> and have a waiting UDP echo server.  Now onto the client code.</p>
+<h4 class="mume-header" id="udp-echo-client">UDP Echo Client</h4>
+
+<p>The UDP client code will be very similar to the server code with only a few changes.  For instance, we do not bind a client to an IP address and port.  We do tell the socket what IP address and port to send data to but only when we send data.  Also, since the UDP client isn't blocking IO we can CTRL+C to produce a KeyboardInterrupt which means we can elegantly handle this situation.  So, we will write code that handles this interrupt, allows the user to repeatedly send new messages and reading data sent back from the echo server.  We start with the <code>with</code> block.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">)</span> <span class="token keyword">as</span> client<span class="token punctuation">:</span>
+    <span class="token keyword">pass</span>
+</pre><p>Okay, nothing new so far.  Next, the try/except to catch KeyboardInterrupt.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">)</span> <span class="token keyword">as</span> client<span class="token punctuation">:</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+    <span class="token keyword">except</span> KeyboardInterrupt<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Stopping client"</span><span class="token punctuation">)</span>
+</pre><p>Okay, you should be familiar with this code so let us move on.</p>
+<p>Next, is the while loop that waits for user input.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">)</span> <span class="token keyword">as</span> client<span class="token punctuation">:</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+            message <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'&gt; '</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> KeyboardInterrupt<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Stopping client"</span><span class="token punctuation">)</span>
+</pre><p>Remembering that sockets deal with bytes objects and not just string objects we need to encode our message to be a proper bytes object.  We will continue to use the <code>utf-8</code> encoding.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">)</span> <span class="token keyword">as</span> client<span class="token punctuation">:</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+            message <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'&gt; '</span><span class="token punctuation">)</span>
+            enc_message <span class="token operator">=</span> message<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> KeyboardInterrupt<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Stopping client"</span><span class="token punctuation">)</span>
+</pre><p>Now to send that data and then wait for a response.  We use the sendto method to send but we will use recv to recv since we don't care about a returned address (we are communicating with the server so we already have that information).</p>
+<p>Here is the rest of the code.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">)</span> <span class="token keyword">as</span> client<span class="token punctuation">:</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+            message <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'&gt; '</span><span class="token punctuation">)</span>
+            enc_message <span class="token operator">=</span> message<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+            client<span class="token punctuation">.</span>sendto<span class="token punctuation">(</span>enc_message<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span> <span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            response <span class="token operator">=</span> client<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">)</span>
+            dec_resp <span class="token operator">=</span> response<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Received: </span><span class="token interpolation"><span class="token punctuation">{</span>dec_resp<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> KeyboardInterrupt<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Stopping client"</span><span class="token punctuation">)</span>
+</pre><p>All that's left is to get this to work with the function.  Instead of the hardcoded IP address and port we use the passed in variables.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">create_udp_client</span><span class="token punctuation">(</span>server_ipaddr<span class="token punctuation">,</span> server_port<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'Client sending data to UDP server </span><span class="token interpolation"><span class="token punctuation">{</span>server_ipaddr<span class="token punctuation">}</span></span><span class="token string"> on </span><span class="token interpolation"><span class="token punctuation">{</span>server_port<span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">)</span> <span class="token keyword">as</span> client<span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+                message <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'&gt; '</span><span class="token punctuation">)</span>
+                enc_message <span class="token operator">=</span> message<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+                client<span class="token punctuation">.</span>sendto<span class="token punctuation">(</span>enc_message<span class="token punctuation">,</span> <span class="token punctuation">(</span>server_ipaddr<span class="token punctuation">,</span> server_port<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                response <span class="token operator">=</span> client<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">)</span>
+                dec_resp <span class="token operator">=</span> response<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Received: </span><span class="token interpolation"><span class="token punctuation">{</span>dec_resp<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+        <span class="token keyword">except</span> KeyboardInterrupt<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Stopping client"</span><span class="token punctuation">)</span>
+</pre><p>You can now run a UDP echo server in one terminal and run the UDP client sending messages to the server.</p>
+<p>I called my file <a href="http://pynet.py/">pynet.py</a>.  Use your filename below.</p>
+<p>Set up the server<br>
+<code>python pynet.py -u -s 127.0.0.1 8080</code></p>
+<p>Run the client<br>
+<code>python pynet.py -u 127.0.0.1 8080</code></p>
+<p>From the client terminal, enter a message to send and press enter.  You should see on the server the message sent by the client and on the client you should see the same message but resent by the server.</p>
+<p>These are the basics for UDP (and TCP with a few more additions) socket server/client code.  Let's look at improving the code.</p>
+<h4 class="mume-header" id="what-to-watch-out-for">What to watch out for</h4>
+
+<p>If your UDP server has a smaller buffer size than messages sent to it, it may crash the server with an OSError (which you can handle with try/except).  You can test this by setting your server buffer size to a smaller value like 4 and send it a message larger than 4.  This will leave your client in a state of blocking IO because it's waiting for a response.  You will have to stop it the same way you would stop the server.  Even handling the OSError, if your client doesn't receive data back it leaves it in a state of waiting.  We will then have to keep track globally of the client that sent the large data in a way that not all clients waiting get the error response and you can see how troublesome this gets.</p>
+<p>The other solution is to write your own protocol over UDP that indicates the size of the message and possibly including a chunk size so not all the data must be sent at once.  However, keep in mind that UDP is connectionless and a dropped packet may be lost forever.  You could therefore have a way to ask for an OK if the message was received and continue to send the next line of data or the current line if a NO was sent.  This could lead to DOS so having timeouts and a maximum number of resends is likely needed.</p>
+<p>You can see how complicated network programming can get.  It's all about protocols and abstraction layers which is why we have so many protocols each working with different ways to authenticate, verify, send and receive data, and much more.</p>
+<p>A better approach, if arbitrary message sizes is a must, is to use TCP.  UDP was shown first because it's simple and introduces you to how servers and clients are created.</p>
+<h4 class="mume-header" id="the-blocking-server-problem">The Blocking Server Problem</h4>
+
+<p>We have our server but when we try to stop it with CTRL+C (the KeyboardInterrupt) it just won't stop.  Instead, we either had to use CTRL+BREAK (Windows) or CTRL+SHIFT+/ (Linux/Mac) which isn't captured by the application or close the terminal, which again, isn't captured.  So what can we do?  We can use the <code>select</code> module.</p>
+<p>The problem is that when we have a socket object perform a recv and it blocks IO which means stdin won't work.  We are going to make our blocking server non-blocking and use <code>select</code> module.  I could give an explanation of <code>select</code> but I feel the following Python documentation gives a decent enough explanation.</p>
+<p><a href="https://docs.python.org/3/howto/sockets.html#non-blocking-sockets">Python Documentation: Select</a></p>
+<p>According to the documentation, <code>select</code> accepts 3 lists.  The first is all sockets we will try reading from.  The second is a list of the sockets we might try writing to. The third are those we want to check for errors.  The return from calling <code>select()</code> are 3 lists.  The first list are readable sockets.  The second list is writable sockets.  The last list are sockets in error.</p>
+<p>First, let's set our server to be non-blocking</p>
+<p><code>server.setblocking(False)</code></p>
+<p>This must be done before the bind happens.  We will need to import the <code>select</code> module</p>
+<p><code>import select</code></p>
+<p>We then need to create the lists (we will only use 1 list since we are working with UDP and the server receives and sends).  In addition, we can now capture the KeyboardInterrupt and close the server gracefully.  The final code will look something like this</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> select
+
+<span class="token keyword">def</span> <span class="token function">create_udp_server</span><span class="token punctuation">(</span>ipaddr<span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'Creating UDP server at </span><span class="token interpolation"><span class="token punctuation">{</span>ipaddr<span class="token punctuation">}</span></span><span class="token string"> on </span><span class="token interpolation"><span class="token punctuation">{</span>port<span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">)</span> <span class="token keyword">as</span> server<span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            server<span class="token punctuation">.</span>setblocking<span class="token punctuation">(</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+            server<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span>ipaddr<span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            socket_list <span class="token operator">=</span> <span class="token punctuation">[</span>server<span class="token punctuation">]</span>
+            <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+                <span class="token comment">#r are the readable sockets, </span>
+                <span class="token comment">#w is the writable, </span>
+                <span class="token comment">#and e are the errors</span>
+                <span class="token comment">#60 is the timeout in seconds</span>
+                r<span class="token punctuation">,</span> w<span class="token punctuation">,</span> e <span class="token operator">=</span> select<span class="token punctuation">.</span>select<span class="token punctuation">(</span>socket_list<span class="token punctuation">,</span> socket_list<span class="token punctuation">,</span> socket_list<span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">)</span>
+                <span class="token comment"># Won't run if the server socket has nothing to read</span>
+                <span class="token keyword">for</span> read <span class="token keyword">in</span> r<span class="token punctuation">:</span>
+                    data<span class="token punctuation">,</span> address <span class="token operator">=</span> read<span class="token punctuation">.</span>recvfrom<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">)</span>
+                    dec_data <span class="token operator">=</span> data<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Received &gt; </span><span class="token interpolation"><span class="token punctuation">{</span>dec_data<span class="token punctuation">}</span></span><span class="token string">\n\tfrom </span><span class="token interpolation"><span class="token punctuation">{</span>address<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+                    <span class="token comment">#Writes back to the server.  Done inside the readable</span>
+                    <span class="token comment">#loop because the server socket is always available to </span>
+                    <span class="token comment">#write to and may cause resources taking up or errors</span>
+                    <span class="token comment">#if on its own.  This is a case-by-case problem.</span>
+                    <span class="token keyword">for</span> write <span class="token keyword">in</span> w<span class="token punctuation">:</span>
+                        write<span class="token punctuation">.</span>sendto<span class="token punctuation">(</span>data<span class="token punctuation">,</span> address<span class="token punctuation">)</span>
+                <span class="token keyword">if</span> error<span class="token punctuation">:</span>
+                    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Closing server"</span><span class="token punctuation">)</span>
+                    <span class="token keyword">break</span>
+        <span class="token keyword">except</span> KeyboardInterrupt<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Stopping server"</span><span class="token punctuation">)</span>
+</pre><p>We can now do the same thing with our client code but a little different since we are waiting for user input from stdin.  The reason we may want to do this is if the server crashes after we send data (like if we send more data than the server buffer can hold) then we don't want our client waiting for data to return from our echo server and not able to close without CTRL+BREAK, CTRL+SHIFT+, or closing the terminal.  The following is the modified client code.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">create_udp_client</span><span class="token punctuation">(</span>server_ipaddr<span class="token punctuation">,</span> server_port<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'Client sending data to UDP server </span><span class="token interpolation"><span class="token punctuation">{</span>server_ipaddr<span class="token punctuation">}</span></span><span class="token string"> on </span><span class="token interpolation"><span class="token punctuation">{</span>server_port<span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">)</span> <span class="token keyword">as</span> client<span class="token punctuation">:</span>
+        client<span class="token punctuation">.</span>setblocking<span class="token punctuation">(</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            inputs <span class="token operator">=</span> <span class="token punctuation">[</span>client<span class="token punctuation">]</span>
+            <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+                readable<span class="token punctuation">,</span> writable<span class="token punctuation">,</span> error <span class="token operator">=</span> select<span class="token punctuation">.</span>select<span class="token punctuation">(</span>inputs<span class="token punctuation">,</span> inputs<span class="token punctuation">,</span> inputs<span class="token punctuation">)</span>
+
+                <span class="token comment">#Client is always writable but input() will wait for data</span>
+                <span class="token comment"># so this is fine kind of.  Try delaying the servers response</span>
+                <span class="token comment"># with time.sleep(10).</span>
+                <span class="token keyword">if</span> writable<span class="token punctuation">:</span> 
+                    message <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'&gt; '</span><span class="token punctuation">)</span>
+                    enc_message <span class="token operator">=</span> message<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+                    client<span class="token punctuation">.</span>sendto<span class="token punctuation">(</span>enc_message<span class="token punctuation">,</span> <span class="token punctuation">(</span>server_ipaddr<span class="token punctuation">,</span> server_port<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                
+                <span class="token keyword">if</span> readable<span class="token punctuation">:</span>
+                    data <span class="token operator">=</span> client<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">)</span>
+                    dec_data <span class="token operator">=</span> data<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+                    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'Received: </span><span class="token interpolation"><span class="token punctuation">{</span>dec_data<span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
+                
+                <span class="token keyword">if</span> error<span class="token punctuation">:</span>
+                    <span class="token keyword">print</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span>
+                    <span class="token keyword">break</span>
+        <span class="token keyword">except</span> KeyboardInterrupt<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Stopping client"</span><span class="token punctuation">)</span>
+</pre><p>And our simple echo client/server starts to get more complex.  If you made it this far, congratulations.  If you are still lost, don't worry.  Network programming is not easy and is a class of its own with its own set of problems.  Next, we will look at TCP connections.  Being familiar with the above will help you get familiar with the next set of code.</p>
+<h4 class="mume-header" id="tcp-echo-server">TCP Echo Server</h4>
+
+<p>Setting up the socket for TCP is similar to setting up the server for UDP except instead of <code>SOCK_DGRAM</code> we use <code>SOCK_STREAM</code>.  Also, we must call listen to wait for connections from clients and accept to accept client connections.</p>
+<p>Let's start with what we know.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">)</span> <span class="token keyword">as</span> server<span class="token punctuation">:</span>
+    server<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span> <span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><p>This should look familiar to the UDP server code.  The only difference is now we are using <code>SOCK_STREAM</code> which tells the socket to use TCP.  Now, we need the socket to listen for connections.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">)</span> <span class="token keyword">as</span> server<span class="token punctuation">:</span>
+    server<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span> <span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    server<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><p>Now to start our while true loop but this time, we are going to wait for a connection.  Since TCP is a connection based protocol, we wait for a connection.  When a client connects we will have access to another socket and the address.  That is, we will call <code>accept()</code> on the server socket. <code>accept()</code> will return another socket that will perform the communcations with the connected client and it's address.  We will use the socket that was returned as the server's end for communication.  Here is an example</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">com_conn<span class="token punctuation">,</span> address <span class="token operator">=</span> server<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>
+data <span class="token operator">=</span> com_conn<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">)</span>
+com_conn<span class="token punctuation">.</span>sendall<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+</pre><p>These three lines are the essence for our echo server.  The accept() will wait for a connection.  When something connects, it returns a socket object and a tuple with the IP address and port of the other end of the communication.  We can then use the socket object to receive and send to the client on the other end.  In this case, our server has two sockets (more if you are working with multiple clients) to work with.  The server waits for connections then spawns a socket to work with those connections.</p>
+<p>Here is echo server TCP code</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">)</span> <span class="token keyword">as</span> server<span class="token punctuation">:</span>
+    server<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span> <span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    server<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        com_conn<span class="token punctuation">,</span> address <span class="token operator">=</span> server<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Connection from </span><span class="token interpolation"><span class="token punctuation">{</span>address<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+        data <span class="token operator">=</span> conn<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">)</span>
+        dec_data <span class="token operator">=</span> data<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Received: </span><span class="token interpolation"><span class="token punctuation">{</span>dec_data<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+        com_conn<span class="token punctuation">.</span>sendall<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+        com_conn<span class="token punctuation">.</span>shutdown<span class="token punctuation">(</span>SHUT_RDWR<span class="token punctuation">)</span>
+        com_conn<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><p>You should shutdown then close the connection when you are done working with it.  In this case, our echo server is done once it has received and sent the data.</p>
+<p>The item in the SHUT_RDWR tells the socket how to shutdown.  You'll have to add this to the import line like so</p>
+<p><code>from socket import socket, AF_INET, SOCK_DGRAM, SOCK_STREAM, SHUT_RDWR</code></p>
+<p>You can find information on how <code>shutdown</code> works in the following documentation</p>
+<p><a href="https://docs.python.org/3/library/socket.html#socket.socket.shutdown">Python Documentation: Socket Shutdown</a></p>
+<p>The final code to go into the function looks like the following</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">create_tcp_server</span><span class="token punctuation">(</span>ipaddr<span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'Creating TCP server at </span><span class="token interpolation"><span class="token punctuation">{</span>ipaddr<span class="token punctuation">}</span></span><span class="token string"> on </span><span class="token interpolation"><span class="token punctuation">{</span>port<span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">)</span> <span class="token keyword">as</span> server<span class="token punctuation">:</span>
+        server<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span>ipaddr<span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        server<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+            com_conn<span class="token punctuation">,</span> address <span class="token operator">=</span> server<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Connection from </span><span class="token interpolation"><span class="token punctuation">{</span>address<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+            data <span class="token operator">=</span> com_conn<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">)</span>
+            dec_data <span class="token operator">=</span> data<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Received: </span><span class="token interpolation"><span class="token punctuation">{</span>dec_data<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+            com_conn<span class="token punctuation">.</span>sendall<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+            com_conn<span class="token punctuation">.</span>shutdown<span class="token punctuation">(</span>SHUT_RDWR<span class="token punctuation">)</span>
+            com_conn<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><p>Now that we have a TCP server we can spin up, let us work on the client.  Then we can modify the TCP server and client to be non-blocking.</p>
+<h4 class="mume-header" id="tcp-echo-client">TCP Echo Client</h4>
+
+<p>Believe it or not, the client is similar to the server code after it receives a connection accept instead of calling <code>accept</code> we <code>connect</code>.  Also, we don't need to listen when we are the client.  Here is the full client code.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">create_tcp_client</span><span class="token punctuation">(</span>server_ipaddr<span class="token punctuation">,</span> server_port<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'Connecting to TCP server </span><span class="token interpolation"><span class="token punctuation">{</span>server_ipaddr<span class="token punctuation">}</span></span><span class="token string"> on </span><span class="token interpolation"><span class="token punctuation">{</span>server_port<span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">with</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">)</span> <span class="token keyword">as</span> client<span class="token punctuation">:</span>
+        client<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token punctuation">(</span>server_ipaddr<span class="token punctuation">,</span> server_port<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        message <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'&gt; '</span><span class="token punctuation">)</span>
+        enc_message <span class="token operator">=</span> message<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+        client<span class="token punctuation">.</span>sendall<span class="token punctuation">(</span>enc_message<span class="token punctuation">)</span>
+        data <span class="token operator">=</span> client<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">)</span>
+        dec_data <span class="token operator">=</span> data<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Received: </span><span class="token interpolation"><span class="token punctuation">{</span>dec_data<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+</pre><p>The only new line is <code>client.connect</code> which takes a tuple of the server's IP address and port.</p>
+<p>You can run the code to start the TCP server and connect with a TCP client.  Pass a message and receive one back.  Now, for some additions to make our code a bit more robust.</p>
+<h4 class="mume-header" id="enhancing-tcp-socket-code">Enhancing TCP Socket Code</h4>
+
+<p>Firstly, if our client or server disconnects we'll end up with errors.  Let's catch those errors and print a message to indicate a failed or dropped connection.  First, the client.  Surround with a try/except and catch the ConnectionErrors.</p>
+<p><a href="https://docs.python.org/3/library/exceptions.html#ConnectionError">Python Documentation: ConnectionError Base Class</a></p>
+<p>The code</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">try</span><span class="token punctuation">:</span>
+    client<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token punctuation">(</span>server_ipaddr<span class="token punctuation">,</span> server_port<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    message <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'&gt; '</span><span class="token punctuation">)</span>
+    enc_message <span class="token operator">=</span> message<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+    client<span class="token punctuation">.</span>sendall<span class="token punctuation">(</span>enc_message<span class="token punctuation">)</span>
+    data <span class="token operator">=</span> client<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">)</span>
+    dec_data <span class="token operator">=</span> data<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Received: </span><span class="token interpolation"><span class="token punctuation">{</span>dec_data<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> ConnectionRefusedError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Could not connect to </span><span class="token interpolation"><span class="token punctuation">{</span>server_ipaddr<span class="token punctuation">}</span></span><span class="token string"> at </span><span class="token interpolation"><span class="token punctuation">{</span>server_port<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+    exit<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> ConnectionResetError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Connection was closed."</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+<span class="token keyword">except</span> ConnectionAbortedError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Connection aborted."</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+</pre><p>Same can be done for the server connection except we should close the connection.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">try</span><span class="token punctuation">:</span>
+    com_conn<span class="token punctuation">,</span> address <span class="token operator">=</span> server<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Connection from </span><span class="token interpolation"><span class="token punctuation">{</span>address<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    data <span class="token operator">=</span> readall<span class="token punctuation">(</span>com_conn<span class="token punctuation">,</span> <span class="token number">4096</span><span class="token punctuation">)</span>
+    dec_data <span class="token operator">=</span> data<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Received: </span><span class="token interpolation"><span class="token punctuation">{</span>dec_data<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    com_conn<span class="token punctuation">.</span>sendall<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+    com_conn<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> ConnectionRefusedError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Could not connect to </span><span class="token interpolation"><span class="token punctuation">{</span>address<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+<span class="token keyword">except</span> ConnectionResetError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Connection was closed."</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+<span class="token keyword">except</span> ConnectionAbortedError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Connection aborted."</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+<span class="token keyword">finally</span><span class="token punctuation">:</span>
+    com_conn<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><p>Next, let's write a readall function that accepts a socket and returns all data read.  This will allow us to read everything from a socket even if the message is more than the bufsize passed to recv.  We can use this for both the client and server.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># Algorithm borrowed from </span>
+<span class="token comment"># Black Hat Python: Python Programming for Hackers and Pentesters, </span>
+<span class="token comment"># by Justin Seitz, No Starch Press, 2015, p. 16.</span>
+<span class="token keyword">def</span> <span class="token function">readall</span><span class="token punctuation">(</span>sock<span class="token punctuation">,</span> bufsize<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    data_len <span class="token operator">=</span> <span class="token number">1</span>
+    result <span class="token operator">=</span> <span class="token string">b''</span>
+    <span class="token keyword">while</span> data_len<span class="token punctuation">:</span>
+        data <span class="token operator">=</span> sock<span class="token punctuation">.</span>recv<span class="token punctuation">(</span>bufsize<span class="token punctuation">)</span>
+        result <span class="token operator">+=</span> data
+        data_len <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> data_len <span class="token operator">&lt;</span> bufsize<span class="token punctuation">:</span>
+            <span class="token keyword">break</span>
+    <span class="token keyword">return</span> result
+</pre><p>The above algorithm was borrowed from the mentioned book and was tweaked to work inside a function.  This function lets us pass a socket and bufsize and continue reading all the data until no more data can be read from.  So now you can call this inside the client and server functions</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment">#The server's call to readall</span>
+data <span class="token operator">=</span> readall<span class="token punctuation">(</span>com_conn<span class="token punctuation">,</span> <span class="token number">4096</span><span class="token punctuation">)</span>
+
+<span class="token comment">#The client's call to readall</span>
+data <span class="token operator">=</span> readall<span class="token punctuation">(</span>client<span class="token punctuation">,</span> <span class="token number">4096</span><span class="token punctuation">)</span>
+</pre><p>All that's left is to try make the server code nonblocking.  I'll leave this as a challenge for anyone that wants to attempt it during a weekend.  You'll find the resource section of this document helpful.</p>
+<p>In addition, take a look at the <code>selectors</code> and <code>socketserver</code> module which aim to make what we attempted above much smoother.</p>
+<h3 class="mume-header" id="resources">Resources</h3>
+
+<p>Hellman, Doug. “Networking.” Networking - PyMOTW 3, <a href="http://pymotw.com/3/networking.html">pymotw.com/3/networking.html</a>.<br>
+Hellman, Doug. “Python 3 Module of the Week.” Python 3 Module of the Week - PyMOTW 3, <a href="http://pymotw.com/3/">pymotw.com/3/</a>.<br>
+McMillan, Gordon. “Socket Programming HOWTO.” Socket Programming HOWTO - Python 3.7.4 Documentation, <a href="http://docs.python.org/3/howto/sockets.html">docs.python.org/3/howto/sockets.html</a>.<br>
+“Number Resources.” IANA, <a href="http://www.iana.org/numbers">www.iana.org/numbers</a>.<br>
+“Socket - Low-Level Networking Interface.” Socket - Low-Level Networking Interface - Python 3.7.4 Documentation, <a href="http://docs.python.org/3/library/socket.html">docs.python.org/3/library/socket.html</a>.<br>
+“Special-Use IPv6 Addresses.” IETF Tools, <a href="http://tools.ietf.org/html/rfc5156">tools.ietf.org/html/rfc5156</a>.</p>
+<hr>
+<blockquote>
+<p>University of Illinois at Springfield <br><br>
+Instructor: Brian-Thomas Rogers <br><br>
+Course: CSC 470</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python"></pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

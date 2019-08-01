@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<!-- saved from url=(0182)https://bb.uis.edu/bbcswebdav/pid-1391400-dt-content-rid-8477870_1/courses/192CSC47011314/Lecture%203%20-%20Python%20Organization%2C%20Classes%2C%20Objects%2C%20and%20Exceptions.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="stndz-style"></style>
+      <title>Lecture 3 - Python Organization, Classes, Objects, and Exceptions</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///C:/Users/Brian%20Rogers/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.3.13/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h1 class="mume-header" id="lecture-3-br-python-organization-classes-objects-and-exceptions"><strong>Lecture 3</strong> <br>Python Organization, Classes, Objects, and Exceptions</h1>
+
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391400-dt-content-rid-8477870_1/courses/192CSC47011314/Lecture%203%20-%20Python%20Organization%2C%20Classes%2C%20Objects%2C%20and%20Exceptions.html#lecture-3-br-python-organization-classes-objects-and-exceptions"><strong>Lecture 3</strong> <br>Python Organization, Classes, Objects, and Exceptions</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391400-dt-content-rid-8477870_1/courses/192CSC47011314/Lecture%203%20-%20Python%20Organization%2C%20Classes%2C%20Objects%2C%20and%20Exceptions.html#lecture-31-classes">Lecture 3.1: Classes</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391400-dt-content-rid-8477870_1/courses/192CSC47011314/Lecture%203%20-%20Python%20Organization%2C%20Classes%2C%20Objects%2C%20and%20Exceptions.html#lecture-310-class-variables-and-instance-variables">Lecture 3.1.0: Class Variables and Instance Variables</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391400-dt-content-rid-8477870_1/courses/192CSC47011314/Lecture%203%20-%20Python%20Organization%2C%20Classes%2C%20Objects%2C%20and%20Exceptions.html#lecture-311-class-methods">Lecture 3.1.1: Class Methods</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391400-dt-content-rid-8477870_1/courses/192CSC47011314/Lecture%203%20-%20Python%20Organization%2C%20Classes%2C%20Objects%2C%20and%20Exceptions.html#lecture-312-class-constructor">Lecture 3.1.2: Class Constructor</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391400-dt-content-rid-8477870_1/courses/192CSC47011314/Lecture%203%20-%20Python%20Organization%2C%20Classes%2C%20Objects%2C%20and%20Exceptions.html#lecture-315-inhertiance">Lecture 3.1.5: Inhertiance</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391400-dt-content-rid-8477870_1/courses/192CSC47011314/Lecture%203%20-%20Python%20Organization%2C%20Classes%2C%20Objects%2C%20and%20Exceptions.html#lecture-32-object-data-model">Lecture 3.2: Object Data Model</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391400-dt-content-rid-8477870_1/courses/192CSC47011314/Lecture%203%20-%20Python%20Organization%2C%20Classes%2C%20Objects%2C%20and%20Exceptions.html#lecture-33-polymorphism">Lecture 3.3: Polymorphism</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391400-dt-content-rid-8477870_1/courses/192CSC47011314/Lecture%203%20-%20Python%20Organization%2C%20Classes%2C%20Objects%2C%20and%20Exceptions.html#lecture-34-exception-handling">Lecture 3.4: Exception Handling</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391400-dt-content-rid-8477870_1/courses/192CSC47011314/Lecture%203%20-%20Python%20Organization%2C%20Classes%2C%20Objects%2C%20and%20Exceptions.html#lecture-341-tryexcept">Lecture 3.4.1: Try...Except</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391400-dt-content-rid-8477870_1/courses/192CSC47011314/Lecture%203%20-%20Python%20Organization%2C%20Classes%2C%20Objects%2C%20and%20Exceptions.html#lecture-342-raising-errors">Lecture 3.4.2: Raising Errors</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391400-dt-content-rid-8477870_1/courses/192CSC47011314/Lecture%203%20-%20Python%20Organization%2C%20Classes%2C%20Objects%2C%20and%20Exceptions.html#lecture-343-custom-error-creation">Lecture 3.4.3: Custom Error Creation</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391400-dt-content-rid-8477870_1/courses/192CSC47011314/Lecture%203%20-%20Python%20Organization%2C%20Classes%2C%20Objects%2C%20and%20Exceptions.html#lecture-35-python-organization">Lecture 3.5: Python Organization</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391400-dt-content-rid-8477870_1/courses/192CSC47011314/Lecture%203%20-%20Python%20Organization%2C%20Classes%2C%20Objects%2C%20and%20Exceptions.html#lecture-36-importing">Lecture 3.6: Importing</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391400-dt-content-rid-8477870_1/courses/192CSC47011314/Lecture%203%20-%20Python%20Organization%2C%20Classes%2C%20Objects%2C%20and%20Exceptions.html#lecture-37-if-name--%229595main9595%22">Lecture 3.7: if <strong>name</strong> == "__main__"</a><br>
+<br></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>Object oriented programming is a style of programming in which we process data using objects.  This style of programming is also found in other languages like C#, Ruby, Java, and many others.  Python allows us to write code in this style as it helps organize our projects.  Python, if you haven't figured it out by now, is an Object Oriented language that doesn't force us to use object oriented programming.  It is very flexible in how it allows us to write code.  This is what makes it very popular as anyone coming from other language paradigms (imperative, functional, logical) can get a grasp of the language with ease while programming in their style.</p>
+<p>Before we begin, I would like to define some terms for anyone that may have forgotten.</p>
+<p><strong>Inheritance</strong></p>
+<p>Inheritance allows one class to obtain the attributes of another class.  The instance variables and methods become part of the subclass.</p>
+<p><strong>Classes</strong></p>
+<p>Classes are like blue prints, they define what an instance of the class can do and what data it stores.  These instances are called objects.</p>
+<p><strong>Objects</strong></p>
+<p>Objects are instances of classes.  The class states what an object can do with method definitions and what an object can hold.</p>
+<p><strong>Attributes</strong></p>
+<p>All methods and instance variables are called attributes in Python.</p>
+<p><strong>Methods</strong></p>
+<p>Methods are functions defined inside of a class that only objects of that class can use.</p>
+<p><strong>Instance Variables</strong></p>
+<p>These are variables that belong to instances of a class and can contain different values for each instance.</p>
+<p><strong>Class Variables</strong></p>
+<p>In other languages, these would be considered static variables.  These variables belong to the class and are not unique for each instance of the class.  You don't even need an object of the class to use these.</p>
+<p><strong>Access Modifiers</strong></p>
+<p>An access modifier tells a compiler where an attribute can and can't be read from or written to.  Usually, there are three kinds of access modifiers <strong>Public</strong>, <strong>Private</strong>, and <strong>Protected</strong>.  Python only has one, <strong>Public</strong>.  You can access anything and everything from a Python class.  It is up to the programmer to be responsible.</p>
+<p><strong>Interface</strong></p>
+<p>Interfaces contain empty method bodies.  Interfaces give a common ground between multiple classes by creating a contract stating that you must implement these methods.   When you implement an interface in a class you are guaranteeing any instance of that class to contain those sets of methods.  Interfaces can have object instances of them created.</p>
+<p><strong>Abstract Class</strong></p>
+<p>Abstract classes are a bridge between classes and interfaces allowing you to define methods with a body or defining abstract methods that others must implement.  Abstract classes can't have instances of them created.</p>
+<p><strong>Super Class/Parent Class/Base Class</strong></p>
+<p>A super class, parent class, or base class is the class that a subclass inherits from.</p>
+<p><strong>Subclass/Child Class</strong></p>
+<p>A subclass or child class is a class that inherits from a super class.</p>
+<p><strong>Overriding</strong></p>
+<p>Overriding happens when a method with the same name and number of parameters get's a different body.  This is common for subclasses to do when they want to redefine what a method the super class has to do something specific to them.</p>
+<p><strong>Overloading</strong></p>
+<p>Overloading happens when we have a method defined multiple times in the same class.  Usually, this occurs when we have a method that could take a different number of arguments or arguments of different types, however, with Python's default variables and dynamic typing, we don't have to do this.  We can define a single method with all the variables we would like and if we have to set some variables to a default value.</p>
+<h2 class="mume-header" id="lecture-31-classes">Lecture 3.1: Classes</h2>
+
+<p>Classes are like blueprints.  They indicate what kind of data is stored and what actions you can perform when an object is created from a class type.  The data stored by an object are usually called instance variables while the actions you can perform are created using methods.</p>
+<p>To create a class, we use the <code>class</code> keyword and then give it a name.  You may, in your pursuit of Python knowhow, hear about old classes vs new classes.  We will only focus on new classes.  Old classes are only referred by Python 2 which we do not cover in this course.</p>
+<p><a href="https://docs.python.org/3/tutorial/classes.html#classes">Python 3 Class Documentation Page</a></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">Test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment">#You can leave out the parenthesis if you are not inheriting from anything.</span>
+    <span class="token keyword">pass</span>
+</pre><p>Everything inside the class are class attributes.  Class attributes belong to the class and are not unique across instances of the class.</p>
+<p>Once you have the class defined, we can make instances of the class by assigning a variable to it.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">t <span class="token operator">=</span> Test<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token builtin">isinstance</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> Test<span class="token punctuation">)</span>
+</pre><pre class="language-text">True
+</pre>
+<p>Now that you know how to make a class and an object of that class we can start to give that object data and things to do.</p>
+<h3 class="mume-header" id="lecture-310-class-variables-and-instance-variables">Lecture 3.1.0: Class Variables and Instance Variables</h3>
+
+<p>There is a major difference between class variables and instance variables.  Class variables belong to all instances of the class while instance variables belong to the instance.  This ultimately means that if a class variable is changed using the class to change it, it is changed for all instances while if an instance variable is changed it is only changed for that instance of the class.</p>
+<p>Some of this code may not be familiar but for now just notice what happens to the variables when an instance changes it to when the class changes it.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">Test</span><span class="token punctuation">:</span>
+    class_variable <span class="token operator">=</span> <span class="token number">3</span>
+        
+t1 <span class="token operator">=</span> Test<span class="token punctuation">(</span><span class="token punctuation">)</span>
+t2 <span class="token operator">=</span> Test<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"T1 Class Variable:"</span><span class="token punctuation">,</span> t1<span class="token punctuation">.</span>class_variable<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"T2 Class Variable:"</span><span class="token punctuation">,</span> t2<span class="token punctuation">.</span>class_variable<span class="token punctuation">)</span>
+
+Test<span class="token punctuation">.</span>class_variable <span class="token operator">=</span> <span class="token number">1000</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"New T1 Class Variable:"</span><span class="token punctuation">,</span> t1<span class="token punctuation">.</span>class_variable<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"New T2 Class Variable:"</span><span class="token punctuation">,</span> t2<span class="token punctuation">.</span>class_variable<span class="token punctuation">)</span>
+</pre><pre class="language-text">T1 Class Variable: 3
+T2 Class Variable: 3
+New T1 Class Variable: 1000
+New T2 Class Variable: 1000
+</pre>
+<p>Notice that when the class variable gets changed it changes it for all instance variables.  There is a slight gotcha, however, because you can shadow a class variable with an instance variable.  Let us change <code>class_variable</code> using an instance of the Test class such as <code>t1</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">t1<span class="token punctuation">.</span>class_variable <span class="token operator">=</span> <span class="token number">5000</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Test Class Variable:"</span><span class="token punctuation">,</span> Test<span class="token punctuation">.</span>class_variable<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"New T1 Class Variable:"</span><span class="token punctuation">,</span> t1<span class="token punctuation">.</span>class_variable<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"T2 Class Variable:"</span><span class="token punctuation">,</span> t2<span class="token punctuation">.</span>class_variable<span class="token punctuation">)</span>
+</pre><pre class="language-text">Test Class Variable: 1000
+New T1 Class Variable: 5000
+T2 Class Variable: 1000
+</pre>
+<p>Notice now that only t1 has <code>class_variable</code> changed to 5000.  This is because t1 creates an instance variable called <code>class_variable</code> that shadows the actual class variable <code>class_variable</code>.  We can get back to the original class variable by using the <code>del</code> keyword.<br>
+<strong>(WARNING: del should be used sparingly.  If you delete a variable that is used later in the program then your program will crash)</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Test Class Variable:"</span><span class="token punctuation">,</span> Test<span class="token punctuation">.</span>class_variable<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"T1 Class Variable Before Delete:"</span><span class="token punctuation">,</span> t1<span class="token punctuation">.</span>class_variable<span class="token punctuation">)</span>
+
+<span class="token keyword">del</span> t1<span class="token punctuation">.</span>class_variable
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"T1 Class Variable After Delete:"</span><span class="token punctuation">,</span> t1<span class="token punctuation">.</span>class_variable<span class="token punctuation">)</span>
+</pre><pre class="language-text">Test Class Variable: 1000
+T1 Class Variable Before Delete: 5000
+T1 Class Variable After Delete: 1000
+</pre>
+<p>Let us take a look closer at instance variables.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">Test</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>instance_variable <span class="token operator">=</span> n
+</pre><p>We will talk more about <code>__init__</code> and self.  Just know that <code>instance_variable</code> is not a class variable but...an instance variable.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">t1 <span class="token operator">=</span> Test<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+t2 <span class="token operator">=</span> Test<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"T1 Instance Variable:"</span><span class="token punctuation">,</span> t1<span class="token punctuation">.</span>instance_variable<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"T2 Instance Variable:"</span><span class="token punctuation">,</span> t2<span class="token punctuation">.</span>instance_variable<span class="token punctuation">)</span>
+</pre><pre class="language-text">T1 Instance Variable: 5
+T2 Instance Variable: 10
+</pre>
+<p>If <code>instance_variable</code> were a class variable then t1 would have 10 set to its <code>instance_variable</code> but it does not.  The use of instance variables allow one to create many instances of a class that represent the same types of objects with different values.  You've been doing this everytime you use a data type such as a number, list, tuple, string, file object, etc.  If number objects, like <code>int(5)</code>, used class variables, you wouldn't be able to have several different number values for different instances.  What happens if I create a class variable of the same name, however?</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">Test</span><span class="token punctuation">:</span>
+    variable <span class="token operator">=</span> <span class="token number">1000</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>variable <span class="token operator">=</span> n
+        
+t <span class="token operator">=</span> Test<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Test.variable is"</span><span class="token punctuation">,</span> Test<span class="token punctuation">.</span>variable<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"t.variable is"</span><span class="token punctuation">,</span> t<span class="token punctuation">.</span>variable<span class="token punctuation">)</span>
+</pre><pre class="language-text">Test.variable is 1000
+t.variable is 10
+</pre>
+<p>Just like before, on an instance that uses an instance variable of the same name as a class variable, the instance variable has precedence.  When the class is used, the class variable is used instead.  This is important because if you forget to use parenthesis when creating an instance then you can have weird results.  Also, just don't name your class and instance variables the same.  Here is an example of what I mean.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">Test</span><span class="token punctuation">:</span>
+    variable <span class="token operator">=</span> <span class="token string">"Hello"</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>variable <span class="token operator">=</span> <span class="token number">5</span>
+
+t <span class="token operator">=</span> Test
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"t.variable is"</span><span class="token punctuation">,</span> t<span class="token punctuation">.</span>variable<span class="token punctuation">)</span>
+</pre><pre class="language-text">t.variable is Hello
+</pre>
+<p>The variable <code>t</code> is NOT an instance of the Test class but is an alias for the class.  We can create instances using <code>t</code> now as an alias.  Useful when the class name is too long to type but can be detrimental if you are not careful.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">instance <span class="token operator">=</span> t<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"instance.variable is"</span><span class="token punctuation">,</span> instance<span class="token punctuation">.</span>variable<span class="token punctuation">)</span>
+</pre><pre class="language-text">instance.variable is 5
+</pre>
+<p>The difference for these variables depends on how they are created.  So now you might be asking, what is <code>__init__(self)</code>?  What is <code>self</code>?  Is it special?</p>
+<p>We'll answer those questions in the next couple sections.</p>
+<p>By the way, Python does not have public/private distinctions for methods or variables inside a class.  Instead, it operates on the assumption that programmers are responsible and simply has an understanding that anything beginning with two underscores should not be accessed directly by a user of the library/module (unless you are absolutely certain about what you are doing.)  Here is a link discussing more about <a href="https://docs.python.org/3/tutorial/classes.html#private-variables">Private Variables</a>.</p>
+<p><a href="https://docs.python.org/3/tutorial/classes.html#class-and-instance-variables">Python 3 Class and Instance Variables Documentation</a></p>
+<h3 class="mume-header" id="lecture-311-class-methods">Lecture 3.1.1: Class Methods</h3>
+
+<p>Methods in a class are just functions but must have an object to be able to use the method.  There is one thing that is different, however.  That is, methods must always have one argument defined that is the reference to the instance.  When the method is called, the Python interpreter passes the instance of the class to the method as the first argument behind the scenes.  This first argument can then be used to call other attributes of the class like other methods or class or instance variables.  We can also have local variables inside the method but they will get removed from memory once the method is done and has returned to the original call point.  This first argument that is a reference to the instance of the class can be named anything you want but the conventional name is to use <code>self</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">Test</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>stays_around <span class="token operator">=</span> <span class="token string">"I am alive"</span>
+    <span class="token keyword">def</span> <span class="token function">print_stuff</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        will_get_removed <span class="token operator">=</span> <span class="token string">"I am alive, for now"</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>will_get_removed<span class="token punctuation">)</span>
+        
+t <span class="token operator">=</span> Test<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"t.stays_around -&gt;"</span><span class="token punctuation">,</span>t<span class="token punctuation">.</span>stays_around<span class="token punctuation">)</span>
+
+t<span class="token punctuation">.</span>print_stuff<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>will_get_removed<span class="token punctuation">)</span>
+
+</pre><pre class="language-text">t.stays_around -&gt; I am alive
+I am alive, for now
+
+
+
+---------------------------------------------------------------------------
+
+AttributeError                            Traceback (most recent call last)
+
+&lt;ipython-input-18-49d067f59374&gt; in &lt;module&gt;()
+     11 t.print_stuff()
+     12 
+---&gt; 13 print(t.will_get_removed)
+
+
+AttributeError: 'Test' object has no attribute 'will_get_removed'
+</pre>
+<p>This code demonstrates the difference between an instance variable and a local variable.  A local variable belongs to the block it was created in and will be removed from memory by the garbage collector when the block is done.  In this case, <code>will_get_removed</code> is a local variable to <code>print_stuff</code> method.  Believe it or not, but <code>self</code> is a local variable to both <code>print_stuff</code> and <code>__init__</code>.  (In other words, the <code>self</code> in <code>__init__</code> and <code>print_stuff</code> will live only as long as the method scope).</p>
+<p>When you call the method, you DO NOT need to provide an argument for that first argument.  So, if the method doesn't accept any other arguments you use it like a normal method by using the dot operator.  If the method does accept additional arguments, you will be asked to pass in those arguments.  You will also get an error that looks like an off-by-one error, something like "method expects 2 arguments, 1 given", when you call a method that expects another argument other than the instance and you call it with nothing.</p>
+<p>Might be confusing, but you will get used to it.</p>
+<p>Using that first argument, we can access other attributes of the instance object.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">Test</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token number">3</span>
+    <span class="token keyword">def</span> <span class="token function">getX</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>x
+    <span class="token keyword">def</span> <span class="token function">setX</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> newX<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>x <span class="token operator">=</span> newX
+        
+t <span class="token operator">=</span> Test<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"t.getX() -&gt;"</span><span class="token punctuation">,</span> t<span class="token punctuation">.</span>getX<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+t<span class="token punctuation">.</span>setX<span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"t.getX() -&gt;"</span><span class="token punctuation">,</span> t<span class="token punctuation">.</span>getX<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">t.getX() -&gt; 3
+t.getX() -&gt; 500
+</pre>
+<p>Here, I defined a class that will create a variable, <code>x</code>, for all instances of the class.  Then, I define getters and setters (which aren't required in Python because everything is Public)*.  Inside these methods I used <code>self</code> to access the instance variable <code>x</code>. Notice, in <code>setX</code>, I have <code>self</code> and <code>newX</code>.  When I call this method, I must give it an argument that will be set to <code>newX</code> which is a local variable to the <code>setX</code> method.</p>
+<p>The reason for the first argument, <code>self</code>, that is a pointer to the instance is to differentiate between local variables and instance variables.  If we didn't have this, Python would mistake the variable as a local variable and it would be removed from memory as soon as the method is done running.</p>
+<p>* It is actually Pythonic not to have getters and setters and to just access the variable using the dot operator.  This was just to demonstrate methods and the self argument.</p>
+<h3 class="mume-header" id="lecture-312-class-constructor">Lecture 3.1.2: Class Constructor</h3>
+
+<p>Python has an interesting way to do constructors.  We actually use a method (discussed more in section 3.2) called <code>__init__</code> that runs when an object is created.  (There is another, __new__ but is not discussed here).  When we create an object, behind the scenes, the <code>__init__</code> method is being called.  We use this method to instantiate (create and assign) variables for an object.  If we include other arguments for <code>__init__</code> besides <code>self</code> we will need to make sure we pass arguments when needed.  We can, of course, use default arguments, keyword arguments, and all the other argument types since <code>__init__</code> is just like a normal method.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">,</span> age<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>name <span class="token operator">=</span> name
+        self<span class="token punctuation">.</span>age <span class="token operator">=</span> age
+        
+p1 <span class="token operator">=</span> Person<span class="token punctuation">(</span><span class="token string">"Sammy"</span><span class="token punctuation">)</span>
+p2 <span class="token operator">=</span> Person<span class="token punctuation">(</span><span class="token string">"Brian"</span><span class="token punctuation">,</span> <span class="token number">27</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"P1's name is {} and age is {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>p1<span class="token punctuation">.</span>name<span class="token punctuation">,</span> p1<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"P2's name is {} and age is {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>p2<span class="token punctuation">.</span>name<span class="token punctuation">,</span> p2<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">P1's name is Sammy and age is 0
+P2's name is Brian and age is 27
+</pre>
+<p>Here, I created a class with an <code>__init__</code> method that accepts 2 additional values for name and age.  I then set instance variables of the same name as the local variables to the values pointed at by the local variables.  One of these variables is a default variable and so is optional when creating an object from the class.  I then created 2 objects with different names and ages.  This is the use for constructors.</p>
+<p>You don't have to define the <code>__init__</code> method for classes.  It is optional but is useful for creating default variables that are used throughout the classes methods.</p>
+<p><a href="https://docs.python.org/3/tutorial/classes.html#class-objects">Python 3 Class Objects Documentation</a></p>
+<h3 class="mume-header" id="lecture-315-inhertiance">Lecture 3.1.5: Inhertiance</h3>
+
+<p>Inheritance allows us to define methods and variables in one class and have another class utilize those same attributes without having to define them itself.  If you have a method in one class, for example, and another class inherits that class, then the subclass has access to that method.  It can then redefine that method to do whatever or keep its default behavior.  This is great for collections but even better if the action/method does the same thing for any subclass inheriting from the super class giving the option to change how the method works if need be.</p>
+<p>To have a class inherit from another class, we put the super class inside the parenthesis' when defining the class name.  You have already seen this with the <code>object</code> class.  Let's take a look at another class.</p>
+<p>Here is an example using animals.  (You may want to enter this in a script file for ease in case of syntax errors)</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">Animal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>name <span class="token operator">=</span> name
+        
+    <span class="token keyword">def</span> <span class="token function">talk</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"NO SOUND"</span>
+    
+<span class="token keyword">class</span> <span class="token class-name">Bacteria</span><span class="token punctuation">(</span>Animal<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        Animal<span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+        
+<span class="token keyword">class</span> <span class="token class-name">Duck</span><span class="token punctuation">(</span>Animal<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        Animal<span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+        
+    <span class="token keyword">def</span> <span class="token function">talk</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"QUACK"</span>
+        
+<span class="token keyword">class</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span>Animal<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        Animal<span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+        
+    <span class="token keyword">def</span> <span class="token function">talk</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"BARK"</span>
+        
+<span class="token keyword">class</span> <span class="token class-name">Daffy</span><span class="token punctuation">(</span>Duck<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        Duck<span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"Daffy"</span><span class="token punctuation">)</span>
+    
+    <span class="token keyword">def</span> <span class="token function">talk</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        
+        <span class="token keyword">return</span> <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>talk<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">": You're dethpicable."</span>
+
+bact <span class="token operator">=</span> Bacteria<span class="token punctuation">(</span><span class="token string">"Amoeba"</span><span class="token punctuation">)</span>
+duck <span class="token operator">=</span> Duck<span class="token punctuation">(</span><span class="token string">"Mallard"</span><span class="token punctuation">)</span>
+dog <span class="token operator">=</span> Dog<span class="token punctuation">(</span><span class="token string">"Shadow"</span><span class="token punctuation">)</span>
+daffy <span class="token operator">=</span> Daffy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>bact<span class="token punctuation">.</span>talk<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>duck<span class="token punctuation">.</span>talk<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>dog<span class="token punctuation">.</span>talk<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>daffy<span class="token punctuation">.</span>talk<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">NO SOUND
+QUACK
+BARK
+QUACK: You're dethpicable.
+</pre>
+<p>Here, we have five classes.  A class <code>Animal</code> which defines a talk method and a name variable.  The subclasses of <code>Animal</code>, <code>Bacteria</code>, <code>Duck</code> and <code>Dog</code>, define their own talk method.  <code>Daffy</code> inherits from <code>Duck</code> and thus has a talk method that would have returned <code>"QUACK"</code> but is defined to return something else.  <code>Daffy</code> class does, however, not need an argument passed when creating an object for it as it passes a name to the super class for us with a name.  The use of <code>super()</code> allows us to access the super class and any of it's variables or methods.</p>
+<p>Why would any of this be necessary?  As programmers, you write code that takes advantage of collections of data, whether it be arrays, lists, tuples, dictionaries, sets, or trees, if you access an object from that collection you want to be sure that object has a method or else it will throw an exception.  Now, modify the code a bit to show you what I mean.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">list_of_animals <span class="token operator">=</span> <span class="token punctuation">[</span>duck<span class="token punctuation">,</span> dog<span class="token punctuation">,</span> daffy<span class="token punctuation">,</span> bact<span class="token punctuation">]</span>
+
+<span class="token keyword">for</span> animal <span class="token keyword">in</span> list_of_animals<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"{} says '{}'"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>animal<span class="token punctuation">.</span>name<span class="token punctuation">,</span> animal<span class="token punctuation">.</span>talk<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">Mallard says 'QUACK'
+Shadow says 'BARK'
+Daffy says 'QUACK: You're dethpicable.'
+Amoeba says 'NO SOUND'
+</pre>
+<p>Now when it runs, assuming all elements of the list are animals (they are) they will have their version of the talk method called and have their name displayed.  We can add a step further and use <code>isinstance</code> to check if they are in fact an instance of Animal.  <strong>DON'T USE type() TO COMPARE INSTANCE TYPES</strong>.  The <code>type</code> function will only return an objects immediate object type.  <code>isinstance</code> will do a deep dive and will actually check for all types.</p>
+<p>For those of you who saw what I did but didn't mention, Animal is actually an Interface.  I can create an object of Animal and call the <code>talk</code> method but an error will be raised.  Python doesn't really have a distinction between an interface or an abstract class like other languages (C#, Java, C++).  If you need an interface, you create one.  If you need an abstract class, define the class that way.</p>
+<p>Lastly, you can do multiple inheritance (Most other object oriented languages don't allow this.)  I don't recommend it because if you define a method with the same name and arguments in two different base classes and then subclass those classes in one class, you will have a conflict with that method. (Which method get's ran when it's called?)  I recommend sticking to single inheritance (or you can read about composition vs inheritance).</p>
+<p><a href="https://docs.python.org/3/tutorial/classes.html#inheritance">Python 3 Inheritance Documentation</a></p>
+<h2 class="mume-header" id="lecture-32-object-data-model">Lecture 3.2: Object Data Model</h2>
+
+<p>The object data model is Python's solution to data representation.  Along with this representation are methods, sometimes called magic methods, dunder (for double underscore) methods, or more correctly data model methods that allow us to determine how an operation is to handle the object.  You've already seen one such method, the <code>__init__()</code> method.  Another example is the <code>__add__()</code> method which is called whenever you use the + operator (even on numbers).  Here is an exmaple of what is happening behind the scenes using strings concatenation.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token string">"Hello, "</span> <span class="token operator">+</span> <span class="token string">"world!"</span> <span class="token comment">#What you use.</span>
+</pre><pre class="language-text">'Hello, world!'
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token string">"Hello, "</span><span class="token punctuation">.</span>__add__<span class="token punctuation">(</span><span class="token string">"world!"</span><span class="token punctuation">)</span> <span class="token comment">#What is happening behind the scenes.</span>
+</pre><pre class="language-text">'Hello, world!'
+</pre>
+<p>For numbers, we can do the same thing but since the number symbol is a literal we first need to allow the interpreter to create the number object and then call the method.  Here is what you might try at first.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">2.</span>__add__<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">  File "&lt;ipython-input-3-4ba1c06ab832&gt;", line 1
+    2.__add__(3)
+            ^
+SyntaxError: invalid syntax
+</pre>
+<p>As you can see, we get a SyntaxError.  We need to surround the number calling the method with parenthesis to encompass the object and allow it to be created first.   Here is the fix.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__add__<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">5
+</pre>
+<p>Alternatively, you can do this when the number is referenced by a variable.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">t <span class="token operator">=</span> <span class="token number">2</span>
+t<span class="token punctuation">.</span>__add__<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">5
+</pre>
+<p>This is what is happening when you run <code>2 + 3</code> or <code>t + 3</code>.</p>
+<p>Now you should have an understanding of what is so magical about these methods.  We can define them for our classes to behave a certain way when an operation, or built-in function, is called on our objects.  Here is a list of data model methods that are common but you can find more at the link provided.</p>
+<p><strong>__str__</strong>: This data model method should return a string that represents the contents of a class.  When <code>print</code> is given an object of a class it class that objects <code>__str__(self)</code> method and displays the string to the output.</p>
+<p><strong>__add__</strong>: This data model method get's called during an add operation (3 + 2 for instance).  The object on the left hand side is the object that will call the method with the object on the right being passed in as an argument.  We can define a behavior for our own objects when they are on the left hand side of the add operation.</p>
+<p><strong>__sub__</strong>: This data model method get's called during a subtraction operation (3 - 2 for instance).  The object on the left hand side is the object that will call the method with the object on the right being passed in as an argument.  We can define a behavior for our own objects when they are on the left hand side of the add operation.</p>
+<p><strong>__mul__</strong>: This data model method get's called during a multiplication operation (3 * 2 for instance).  The object on the left hand side is the object that will call the method with the object on the right being passed in as an argument.  We can define a behavior for our own objects when they are on the left hand side of the add operation.</p>
+<p><strong>__truediv__</strong>: This data model method get's called during a division operation (3 / 2 for instance).  The object on the left hand side is the object that will call the method with the object on the right being passed in as an argument.  We can define a behavior for our own objects when they are on the left hand side of the add operation.</p>
+<p><strong>__pow__</strong>: This data model method get's called during a power operation (3 ** 2 for instance).  The object on the left hand side is the object that will call the method with the object on the right being passed in as an argument.  We can define a behavior for our own objects when they are on the left hand side of the add operation.</p>
+<p><strong>__cmp__</strong>: This data model method get's called when the <code>compare</code> built-in function is called to compare two objects.</p>
+<p><strong>__lt__</strong>: This data model method get's called during a less than operation (3 &lt; 2 for instance).  The object on the left hand side is the object that will call the method with the object on the right being passed in as an argument.  We can define a behavior for our own objects when they are on the left hand side of the add operation.</p>
+<p><strong>__gt__</strong>: This data model method get's called during a greater than operation (3 &gt; 2 for instance).  The object on the left hand side is the object that will call the method with the object on the right being passed in as an argument.  We can define a behavior for our own objects when they are on the left hand side of the add operation.</p>
+<p><strong>__le__</strong>: This data model method get's called during a less than or equal to operation (3 &lt;= 2 for instance).  The object on the left hand side is the object that will call the method with the object on the right being passed in as an argument.  We can define a behavior for our own objects when they are on the left hand side of the add operation.</p>
+<p><strong>__ge__</strong>: This data model method get's called during a greater than or equal to operation (3 &gt;= 2 for instance).  The object on the left hand side is the object that will call the method with the object on the right being passed in as an argument.  We can define a behavior for our own objects when they are on the left hand side of the add operation.</p>
+<p>Any other operations you can think of (like slicing, indexing (both sequences and mappings), comparison operators, etc.) can be overridden.</p>
+<p><a href="https://docs.python.org/3/library/operator.html">Python 3 Documentation for Magic Methods</a></p>
+<p>Here is an example using vectors from Physics.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">Vector2D</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''Vector2D object with an x and y value.'''</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>X <span class="token operator">=</span> <span class="token builtin">float</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>Y <span class="token operator">=</span> <span class="token builtin">float</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span>
+        
+    <span class="token keyword">def</span> <span class="token function">__add__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> other<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>other<span class="token punctuation">,</span> Vector2D<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            newX <span class="token operator">=</span> self<span class="token punctuation">.</span>X <span class="token operator">+</span> other<span class="token punctuation">.</span>X
+            newY <span class="token operator">=</span> self<span class="token punctuation">.</span>Y <span class="token operator">+</span> other<span class="token punctuation">.</span>Y
+            <span class="token keyword">return</span> Vector2D<span class="token punctuation">(</span>newX<span class="token punctuation">,</span> newY<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">"Can only add a vector to another vector."</span><span class="token punctuation">)</span>
+            
+    <span class="token keyword">def</span> <span class="token function">__sub__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> other<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>other<span class="token punctuation">,</span> Vector2D<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            newX <span class="token operator">=</span> self<span class="token punctuation">.</span>X <span class="token operator">-</span> other<span class="token punctuation">.</span>X
+            newY <span class="token operator">=</span> self<span class="token punctuation">.</span>Y <span class="token operator">-</span> other<span class="token punctuation">.</span>Y
+            <span class="token keyword">return</span> Vector2D<span class="token punctuation">(</span>newX<span class="token punctuation">,</span> newY<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">"Can only subtract a vector to another vector."</span><span class="token punctuation">)</span>
+            
+    <span class="token keyword">def</span> <span class="token function">__mul__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> scalar<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>scalar<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">float</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            newX <span class="token operator">=</span> self<span class="token punctuation">.</span>X <span class="token operator">*</span> scalar
+            newY <span class="token operator">=</span> self<span class="token punctuation">.</span>Y <span class="token operator">*</span> scalar
+            <span class="token keyword">return</span> Vector2D<span class="token punctuation">(</span>newX<span class="token punctuation">,</span> newY<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">"Can only multiply a vector to a scalar."</span><span class="token punctuation">)</span>
+    
+    <span class="token keyword">def</span> <span class="token function">__truediv__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> scalar<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>scalar<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">float</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            newX <span class="token operator">=</span> self<span class="token punctuation">.</span>X <span class="token operator">/</span> scalar
+            newY <span class="token operator">=</span> self<span class="token punctuation">.</span>Y <span class="token operator">/</span> scalar
+            <span class="token keyword">return</span> Vector2D<span class="token punctuation">(</span>newX<span class="token punctuation">,</span> newY<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">"Can only divide a vector to a scalar."</span><span class="token punctuation">)</span>
+            
+    <span class="token keyword">def</span> <span class="token function">__str__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"(X = {}, Y = {})"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>X<span class="token punctuation">,</span> self<span class="token punctuation">.</span>Y<span class="token punctuation">)</span>
+        
+        
+v1 <span class="token operator">=</span> Vector2D<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+v2 <span class="token operator">=</span> Vector2D<span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Vector 1: {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>v1<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Vector 2: {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>v2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"V1 + V2 = {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>v1 <span class="token operator">+</span> v2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"V1 - V2 = {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>v1 <span class="token operator">-</span> v2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"V1 * 3.14 = {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>v1 <span class="token operator">*</span> <span class="token number">3.14</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"V2 / 2 = {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>v2 <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Vector 1: {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>v1<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Vector 2: {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>v2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">Vector 1: (X = 2.0, Y = 3.0)
+Vector 2: (X = 7.0, Y = 2.0)
+V1 + V2 = (X = 9.0, Y = 5.0)
+V1 - V2 = (X = -5.0, Y = 1.0)
+V1 * 3.14 = (X = 6.28, Y = 9.42)
+V2 / 2 = (X = 3.5, Y = 1.0)
+Vector 1: (X = 2.0, Y = 3.0)
+Vector 2: (X = 7.0, Y = 2.0)
+</pre>
+<p>In the code above, I overrode the addition, subtraction, multiplication, and division operators to allow two vectors to be added together making sure to do my own checks and raise a value error with my own message.  You could just let it go and throw an error when the code tries to access attributes from other objects that might not have those attributes but you will get an AttributeError saying so and can end up being confusing when trying to debug the code.</p>
+<p>Notice, I did not need to explicitly call those methods.  The operators did that for me.  Also, the print function returned what was created and returned by the <code>__str__</code> function.</p>
+<p>Lastly, you do not need to return anything when writing these methods.  I just did to make my class pseudo-immutable.  You could have modified the vector, however, this brings up the question of which one should be modified?  Should the left vector or right vector operand be changed?  I don't think either should be modified and should only change if an assignment is part of the operation for something like this, <code>v1 += v2</code> (there is a data model method for this operator <code>+=</code>).  The Vector class is also only pseudo-immutable because you can still access <code>X</code> and <code>Y</code> with the instance objects (<code>v1.X = 3</code> for instance ((no pun intended))).  There is a way to make it completely immutable so instance variables can't be changed but I leave that as an exercise for you.</p>
+<h2 class="mume-header" id="lecture-33-polymorphism">Lecture 3.3: Polymorphism</h2>
+
+<p>Polymorphism looks like a big fancy word but all it means is many forms or many types.  Polymorphism is what makes Object Oriented Programming so powerful.  We can have objects be considered many types which will allow us to perform many operations on many objects within a collection without worrying about it needing to be a specific type.    An example of this, consider a video game where you have different types of enemies.  A good example is any RPG (role playing game) with different races.  The game may contain a human, orc, and dwarf race which may have a class of the same name.  These races can fall under a Humanoid (human-like) class.  This class can fall under a Race class which can fall under an Actor that falls under a GameObject class.  We can see the hierarchy like so</p>
+<img src="data:image/png;base64,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">
+<p>Looking at the hierarchy, you can see that Human, Orc, and Dwarf, while separate classes, are considered Humanoid.  So, anything a Humanoid can do all three can do.  Humanoid and Creature are both of type Race so they both can do whatever a Race can do.  Race is a type of Actor and Actor is a type of GameObject.  So, you can also say that Orc, Human, and Dwarf are of type GameObject, Actor, and Race.  What they can do and what data they can store is decided by the methods and instance variables and the access modifiers for them.</p>
+<p>The animal class in the section <em>Lecture 3.1.5: Inhertiance</em> has code that shows basic polymorphism in that any <code>Daffy</code> object is also a <code>Duck</code> and an <code>Animal</code>.</p>
+<h2 class="mume-header" id="lecture-34-exception-handling">Lecture 3.4: Exception Handling</h2>
+
+<p>I will be using errors and exceptions interchangably through out this lecture.  This is because most exceptions we catch will have <strong>Error</strong> appended to it.  Technically, exceptions occur during runtime while the only real errors in Python are syntax errors.  Other languages that utilize exceptions have checked and unchecked exceptions.  Python only has unchecked exceptions which occur at runtime so they are just exceptions.</p>
+<p>Python uses exceptions to handle all sorts of coding situations (even some you might not consider).  For instance, generators, when they have no more elements and a next is called, will throw a StopIteration error.  When you press CTRL+C to stop a program, the Python interpreter will raise a KeyboardInterrupt error to stop the execution.  You can actually catch this error and print a more user-friendly message if you wanted to.  When should you raise exceptions?  That's really up to the programmer.</p>
+<h3 class="mume-header" id="lecture-341-tryexcept">Lecture 3.4.1: Try...Except</h3>
+
+<p>To catch exceptions, we use the <code>try</code> keyword for to <strong>try</strong> out some code.  If that code raises an exception then we must catch it using the <code>except</code> keyword.  We can use multiple <code>except</code> statements for as many exceptions as we would like to catch.  I recommend using an <code>except</code> statement for any KNOWN exceptions that may be thrown and a final general purpose except that is a catchall for anything else bad that might happen that you weren't ready for.  The general one should give more information about the state of the program than any other exception so debugging is much easier.</p>
+<p><code>try...except</code> clauses allow us to catch errors that, when thrown, stop the program.  This is also known as a crash.  Catching these will allow the user to continue using our program without needing to restart it.  You can say that <code>try...except</code> clauses are a form of control flow for error handling.  There is another part which is <code>else</code> which can be used for clean up such as closing a file or socket or giving a resource back.  The else is optional but is shown here to give you a complete example.</p>
+<p>Let's look at an example.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">file_h <span class="token operator">=</span> <span class="token boolean">None</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+    file_h <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"fergle.in"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Error opening file"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    file_h<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">Error opening file
+</pre>
+<p>Here, I have a program that tries to read a file.  That file is not located where ever I started the interpreter at and so the except clause catches the error thrown and displays <code>'File not found'</code>.</p>
+<p>The exception thrown can be seen when we remove the <code>try...except...else</code>.  The else runs if no error is thrown so the file can be closed if it is opened.  Otherwise, there was an error.  Whether it doesn't exist or we don't have permissions or some other problem we catch it all (which is bad programming to have a catchall like this out the gate).  How can we determine what to catch then?  Well, let's get rid of the <code>try...except...else</code> altogether.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"fergle.in"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+FileNotFoundError                         Traceback (most recent call last)
+
+&lt;ipython-input-15-0cbc3d71252e&gt; in &lt;module&gt;()
+----&gt; 1 open("fergle.in", "r")
+
+
+FileNotFoundError: [Errno 2] No such file or directory: 'fergle.in'
+</pre>
+<p>Here, we received a <code>FileNotFoundError</code>.  Let's make our try except catch this specific error.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">file_h <span class="token operator">=</span> <span class="token boolean">None</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+    file_h <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"fergle.in"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> FileNotFoundError<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"File was not found"</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Something else bad happened"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    file_h<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">File was not found
+</pre>
+<p><strong>NOTE</strong>: The general catchall excpet clause must come last, otherwise, it will always be thrown for every exception raised.</p>
+<p>What if we want to reference the exception object raised when an error occurs?  We can do that by assigning a variable.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">file_h <span class="token operator">=</span> <span class="token boolean">None</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+    <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"fergle.in"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> FileNotFoundError <span class="token keyword">as</span> err<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+<span class="token keyword">except</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Something really bad happened"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">[Errno 2] No such file or directory: 'fergle.in'
+</pre>
+<p>We use the <code>as</code> keyword to create an alias.  This makes sense since <code>as</code> is used to create aliases in other situations (such as <code>with open("file.in", "r") as in_file</code>).</p>
+<p>Just for your curiosity, we can give the catchall exception a name, too, but we need to use the high level base exception class (for at least all built-in functions) and then create the variable.  Here is a small example using DivisionByZero.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">3</span> <span class="token operator">/</span> <span class="token number">0</span>
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+ZeroDivisionError                         Traceback (most recent call last)
+
+&lt;ipython-input-19-e1965806ec03&gt; in &lt;module&gt;()
+----&gt; 1 3 / 0
+
+
+ZeroDivisionError: division by zero
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">try</span><span class="token punctuation">:</span>
+    <span class="token number">3</span> <span class="token operator">/</span> <span class="token number">0</span>
+<span class="token keyword">except</span> BaseException <span class="token keyword">as</span> exc<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>exc<span class="token punctuation">)</span>
+</pre><pre class="language-text">division by zero
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">try</span><span class="token punctuation">:</span>
+    <span class="token number">3</span> <span class="token operator">/</span> <span class="token number">0</span>
+<span class="token keyword">except</span> ZeroDivisionError <span class="token keyword">as</span> dbz<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>dbz<span class="token punctuation">)</span>
+</pre><pre class="language-text">division by zero
+</pre>
+<p>BaseException will catch any and all other exceptions that inherit from it (all built-in exceptions extend BaseException) and ZeroDivisionError is a built-in that is more specific.  You will always want to list the specific exceptions FIRST before the catchall as you will have more control of your code, can display different custom messages for each error, and other people looking at your code won't want to hunt you down 10 years later (and you won't want to hunt yourself down 2 months later when you try to read your own code).</p>
+<p>Python does allow you to catch multiple exceptions on the same except line if you choose to do so.  To do that you can separate the types of exceptions with a comma and surround the exceptions with a parenthesis (you are effectively creating a tuple of exception types).</p>
+<p><strong>Type this in a script file before trying it out</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># FILENAME: exceptions.py</span>
+<span class="token keyword">from</span> sys <span class="token keyword">import</span> exit
+
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Press ENTER to open file"</span><span class="token punctuation">)</span>
+        <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"fergle.in"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> <span class="token punctuation">(</span>IOError<span class="token punctuation">,</span> KeyboardInterrupt<span class="token punctuation">)</span> <span class="token keyword">as</span> err<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>err<span class="token punctuation">,</span> IOError<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"File not found"</span><span class="token punctuation">)</span>
+        <span class="token keyword">elif</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>err<span class="token punctuation">,</span> KeyboardInterrupt<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"\nExitting program..."</span><span class="token punctuation">)</span>
+            exit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> EOFError<span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+</pre><p>Here, I had to catch an extra error, <code>EOFError</code>, if a <code>KeyboardInterrupt</code> is raised.  The keyword <code>pass</code> is just a nice way of saying, "I'll create the body for this block code later so don't yell at me".  If you remove the <code>pass</code> keyword, it throws a syntax exception because the block code (any block code) doesn't have a body.  It's good for prototyping and designing when you just don't want to write implementations right now and get your codebase designed.</p>
+<p>Alright, you now know the basic syntax for <code>try...except...else</code> clauses.  Here is a small example for a function that takes a data type and tries to receive an input of that type and returns that object if it succeeds otherwise it keeps asking for the input.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">input_handler</span><span class="token punctuation">(</span>message<span class="token punctuation">,</span> datatype<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        tempin <span class="token operator">=</span> <span class="token boolean">None</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            tempin <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span>
+            res <span class="token operator">=</span> datatype<span class="token punctuation">(</span>tempin<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> res
+        <span class="token keyword">except</span> ValueError<span class="token punctuation">:</span>
+            just_the_type <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>datatype<span class="token punctuation">)</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"You entered {}.  Expected {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>tempin<span class="token punctuation">,</span> just_the_type<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+userin <span class="token operator">=</span> input_handler<span class="token punctuation">(</span><span class="token string">"Give me a float: "</span><span class="token punctuation">,</span> <span class="token builtin">float</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Type: {} | UserIn: {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>userin<span class="token punctuation">)</span><span class="token punctuation">,</span> userin<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+userin <span class="token operator">=</span> input_handler<span class="token punctuation">(</span><span class="token string">"Now give me a complex: "</span><span class="token punctuation">,</span> <span class="token builtin">complex</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Type: {} | UserIn: {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>userin<span class="token punctuation">)</span><span class="token punctuation">,</span> userin<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">Give me a float: hello
+You entered hello.  Expected 'float'
+Give me a float: 3.14
+Type: &lt;class 'float'&gt; | UserIn: 3.14
+Now give me a complex: No
+You entered No.  Expected 'complex'
+Now give me a complex: 2+3j
+Type: &lt;class 'complex'&gt; | UserIn: (2+3j)
+</pre>
+<p>As long as the user enters a type we don't want, the function will keep asking.</p>
+<p><a href="https://docs.python.org/3/tutorial/errors.html">Python 3 Errors Documentation</a></p>
+<h3 class="mume-header" id="lecture-342-raising-errors">Lecture 3.4.2: Raising Errors</h3>
+
+<p>We can raise errors in our code if we want other people to handle it themselves.  To raise an exception you use the keyword <code>raise</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">raise</span> ValueError
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-3-e4c8e09828d5&gt; in &lt;module&gt;()
+----&gt; 1 raise ValueError
+
+
+ValueError: 
+</pre>
+<p>If you want to raise an error with a custom message, we can pass a string as an argument.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">"Raising this for no reason"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-4-bffe8ee113d8&gt; in &lt;module&gt;()
+----&gt; 1 raise ValueError("Raising this for no reason")
+
+
+ValueError: Raising this for no reason
+</pre>
+<p>Raising errors is more for when we have our own custom exceptions that we created for our code base and for when the standard set of exceptions in the Python library just don't quite fit our needs.</p>
+<h3 class="mume-header" id="lecture-343-custom-error-creation">Lecture 3.4.3: Custom Error Creation</h3>
+
+<p>When the standard library doesn't have an error that is specific to our needs or very descriptive we can create our own.  To do that, we simply extend an existing error or the base error class, <code>Exception</code>.  This is easy as all we have to do for a very basic exception is to define an <code>__init__</code> method, call the super classes <code>__init__</code> method and pass in our message.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">MyException</span><span class="token punctuation">(</span>Exception<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> message<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        Exception<span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> message<span class="token punctuation">)</span>
+        
+<span class="token keyword">raise</span> MyException
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+MyException                               Traceback (most recent call last)
+
+&lt;ipython-input-5-55a748628e94&gt; in &lt;module&gt;()
+      3         Exception.__init__(self, message)
+      4 
+----&gt; 5 raise MyException
+
+
+MyException: None
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">raise</span> MyException<span class="token punctuation">(</span><span class="token string">"Something bad happened but I will never say what"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+MyException                               Traceback (most recent call last)
+
+&lt;ipython-input-6-48009fbc31d6&gt; in &lt;module&gt;()
+----&gt; 1 raise MyException("Something bad happened but I will never say what")
+
+
+MyException: Something bad happened but I will never say what
+</pre>
+<p>Here is an example of some code that expects a multiple of 3 or 5 else it raises an error and is handled with a <code>try...except</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">from</span> sys <span class="token keyword">import</span> exit
+
+<span class="token keyword">class</span> <span class="token class-name">NotAMultipleOfThreeOrFive</span><span class="token punctuation">(</span>Exception<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> message<span class="token operator">=</span><span class="token string">"Not a multiple of 3 or 5"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        Exception<span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> message<span class="token punctuation">)</span>
+        
+<span class="token keyword">def</span> <span class="token function">validate_number</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> num <span class="token operator">%</span> <span class="token number">3</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token keyword">and</span> num <span class="token operator">%</span> <span class="token number">5</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> NotAMultipleOfThreeOrFive
+
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>        
+        user_in <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Enter a number: "</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> user_in <span class="token operator">==</span> <span class="token string">"exit"</span><span class="token punctuation">:</span>
+            <span class="token keyword">break</span>
+        validate_number<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>user_in<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"That's a valid number"</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> NotAMultipleOfThreeOrFive<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"That's not a valid number"</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> ValueError<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"That's not a number"</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Something out of our control happened"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">Enter a number: Hello
+That's not a number
+Enter a number: 2
+That's not a valid number
+Enter a number: 5
+That's a valid number
+Enter a number: exit
+</pre>
+<p><a href="https://docs.python.org/3/tutorial/errors.html#user-defined-exceptions">Python 3 User-Defined Exceptions Documentation</a></p>
+<h2 class="mume-header" id="lecture-35-python-organization">Lecture 3.5: Python Organization</h2>
+
+<p>As mentioned in earlier lectures, Python has a hierarchy that it uses to organize it's code.  At the top we have packages, also called libraries.  Packages contain modules.  Modules are our Python scripts and other packages.  Then we have classes and functions.  Inside those classes and functions, we have statements and inside of statements are expressions.  each layer, down to functions, is importable.</p>
+<p>To create a package, we must include a <code>__init__.py</code> file.  It doesn't need to contain anything, it just needs to be there.  Think of your project directories.  Assuming you aren't using an IDE that automatically creates the <code>__init__.py</code> file automatically, these folders are not packages.  You will not be able to import them.  If you add an <code>__init__.py</code> file in them, they become a package.  This is also true for any folder inside a package.  If the folder does not have the file it is not a package.  So, if you are making a library for others to use, you must include <code>__init__.py</code> for any folder you want to be a package.</p>
+<p>Why is this important?  So you know how you should organize your code but also know how to import something.  When you import, you might need to go deep into the package system to get the code you want.</p>
+<p>Also, the <code>__init__.py</code> file does not need to be empty.  It can contain code that does error checking and validation before allowing a package to be imported.</p>
+<p>This short blog post is a good example of what the __init__ file can do for you.</p>
+<p>An example hierarchy of the file system for a package might look like this:</p>
+<pre>Codec
+|--__init__.py
+|--MP3
+   |--__init__.py
+   |--convert.py
+|--WAV
+   |--__init__.py
+   |--convert.py
+</pre>
+<p>Here, we have a package Codec that contains other packages MP3 and WAV which contain their own versions of <a href="http://convert.py/">convert.py</a>.  This might be one way to organize this project, whatever it may be, but know it is not the only way.</p>
+<h2 class="mume-header" id="lecture-36-importing">Lecture 3.6: Importing</h2>
+
+<p>Importing in Python is very powerful.  We can import whole packages, individual script files in a package, individual classes from a script file, a single function in a script file, or even just a variable defined inside the script.  In order to do this, you need to understand the parts of the import statement (and how many ways there are to import something)</p>
+<p>Let us start with a simple script file.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># FILENAME: module.py</span>
+<span class="token keyword">class</span> <span class="token class-name">Class</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">method</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"Method called"</span>
+
+<span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"Function called"</span>
+    
+variable <span class="token operator">=</span> <span class="token string">"I am here."</span>
+</pre><p>Save this code to a script file somewhere and open your interpreter at the location you saved the file to.</p>
+<p>To import something, we use the <code>import</code> keyword.  You do not need to import at the top of your script files, by the way.  You can import anywhere a statement can be executed (so not in a comment).  I like keeping my imports at the top.  You can even perform some check using an if statement and import code based on the result.  This is done a lot for projects that can use either built-in modules or a preferred 3rd part module.</p>
+<p>Next comes the thing we want to import.  If we wanted to import the whole script file we simply give the name of the file without the .py.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">import</span> module
+</pre><p>Then we can use everything inside of the script file such as the class, function, and any variables by using the <strong>dot</strong> operator which syntactically looks like this.  <code>caller.callable</code></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">import</span> module
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> c_obj <span class="token operator">=</span> module<span class="token punctuation">.</span>Class<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> c_obj<span class="token punctuation">.</span>method<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token string">'Method called'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> module<span class="token punctuation">.</span>func<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token string">'Function called'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> module<span class="token punctuation">.</span>variable
+<span class="token string">'I am here.'</span>
+</pre><p>But what if we just wanted the class or function or variable?  Instead, we use the keyword <code>from</code> and write it almost like English.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">from</span> module <span class="token keyword">import</span> func
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> func<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token string">'Function called'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> module<span class="token punctuation">.</span>variable
+Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  File <span class="token string">"&lt;stdin&gt;"</span><span class="token punctuation">,</span> line <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">in</span> <span class="token operator">&lt;</span>module<span class="token operator">&gt;</span>
+NameError<span class="token punctuation">:</span> name <span class="token string">'module'</span> <span class="token keyword">is</span> <span class="token keyword">not</span> defined
+</pre><p>Notice, when we used <code>func()</code> it acted correctly but when I tried to access the modules variable it threw an exception.  This is because func is loaded in the symbol table with the code that is defined for func and module.variable is not.  Module isn't even defined.</p>
+<p>We can import multiple things from the same module or package by separating them using a comma in a from statement.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">from</span> module <span class="token keyword">import</span> func<span class="token punctuation">,</span> variable
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> func<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token string">'Function called'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> variable
+<span class="token string">'I am here.'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> c_obj <span class="token operator">=</span> module<span class="token punctuation">.</span>Class<span class="token punctuation">(</span><span class="token punctuation">)</span>
+Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  File <span class="token string">"&lt;stdin&gt;"</span><span class="token punctuation">,</span> line <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">in</span> <span class="token operator">&lt;</span>module<span class="token operator">&gt;</span>
+NameError<span class="token punctuation">:</span> name <span class="token string">'module'</span> <span class="token keyword">is</span> <span class="token keyword">not</span> defined
+</pre><p>Here, I imported the function and variable from module but the Class was not imported resulting in the exception shown.</p>
+<p>The last bit of syntax you can use with an import statement is the <code>as</code> keyword.  The <code>as</code> keyword can be used to create an alias of the module you are importing.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">import</span> module <span class="token keyword">as</span> mod
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> mod<span class="token punctuation">.</span>func<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token string">'Function called'</span>
+</pre><p>This is useful for shortening module names in your code.</p>
+<p>There is a way to import all the items without importing them separately using an asterisks.  For example, <code>from itertools import *</code>.  There is a problem with this, however.  One example is in the module <code>os</code> which contains a function <code>open()</code>.  This is not the same function as the built-in function that we use to open files.  So, if you import the <code>os</code> modules <code>open()</code> using an asterisk it will shadow the built-in <code>open()</code> and will run differently than you may want.  It will also take up more space since you are importing everything into memory, even if you don't use it.  I recommend explicitly importing the items you want so there is no confusion how you want your code to work.</p>
+<p>Lastly, when you are creating a package or class or function or variables, you don't want to include a period.  Variables, functions, and classes won't have this problem as that is against the rules of naming but packages can have this problem.  If you do this, and then try to import the package, the interpreter will think you are trying to import another package or module and will throw an error because it can't find it.  Instead, change the name of your package to either have an underscore or don't have anything in between.</p>
+<p><a href="https://docs.python.org/3/reference/import.html">Python 3 Import System Documentation</a></p>
+<h2 class="mume-header" id="lecture-37-if-__name__-9595main9595">Lecture 3.7: if <strong>name</strong> == "__main__"</h2>
+
+<p>What does this line of code check for? <code>if __name__ == "__main__":</code>?  Well, every program needs a starting point of execution.  Python starts it's point of execution at the top of the script file and, going from top to bottom, executes the code.  When you import a module, the import system will do the same thing.  So if you have statements of code that are not within a function or class they will execute.  If you don't want the code to execute upon importing you can add this line and put everything under its block that you don't want to run when importing the file.  The only way it will run is when the script file is called directly from the command line by passing it to the <code>python</code> command.  Here is an example.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># FILENAME: main.py</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Super Secret Stuff"</span><span class="token punctuation">)</span>
+</pre><pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">import</span> main
+Super Secret Stuff
+</pre><p>After importing the main module it ran the print statement.  Let's make it so it won't run unless the script file is called directly.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># FILENAME: main.py</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Super Secret Stuff"</span><span class="token punctuation">)</span>
+</pre><pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">import</span> main
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</pre><p>As you can see, nothing happened.  Now let's call the file from the command line.</p>
+<pre>C:\Users\broge2\Desktop&gt;python main.py
+Super Secret Stuff
+</pre>
+<p>It ran the print statement.</p>
+<p>This is useful for when you are creating a module with many classes and you want to write some test code within the same module.  You can then test your module by calling it directly and having it run the test code.  Then, when you import the module elsewhere in your code, it won't run the test code.  Once you are confident your code is working as it should, remove the <code>if __name__ == "__main__"</code> block.</p>
+<hr>
+<blockquote>
+<p>University of Illinois at Springfield <br><br>
+Instructor: Brian-Thomas Rogers <br><br>
+Course: CSC 470</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python"></pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

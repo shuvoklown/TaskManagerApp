@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<!-- saved from url=(0173)https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="stndz-style"></style>
+      <title>Lecture 1 - Variables, Types, Operations, and Input-Output</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///C:/Users/Brian%20Rogers/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.3.13/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h1 class="mume-header" id="lecture-1-br-variables-types-operations-and-inputoutput"><strong>Lecture 1</strong> <br> Variables, Types, Operations, and Input/Output</h1>
+
+<p><em>Note:  Open up a terminal and start your Python shell to be prepared to try out the code.</em></p>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-1-br--variables-types-operations-and-inputoutput"><strong>Lecture 1</strong> <br> Variables, Types, Operations, and Input/Output</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-11-program-hierarchy">Lecture 1.1: Program Hierarchy</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-12-variables">Lecture 1.2: Variables</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-121-creating-variables">Lecture 1.2.1: Creating Variables</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-122-naming-variables">Lecture 1.2.2: Naming Variables</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-123-multiple-references-to-the-same-object">Lecture 1.2.3: Multiple References to the Same Object</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-1231-immutable-vs-mutable">Lecture 1.2.3.1: Immutable vs. Mutable</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#supplementary">Supplementary</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#try-out-section">Try Out Section</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-13-objects">Lecture 1.3: Objects</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-131-what-type-is-it">Lecture 1.3.1: What type() is it?</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#try-out">Try Out</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-132-numbers">Lecture 1.3.2: Numbers</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-1321-integers">Lecture 1.3.2.1: Integers</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#table-of-operations">Table of Operations</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#try-out-1">Try Out</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-1322-floating-type-numbers">Lecture 1.3.2.2: Floating Type Numbers</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#table-of-operations-1">Table of Operations</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#try-out-2">Try Out</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-1323-complex-numbers">Lecture 1.3.2.3: Complex Numbers</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#table-of-operations-2">Table of Operations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-133-sequences">Lecture 1.3.3: Sequences</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#sequence-operations">Sequence Operations</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-1331-strings">Lecture 1.3.3.1: Strings</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#try-out-3">Try Out</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-1332-lists">Lecture 1.3.3.2: Lists</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#try-out-4">Try Out</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-1333-tuples">Lecture 1.3.3.3: Tuples</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#try-out-5">Try Out</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-134-mappings">Lecture 1.3.4: Mappings</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-1341-dictionaries">Lecture 1.3.4.1: Dictionaries</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#try-out-6">Try Out</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-135-sets">Lecture 1.3.5: Sets</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#set-operations">Set Operations</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-1351-set">Lecture 1.3.5.1: Set</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-1352-frozenset">Lecture 1.3.5.2: Frozenset</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#try-out-7">Try Out</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-14-input--output">Lecture 1.4: Input / Output</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-141-console-input">Lecture 1.4.1: Console Input</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-142-files">Lecture 1.4.2: Files</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#try-out-8">Try Out</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#lecture-15-help-and-dir">Lecture 1.5: help() and dir()</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391390-dt-content-rid-8477866_1/courses/192CSC47011314/Lecture%201%20-%20Variables%2C%20Types%2C%20Operations%2C%20and%20Input-Output.html#exercises">Exercises</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="mume-header" id="lecture-11-program-hierarchy">Lecture 1.1: Program Hierarchy</h2>
+
+<p>A Python program has a sort of hierarchy.  At the top are modules.  These can be the folder of libraries or the files that contain the code.  Later in the semester we will look at how to make a folder a module so for now when you hear or see the term it mostly means a Python script file.  Libraries are modules containing modules (or folders containing folders and script files) that will be referred to as libraries for now.</p>
+<p>Next come statements.  Statements are the lines in a module that contain expressions or do some action.</p>
+<p>An expression creates and processes objects.  This includes the operations and the value evaluated to by given code.  An important distinction between expressions and statements is that all expressions are statements but not all statements are expressions.  An example is in Python 2 the <code>print</code> statement cannot be used in expressions.  In Python 3, <code>print</code> has been turned into a function.</p>
+<p>This lecture covers the bottom of the hierarchy which are objects and expressions.</p>
+<h2 class="mume-header" id="lecture-12-variables">Lecture 1.2: Variables</h2>
+
+<p>Variables in Python work a little differently than they do in other languages.  Usually, when you create a variable in a language you have to define a type and the variable can only store data of that type.  In Python, this is not the case.  As a matter of fact, variables do not have a type.  They are just references to an object (which includes functions, modules, and methods).  This allows us to use a variable that refers to many different types of objects.  This makes writing Python code easier than most other languages, however, it is the responsibility of the programmer to do proper checking before performing operations.  In programming languages term, Python is a dynamically typed language.  Python is also a strongly typed language.</p>
+<p><a href="https://wiki.python.org/moin/Why%20is%20Python%20a%20dynamic%20language%20and%20also%20a%20strongly%20typed%20language">Why is Python a Dynamic and a Strongly Typed Language</a></p>
+<h3 class="mume-header" id="lecture-121-creating-variables">Lecture 1.2.1: Creating Variables</h3>
+
+<p>Creating a variable is easy; we simply use the assignment operator or the equals sign.<br>
+In your Python shell:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token number">7</span>
+a
+</pre><pre class="language-text">7
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token string">"Monty"</span>
+a
+</pre><pre class="language-text">'Monty'
+</pre>
+<p><code>7</code> is a number object that is being referred to by <code>a</code>.  Then we show the contents of <code>a</code>.  Then we have <code>a</code> refer to a string object <code>"Monty"</code>.  Show it's contents.  <code>a</code> no longer refers to the number object.  This is a very basic example of variables in Python.  Variables also have a scope which is either local or global depending on where they are created and can shadow variables of the same name.  In other words, you can have a variable <code>a</code> outside of a block statement and an <code>a</code> inside a block statement that shadows the <code>a</code> outside.  The <code>a</code> outside the block statement has more scope and will be called the global variable while the <code>a</code> inside the function is local to that function (but can be global to other block statements inside that function).  We'll discuss more about what a block statement is in another lecture so don't worry too much right now.  Just keep in mind that variable naming is important if you want to keep your program from having weird bugs. (Also known as undocumented features).</p>
+<h3 class="mume-header" id="lecture-122-naming-variables">Lecture 1.2.2: Naming Variables</h3>
+
+<p>There are rules to naming variables that we must follow or else Python will yell at us with a <code>SyntaxError: invalid syntax</code>.  The rules are as follows.</p>
+<ol>
+<li>Case Sensitive: <code>var</code>, <code>vaR</code>, <code>vAr</code>, <code>vAR</code>, <code>Var</code>, <code>VaR</code>, <code>VAr</code>, and <code>VAR</code> are all different variables.</li>
+<li>Must begin with a letter (a-z or A-Z) or underscore (_). <code>_var</code> for example.</li>
+<li>Other characters can be letters, numbers, or underscore. <code>_a_1_b</code> is a valid variable name.</li>
+<li>Cannot be keywords found in this list:</li>
+</ol>
+<p><a href="https://docs.python.org/3/reference/lexical_analysis.html#keywords">Python 3 Documentation: Keywords</a></p>
+<h3 class="mume-header" id="lecture-123-multiple-references-to-the-same-object">Lecture 1.2.3: Multiple References to the Same Object</h3>
+
+<p>We can also have multiple references to the same object with different variable names.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token number">3</span>
+b <span class="token operator">=</span> a
+b <span class="token operator">=</span> b <span class="token operator">+</span> <span class="token number">2</span>
+b
+</pre><pre class="language-text">5
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a
+</pre><pre class="language-text">3
+</pre>
+<h4 class="mume-header" id="lecture-1231-immutable-vs-mutable">Lecture 1.2.3.1: Immutable vs. Mutable</h4>
+
+<p>Before I discuss further the implications of this I must first explain immutability.  I will refer to the above example.  When an object type is immutable, it cannot be changed in memory.  In the example above, we are adding 2 to 3 but a new number is returned as a result and referred to by <code>b</code>.  This is why <code>a</code> still refers to 3.   If numbers were mutable, then the object would be changed in memory and <code>a</code> and <code>b</code> would refer to the same object 5.  Here is another example:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token number">3</span>
+a
+</pre><pre class="language-text">3
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> a <span class="token operator">+</span> <span class="token number">2</span>
+a
+</pre><pre class="language-text">5
+</pre>
+<p>Obviously, we are changing, or mutating, <code>a</code>, right? Not quite. We are simply changing what <code>a</code> refers to. A new object is created to store the value 5 and 3 will be left in memory for the garbage collector to clean up. Other object types that are immutable include tuples, strings, frozensets, and bools.</p>
+<p>Let's now take a look at a mutable type and see what happens when another variable refers to it and why we need to be wary of this.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span> <span class="token comment">#a refers to a list of numbers</span>
+b <span class="token operator">=</span> a <span class="token comment"># b refers to object pointed at by a</span>
+a
+</pre><pre class="language-text">[1, 2, 3]
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">b
+</pre><pre class="language-text">[1, 2, 3]
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">del</span> b<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token comment"># Delete the first object in the list</span>
+b
+</pre><pre class="language-text">[2, 3]
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a
+</pre><pre class="language-text">[2, 3]
+</pre>
+<p>In the example above, we set <code>a</code> to a list of numbers. Lists in Python are mutable even if the items in it are immutable. We then set another reference, <code>b</code>, to refer to the object pointed at by <code>a</code>. Then we use the <code>del</code> keyword to delete the first item in the list pointed at by <code>b</code> which we find out is also being pointed at by <code>a</code>. Any changes to the list using the <code>b</code> reference will change it for the <code>a</code> reference. Let us take one more look at another situation.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+b<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">5</span> <span class="token comment"># Change the value at index 0 to be 5</span>
+b
+</pre><pre class="language-text">[5, 2, 3]
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a
+</pre><pre class="language-text">[1, 2, 3]
+</pre>
+<p>Here, even though both the variables refer to a list with the same contents, the objects are different in memory. We effectively have two objects with the same stuff but will not affect or be affected by modification of the other. To give proof I will show you two comparisons. The <code>==</code> compares the values of objects while <code>is</code> checks to see if the objects are the same in memory.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+a <span class="token operator">==</span> b
+</pre><pre class="language-text">True
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token keyword">is</span> b
+</pre><pre class="language-text">False
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">b <span class="token operator">=</span> a
+a <span class="token keyword">is</span> b
+</pre><pre class="language-text">True
+</pre>
+<p>I will go into more about comparison operators in a later lecture as you can get some weird results with the <code>is</code> keyword.</p>
+<h3 class="mume-header" id="supplementary">Supplementary</h3>
+
+<p>Here are some images to help you visualize what is going on under the hood.</p>
+<p>Creating a variable <code>a</code> to refer to a number <code>3</code></p>
+<img src="data:image/png;base64,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">
+<p>Set another variable <code>b</code> to refer to object pointed at by <code>a</code></p>
+<img src="data:image/png;base64,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">
+<p>Set <code>a</code> to refer to a string object leaving <code>b</code> to refer to the number object</p>
+<img src="data:image/png;base64,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">
+<h4 class="mume-header" id="try-out-section">Try Out Section</h4>
+
+<ol>
+<li>
+<p>A single underscore has a special functionality in the interpreter.  Since underscores are allowed to be the first character of a variable, a single underscore in the interpreter is used to store the last operation.  To see this, perform a math operation without storing the result in a variable like <code>2 * 3</code> and then use the underscore in another math operation right after like <code>_ + 10</code>.  Notice the result.<br>
+<strong>NOTE: This will not work in scripts.</strong></p>
+</li>
+<li>
+<p>Go ahead and try to use a keyword as a variable and see what happens.  Can you change the variable so that it still reads as a keyword but doesn't throw an error?</p>
+</li>
+</ol>
+<h2 class="mume-header" id="lecture-13-objects">Lecture 1.3: Objects</h2>
+
+<p>While Python allows you to program in almost any paradigm it still uses Objects as the underlying data type.  More importantly, anything not a variable is an object.  This means we can do some interesting stuff later on like passing functions into other functions or storing an entire class definition inside a variable and using that variable to create objects.  (This is known as aliasing and we will see this again when importing libraries.)  Objects in Python can have types, unlike variables, and there are many powerful built-in types.  Let us take a look at the different object types in Python.</p>
+<p>You can find out more about built-in types using the following link to the documentation:</p>
+<p><a href="https://docs.python.org/3/library/stdtypes.html" title="Python 3 Documentation for Built-In Types">https://docs.python.org/3/library/stdtypes.html</a></p>
+<h3 class="mume-header" id="lecture-131-what-type-is-it">Lecture 1.3.1: What type() is it?</h3>
+
+<p>Before we begin, you should know of a function <code>type()</code>.  <code>type()</code> is a built-in function that allows us to see what type a given object is.  A built-in function means we do not need to import anything to be able to use it.  We will be using this mostly in the interactive shell.  When we start needing to test for types we will use <code>isinstance()</code> instead.  The difference between the two is drastic enough to warrant the change.  For now, however, we will use <code>type()</code> as it gives us the top level type of an object.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">type</span><span class="token punctuation">(</span><span class="token string">"abcd"</span><span class="token punctuation">)</span> <span class="token comment"># Your output will be &lt;class 'str'&gt;</span>
+</pre><pre class="language-text">str
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">type</span><span class="token punctuation">(</span><span class="token number">3.1415</span><span class="token punctuation">)</span> <span class="token comment"># Your output will be &lt;class 'float'&gt;</span>
+</pre><pre class="language-text">float
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">type</span><span class="token punctuation">(</span><span class="token builtin">abs</span><span class="token punctuation">)</span> <span class="token comment"># Your output will be &lt;class 'builtin_function_or_method'&gt;</span>
+</pre><pre class="language-text">builtin_function_or_method
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">type</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">)</span><span class="token comment"># Your output will be &lt;class 'type'&gt; </span>
+</pre><pre class="language-text">type
+</pre>
+<h4 class="mume-header" id="try-out">Try Out</h4>
+
+<ol>
+<li>Type the following in the shell:</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">import</span> random
+</pre><p>What is the type of <code>random</code>?  What is the type of <code>random.choice</code>?</p>
+<ol start="2">
+<li>Type the following in the shell:</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token builtin">type</span><span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">)</span>
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token builtin">type</span><span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><p>What are the types?</p>
+<h3 class="mume-header" id="lecture-132-numbers">Lecture 1.3.2: Numbers</h3>
+
+<p>Python has many different types of number objects.  We will explore each one and see the various operations and results of each operation for each type.  It has already been mentioned, but should be reminded, that numbers are immutable.  This will become more important when we discuss mapping types.  The different number types are as follows:</p>
+<ul>
+<li>Integers: Contain no fractional part</li>
+<li>Floating: Contain a fractional part</li>
+<li>Complex: Contain a real and an imaginary part represented with <code>j</code> or <code>J</code> (instead of i like in mathematics)</li>
+</ul>
+<p>Each of these number types supports the normal mathematical operations.</p>
+<p>Mathematical  operations in Python follows the PEMDAS model which stands for Parenthesis, Exponents, Multiplication, Division, Addition, Subtraction.  So <code>1 + 3 * 2</code> will result in 7 while <code>(1 + 3) * 2</code> will result in 8. You can check this for yourself in the interpreter.  In the first expression, <code>3 * 2</code> will occur first according to PEMDAS.  In the second expression, we do what's in the Parenthesis, <code>(1 + 3)</code>, first.</p>
+<p><a href="https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex" title="Python 3 Documentation on Numbers">Python 3 Documentation on Numbers</a></p>
+<h4 class="mume-header" id="lecture-1321-integers">Lecture 1.3.2.1: Integers</h4>
+
+<p>The way that Python allocates integers to memory allows us to not have to worry about overflow or underflow problems.  In Java, for instance, you can have this:</p>
+<pre data-role="codeBlock" data-info="Java" class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">OverflowExample</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span> args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment">//a is set to 3 million</span>
+        <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">3000000</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//multiply a by 1 thousand and store the result in b</span>
+        <span class="token keyword">int</span> b <span class="token operator">=</span> a <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+ 
+        <span class="token comment">//print b to standard out. Result: -1294967296</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>In Java, <strong>int</strong> is a signed 32-bit integer and can store an integer value between -2<sup>31</sup> to 2<sup>31</sup> - 1 or -2147483648 to 2147483647.  So if a number goes above the range of 2<sup>31</sup>-1 it wraps back around.  Similarly, if an integer goes below the range of -2<sup>31</sup> it will wrap around the other way.  In Python, integers are stored in memory differently which allows for an infinite range (or until your memory runs out).  Here is the same operation done in Python.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token number">3000000</span>
+b <span class="token operator">=</span> a <span class="token operator">*</span> <span class="token number">1000</span>
+b
+</pre><pre class="language-text">3000000000
+</pre>
+<p>If we want to convert an object to be an <strong>int</strong> we can use the built-in <code>int()</code> function.  Here are some examples of that:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token string">'3'</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">3
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token number">3.2</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">3
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token number">3.2</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">1
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token string">'3e'</span><span class="token punctuation">)</span> <span class="token comment">#Should error</span>
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-26-6d11ca0ca625&gt; in &lt;module&gt;()
+----&gt; 1 int('3e') #Should error
+
+
+ValueError: invalid literal for int() with base 10: '3e'
+</pre>
+<p>We can even use this function to convert from other base types by giving it the base as the second argument.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token string">'10110'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment">#Convert 10110 to a decimal number using base 2</span>
+</pre><pre class="language-text">22
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token string">'1FE3'</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span> <span class="token comment">#Converts 1FE3 to a decimal number using base 16</span>
+</pre><pre class="language-text">8163
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token string">'1201'</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment">#Converts 1201 to a decimal using base 3</span>
+</pre><pre class="language-text">46
+</pre>
+<p>Valid bases are 0 and 2 - 36.</p>
+<h5 class="mume-header" id="table-of-operations">Table of Operations</h5>
+
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th style="text-align:center">Symbol</th>
+<th style="text-align:center">Python 3 Example</th>
+<th style="text-align:center">Python 3 Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Addition</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">2 + 3</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td>Subtraction</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">6 - 8</td>
+<td style="text-align:center">-2</td>
+</tr>
+<tr>
+<td>Multiplication</td>
+<td style="text-align:center">*</td>
+<td style="text-align:center">7 * 9</td>
+<td style="text-align:center">63</td>
+</tr>
+<tr>
+<td>Division</td>
+<td style="text-align:center">/</td>
+<td style="text-align:center">12 / 6 <br> 3 / 2</td>
+<td style="text-align:center">2 <br> 1.5</td>
+</tr>
+<tr>
+<td>Remainder <br> Modulus</td>
+<td style="text-align:center">%</td>
+<td style="text-align:center">6 % 2 <br> 15 % 4</td>
+<td style="text-align:center">0 <br> 3</td>
+</tr>
+<tr>
+<td>Floor Division</td>
+<td style="text-align:center">//</td>
+<td style="text-align:center">3 // 2 <br> 3.0 // 2 <br> -3 // 2</td>
+<td style="text-align:center">1 <br> 1.0 <br> -2</td>
+</tr>
+<tr>
+<td>Exponentiation</td>
+<td style="text-align:center">**</td>
+<td style="text-align:center">2 ** 3</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td>Negation</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-3 <br> --3</td>
+<td style="text-align:center">-3 <br> 3</td>
+</tr>
+</tbody>
+</table>
+<p>These are the mathematical operations you can perform on number objects.  In Python 3, if the result of the division has a decimal part then a floating type is returned (<code>3 / 2</code> yields <code>1.5</code>).  If you want an integer to be returned as a result, which is useful for indices in sequences, you have two options.  You can wrap the result in the <code>int()</code> function like so <code>int(3 / 2)</code> or use the floor division operator.</p>
+<h4 class="mume-header" id="try-out-1">Try Out</h4>
+
+<ol>
+<li>Calculate a googol, or 10<sup>100</sup>.</li>
+<li>Try out the examples in the table above using different values and see what you get.</li>
+<li>Also, try putting the result of the operations in the <code>type()</code> function. Example: <code>type(12/6)</code></li>
+<li>See the difference between <code>type(3 // 2)</code>, <code>type(3.0 // 2)</code>, and <code>type(3 / 2)</code>.</li>
+</ol>
+<h4 class="mume-header" id="lecture-1322-floating-type-numbers">Lecture 1.3.2.2: Floating Type Numbers</h4>
+
+<p>Floating type numbers contain a decimal portion.  To make a float, we can either add a decimal or use the <code>float()</code> function.  Floating point numbers in Python can also be written in scientific notation using <code>E</code> or <code>e</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">3.5</span>
+</pre><pre class="language-text">3.5
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">3.0</span>
+</pre><pre class="language-text">3.0
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">3.0
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token string">"3.1415"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">3.1415
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">3.1415e2</span>
+</pre><pre class="language-text">314.15
+</pre>
+<p>Floating point numbers, however, are not like integers.  For instance, we cannot store the exact result of <strong>1/3</strong> or .3 repeating.  Another issue that arises is the fact that decimal numbers can't always be represented exactly in binary.  This is a limitation of binary and as result, some decimal numbers will not be represented correctly resulting in errors.  An example of this is as follows.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">1.1</span> <span class="token operator">+</span> <span class="token number">2.2</span>
+</pre><pre class="language-text">3.3000000000000003
+</pre>
+<p>Clearly, this is incorrect.  If you are working with decimal numbers and need exact values, applications that handle money for instance, then you may need to use the <code>Decimal</code> or <code>Fraction</code> classes.  You will be sacrificing speed for correctness but you will not have math errors (up to 28 places but can be changed).  For the material covered in this class and in homework and quizzes, you will not need to worry about floating point precision.</p>
+<h5 class="mume-header" id="table-of-operations-1">Table of Operations</h5>
+
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th style="text-align:center">Symbol</th>
+<th style="text-align:center">Example</th>
+<th style="text-align:center">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Addition</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">3.1 + 2.4</td>
+<td style="text-align:center">5.5</td>
+</tr>
+<tr>
+<td>Subtraction</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">3.1 - 2.4</td>
+<td style="text-align:center">0.7000000000000002</td>
+</tr>
+<tr>
+<td>Multiplication</td>
+<td style="text-align:center">*</td>
+<td style="text-align:center">3.1 * 2.4</td>
+<td style="text-align:center">7.4399999999999995</td>
+</tr>
+<tr>
+<td>Division</td>
+<td style="text-align:center">/</td>
+<td style="text-align:center">3.1 / 2.4</td>
+<td style="text-align:center">1.2916666666666667</td>
+</tr>
+<tr>
+<td>Modulus</td>
+<td style="text-align:center">%</td>
+<td style="text-align:center">3.1 % 2.4</td>
+<td style="text-align:center">0.7000000000000002</td>
+</tr>
+<tr>
+<td>Floor Division</td>
+<td style="text-align:center">//</td>
+<td style="text-align:center">3.1 // 2.4</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td>Exponentiation</td>
+<td style="text-align:center">**</td>
+<td style="text-align:center">3.1 ** 2.4</td>
+<td style="text-align:center">15.11012528197161</td>
+</tr>
+<tr>
+<td>Negation</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-3.1 <br> --3.1</td>
+<td style="text-align:center">-3.1 <br> 3.1</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="try-out-2">Try Out</h4>
+
+<ol>
+<li>When using an int, performing 10<sup>100</sup> produces a correct result (Also known as a googol).  What happens if we convert this to scientific notation as Python code?  We get <code>1e100</code>.  Convert that to an <code>int</code> and see what happens.</li>
+<li>Now, what happens if we try to calculate the googol using the int method and convert to a float?</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> googol <span class="token operator">=</span> <span class="token number">10</span> <span class="token operator">**</span> <span class="token number">100</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token builtin">float</span><span class="token punctuation">(</span>googol<span class="token punctuation">)</span>
+<span class="token number">1e</span><span class="token operator">+</span><span class="token number">100</span>
+</pre><p>Is the conversion the same value as the expression stored by <code>googol</code>?  To verify, try this:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> googol <span class="token operator">==</span> <span class="token builtin">int</span><span class="token punctuation">(</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token number">10</span> <span class="token operator">**</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">#Check for equality.</span>
+</pre><h4 class="mume-header" id="lecture-1323-complex-numbers">Lecture 1.3.2.3: Complex Numbers</h4>
+
+<p>We won't dig too much into complex numbers as they won't be used much in the course but I have included them for your curiosity.  Complex numbers are numbers that contain a real and imaginary part.  The imaginary part is represented with either a <code>j</code> or <code>J</code> instead of the mathematical <strong>i</strong>.  We can write a complex number by simply having a <code>real + imaginary</code> expression or by using the <code>complex(re, im)</code> function in which the <code>re</code> argument is the real number and the <code>im</code> argument is the imaginary number.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">3</span> <span class="token operator">+</span> <span class="token number">5j</span>
+</pre><pre class="language-text">(3+5j)
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">type</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token operator">+</span><span class="token number">5j</span><span class="token punctuation">)</span> <span class="token comment">#&lt;class 'complex'&gt;</span>
+</pre><pre class="language-text">complex
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">complex</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">(3+5j)
+</pre>
+<p>Complex numbers in Python have some instance variables we can call upon using the <strong>.</strong> operator.  More will be explained when we talk about creating our own classes.  Just remember that anything that is not a statement is an Object in Python.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">compl <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">3</span> <span class="token operator">+</span> <span class="token number">5j</span><span class="token punctuation">)</span>
+compl<span class="token punctuation">.</span>real
+</pre><pre class="language-text">3.0
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">compl<span class="token punctuation">.</span>imag
+</pre><pre class="language-text">5.0
+</pre>
+<h5 class="mume-header" id="table-of-operations-2">Table of Operations</h5>
+
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th style="text-align:center">Symbol</th>
+<th style="text-align:center">Example</th>
+<th style="text-align:center">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Addition</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">(3+5j) + (4-2j)</td>
+<td style="text-align:center">(7+3j)</td>
+</tr>
+<tr>
+<td>Subtraction</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">(3+5j) - (4-2j)</td>
+<td style="text-align:center">(-1+7j)</td>
+</tr>
+<tr>
+<td>Multiplication</td>
+<td style="text-align:center">*</td>
+<td style="text-align:center">(3+5j) * (4-2j)</td>
+<td style="text-align:center">(22+14j)</td>
+</tr>
+<tr>
+<td>Division</td>
+<td style="text-align:center">/</td>
+<td style="text-align:center">(3+5j) / (4-2j)</td>
+<td style="text-align:center">(0.1+1.3j)</td>
+</tr>
+<tr>
+<td>Exponentiation</td>
+<td style="text-align:center">**</td>
+<td style="text-align:center">(3+5j) ** (4-2j)</td>
+<td style="text-align:center">(7516.174274883497+5088.717531233634j)</td>
+</tr>
+</tbody>
+</table>
+<h3 class="mume-header" id="lecture-133-sequences">Lecture 1.3.3: Sequences</h3>
+
+<p>Sequences are a collection of ordered objects.  Python has many different kinds of sequences, all of which share similar operations but will contain different methods.  These sequences are very powerful data types in Python that can be indexed.  Unlike other languages, however, we can use both positive indexing to go from first to last or negative indexing to go from last to first. Strings, Lists, and Tuples are all sequences. (Python 3 documentation states that range, list, and tuples are sequences but text strings and binary data are also sequences.  They just have their own dedicated sections in the docs).</p>
+<p><a href="https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range" title="Python 3 Documentation on Sequences">Python 3 Documentation on Sequences</a></p>
+<p>For a demonstration of the different operations, I will be using a list but keep in mind these operations work for all sequence types.</p>
+<h5 class="mume-header" id="sequence-operations">Sequence Operations</h5>
+
+<p><strong>Indexing</strong></p>
+<p>Indexing is a way to retrieve elements from a sequence.  Indexing uses integers between square brackets.  Python has two types of indexing which positive and negative in which we can use either a positive integer or negative integer to retrieve an element from a sequence.</p>
+<p><strong>Positive Indexing</strong></p>
+<p>Indexing starts at 0 up to length of sequence minus 1.  So if the length of the sequence is 8 then we can select the elements using indexes 0 through 7.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+a<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">4
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">1
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token comment">#Should error</span>
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+IndexError                                Traceback (most recent call last)
+
+&lt;ipython-input-45-4a84d856522b&gt; in &lt;module&gt;()
+----&gt; 1 a[5]
+
+
+IndexError: list index out of range
+</pre>
+<p><strong>Negative Indexing</strong></p>
+<p>Negative indexing uses the equation <code>RetrievalIndex = LengthOfSequence - ProvidedIndex</code> in which <code>ProvidedIndex</code> is a negative number provided by the programmer. (Yes, I understand that subtracting a negative results in a positive.  When we supply a negative index we are telling Python to start from the end of the sequence.)</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+a<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">5
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">3
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">1
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token comment">#Should error</span>
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+IndexError                                Traceback (most recent call last)
+
+&lt;ipython-input-49-f2a845c31e94&gt; in &lt;module&gt;()
+----&gt; 1 a[-6]
+
+
+IndexError: list index out of range
+</pre>
+<p>Note that <code>-5</code> is okay when the length is 5 because <code>5 - 5 = 0</code> and 0 is a valid index, however, <code>-6</code> is not okay because <code>5 - 6 = -1</code> and -1 is not a valid index.</p>
+<p><strong>Concatenation</strong></p>
+<p>Concatenation allows us to combine sequences of the same type.  This is most common with just strings in other languages but works with all sequences in Python.  The symbol for concatenation is <code>+</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span>
+a <span class="token operator">+</span> b
+</pre><pre class="language-text">[1, 2, 3, 4, 5, 6]
+</pre>
+<p><strong>Repetition</strong></p>
+<p>Repetition can be useful when we need to repeat something inside of a sequence.  The symbol for repetition is <code>*</code>.  To use repetition, you have the sequence and a positive integer as part of the operation.  A negative integer will result in an empty sequence.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span> <span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span>
+a <span class="token operator">*</span> <span class="token number">3</span>
+</pre><pre class="language-text">[1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">3</span> <span class="token operator">*</span> a
+</pre><pre class="language-text">[1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">*</span> <span class="token operator">-</span><span class="token number">3</span>
+</pre><pre class="language-text">[]
+</pre>
+<p><strong>Slicing</strong></p>
+<p>Slicing allows us to take a chunk of the sequence from a starting index (inclusive) to an end index (exclusive).  Slicing uses square brackets and a colon.  We can have 2 or 3 numbers inside the brackets.  The first number is the starting index.  The second number is the end index.  The optional third number is not necessary but if included tells Python how to step through the sequence to create the slice. By default, the step is 1.  The step can be negative to reverse the resulting sequence.  When using negative stepping you have to have to start at the higher index value and end at the lower index value.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span>
+a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">[1, 2, 3]
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">:</span><span class="token number">9</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">[6, 7, 8, 9]
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token number">11</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">[1, 3, 5, 7, 9]
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a<span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">[10, 8, 6, 4, 2]
+</pre>
+<p>The Python developers have given us some shortcuts for common slicing operations.  If we leave out the start index then slicing will start at the beginning.  If we leave out the end index, Python will use the last index.  Of course, this is flipped if the step is negative.  Here are some examples.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span> <span class="token comment">#Create a slice starting at index 0 to index 5</span>
+a<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">[1, 2, 3, 4, 5]
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token comment">#Create a slice starting at index 5 to last index</span>
+</pre><pre class="language-text">[6, 7, 8, 9, 10]
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token comment">#Create a slice from index 0 to last index.  This is just the sequence itself</span>
+</pre><pre class="language-text">[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token comment">#Create a slice from last index to first index stepping by one backwards.  This is the reverse of the sequence.</span>
+</pre><pre class="language-text">[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+</pre>
+<p><strong>len()</strong></p>
+<p>To get the length of a sequence we use the built-in function, <code>len()</code>.  Simply pass the sequence to the function and you will receive an integer result.  This is not an operation but a function call.  This function just happens to work nicely with sequence types.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+<span class="token builtin">len</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+</pre><pre class="language-text">6
+</pre>
+<p>This is not all of the operations and functions given to us but we will investigate the other ones during other lectures.</p>
+<h4 class="mume-header" id="lecture-1331-strings">Lecture 1.3.3.1: Strings</h4>
+
+<p>Strings in Python are a sequence of characters denoted with either double quotes or single quotes.  They are also an immutable sequence type.  We can also use the built-in function, <code>str()</code>, to convert other types to a string type.</p>
+<p>Python 2 vs Python 3:  Real quick, Python 2 strings are ASCII type while Python 3 are Unicode.  The distinction is minimal for this course but can be important for large projects.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">type</span><span class="token punctuation">(</span><span class="token string">'This is a single quoted string'</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">str
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">type</span><span class="token punctuation">(</span><span class="token string">"This is a double quoted string"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">str
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">str</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">'3'
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">str</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">'[1, 2, 3]'
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">type</span><span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">str
+</pre>
+<p>So what is the point of using a single or a double quote?  If you are a PHP programmer, then you might assume that there must be some difference.  There isn't.  The only reason Python has both is to allow you to store a single quote or double quote in the string as characters themselves.  Try these out:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> a <span class="token operator">=</span> <span class="token string">"He said, 'I don't want to go to school today.'"</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token builtin">type</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> b <span class="token operator">=</span> <span class="token string">'She said, "I have a B+ in Advanced Theoretical Fightonomics"'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token builtin">type</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> c <span class="token operator">=</span> <span class="token string">"You can't put a double quote ("</span><span class="token punctuation">)</span> inside of a double quoted string without escaping it"
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span>
+</pre><p>What happened after that last example?  What is escaping?  Escaping something means to interpret it literally.  We use a backslash and the character we are interpreting so it does not cause problems.  We can also escape special characters like tabs, new lines, and the backslash itself. (More can be found here: <a href="https://docs.python.org/3/reference/lexical_analysis.html#literals" title="Python 3 Documentation for String Literals">Python 3</a>)</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token string">"\""</span>
+a
+</pre><pre class="language-text">'"'
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">b <span class="token operator">=</span> <span class="token string">'\''</span>
+b
+</pre><pre class="language-text">"'"
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">c <span class="token operator">=</span> <span class="token string">"\\"</span>
+c
+</pre><pre class="language-text">'\\'
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">d <span class="token operator">=</span> '\'
+</pre><pre class="language-text">  File "&lt;ipython-input-73-30653ed91aae&gt;", line 1
+    d = '\'
+           ^
+SyntaxError: EOL while scanning string literal
+</pre>
+<p>You may notice that the c = '\' didn't result in .  Each object can have a representation of itself that is different than the string of itself.  This won't make much sense until we get to Data Object Model methods but in the case of the interpreter, when you just put an object or variable and press enter the object's __repr__ method is called.  If you use the print function on an object or variable then the __str__ method is called.  Test this yourself by doing the following.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> c <span class="token operator">=</span> <span class="token string">'\\'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> c
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">print</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span>
+</pre><p>You should see a difference in what is printed.</p>
+<p><a href="https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str" title="Python 3 String Documentation">Python 3 Documentation on Strings</a></p>
+<p><strong>Additional Functions</strong></p>
+<p>There are some additional string functions you should be aware of.  These are built-in functions so you do not need to import them.</p>
+<ul>
+<li>chr(i)<br>
+Takes in an int (0 &lt;= i &lt; 256) and returns the corresponding character from the <a href="http://www.asciitable.com/" title="ASCII Table">ASCII table</a></li>
+<li>ord(c)<br>
+Takes a single character <b>c</b> (<b>c</b> being any single character and not a variable) and returns the integer equivalent. (Opposite of chr())</li>
+</ul>
+<h5 class="mume-header" id="try-out-3">Try Out</h5>
+
+<ol>
+<li>Try out the operations mentioned for all Sequence types above on string types.</li>
+<li>Create some other strings using floats, complex numbers, etc. using the <code>str()</code> function.</li>
+<li>Test the immutability of strings by typing the following<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> a <span class="token operator">=</span> <span class="token string">"This is a string"</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> a<span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"not"</span>
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span>
+</pre></li>
+<li>Try out the additional functions.</li>
+</ol>
+<h4 class="mume-header" id="lecture-1332-lists">Lecture 1.3.3.2: Lists</h4>
+
+<p>Lists, in Python, are sequences of many objects that can either be of the same or different types.  Lists are mutable so we can change the elements of it.  We can make a list by either using square brackets <code>[]</code> or the <code>list()</code> function.  There is a third way to make lists known as list comprehensions but that won't be covered until looping.</p>
+<p>Lists are not like arrays in other languages as lists in Python can grow and shrink.  They are dynamically allocated.</p>
+<p>Another feature of a list is that it can store data of different types.  This is true for many of the data types we will discuss in this lecture.</p>
+<p>Since lists can contain other objects we can store other lists inside of lists.  We can also store functions, dictionaries, sets, etc.  It is one of the many powerful data types we have direct access to.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+a
+</pre><pre class="language-text">[1, 2, 3]
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">b <span class="token operator">=</span> <span class="token punctuation">[</span>a<span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span>
+b
+</pre><pre class="language-text">[[1, 2, 3], 4, 5, 6]
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">c <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token string">"listify"</span><span class="token punctuation">)</span>
+c
+</pre><pre class="language-text">['l', 'i', 's', 't', 'i', 'f', 'y']
+</pre>
+<p>Notice that the string was broken up.  This is a result of the <code>list()</code> function.  If you want to keep the string intact you can either change this to use the square brackets <code>["listify"]</code> or surround the string with braces. <code>list({"listify"})</code>. (You are actually passing in a set with a single string "listify".  More on sets later.)</p>
+<p>Lists can also be used to simulate other data structures like stacks and queues using the methods provided to us.</p>
+<p><a href="https://docs.python.org/3/tutorial/datastructures.html" title="Python 3 List Documentation">Python 3 List Documentation</a></p>
+<p><strong>Useful Methods</strong></p>
+<ul>
+<li>append(): Used to append to the end of the list an object</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+a<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+a
+</pre><pre class="language-text">[1, 2, 3, 4]
+</pre>
+<ul>
+<li>remove(): Used to remove the first element if it exists.  If it does not exist it will throw an error.</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span>
+a<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+a
+</pre><pre class="language-text">[1, 3, 2]
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">a<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-82-181f025cbb19&gt; in &lt;module&gt;()
+----&gt; 1 a.remove(4)
+
+
+ValueError: list.remove(x): x not in list
+</pre>
+<h5 class="mume-header" id="try-out-4">Try Out</h5>
+
+<ol>
+<li>If you have not already done so, try out the operations listed for sequences above using lists.</li>
+<li>Test the mutability of a list<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> lst <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> lst<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello"</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> lst
+</pre></li>
+<li>Objects within lists can be acted on.<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> lst <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> lst<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token builtin">len</span><span class="token punctuation">(</span>lst<span class="token punctuation">)</span>
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token builtin">len</span><span class="token punctuation">(</span>lst<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</pre></li>
+</ol>
+<h4 class="mume-header" id="lecture-1333-tuples">Lecture 1.3.3.3: Tuples</h4>
+
+<p>Tuples are like lists except they are immutable.</p>
+<p>We denote a tuple using parenthesis <code>()</code> or by just separating objects with a comma.  You can also use the <code>tuple()</code> function.  You cannot use list comprehensions to make tuples. (More on those in another lecture.)</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+a
+</pre><pre class="language-text">(1, 2, 3)
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">b <span class="token operator">=</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span> 
+b
+</pre><pre class="language-text">((1, 2, 3), 4, 5, 6)
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">c <span class="token operator">=</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span>
+c
+</pre><pre class="language-text">(7, 8, 9)
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">tuple</span><span class="token punctuation">(</span><span class="token string">"Tuplify"</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">('T', 'u', 'p', 'l', 'i', 'f', 'y')
+</pre>
+<p>Just like lists, the <code>tuple()</code> function breaks the string apart.  If you want to keep the string attached then you can just surround the string with parentheses, <code>("tuplify")</code>, or pass in the string surrounded by braces. <code>tuple({"tuplify"})</code> (You are passing in a set with the string "tuplify")</p>
+<p>Tuples are used mostly for integrity constraints when passing data from one part of a program to another.</p>
+<h5 class="mume-header" id="try-out-5">Try Out</h5>
+
+<ol>
+<li>Try out the operations for sequences on tuples.</li>
+<li>Test the mutability of a tuple<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> tpl <span class="token operator">=</span> <span class="token builtin">tuple</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> tpl<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello"</span>
+</pre></li>
+<li>Objects within tuples can be acted on.<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> tpl <span class="token operator">=</span> <span class="token builtin">tuple</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"Hello"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> tpl<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">3</span>
+</pre></li>
+<li>Convert a string to a list to a tuple.</li>
+</ol>
+<h3 class="mume-header" id="lecture-134-mappings">Lecture 1.3.4: Mappings</h3>
+
+<p>Mappings are a finite set of objects that are indexed by other, often immutable, objects.  This is commonly called key-value pairs in which the key references some value.  Think of a phone book in which a string containing a person's name points to their phone number.  Another example is a string that points to a video on the file system.  Mappings are very powerful data structures and are used extensively in web development, game development. and networking but are not limited to these.</p>
+<p>Mappings are not ordered like a sequence.  If you print a mapping the items may not appear in the order you added them in.  This is a result of hashing the key to a location in memory.</p>
+<p>Python only has one kind of mapping called a dictionary.</p>
+<h4 class="mume-header" id="lecture-1341-dictionaries">Lecture 1.3.4.1: Dictionaries</h4>
+
+<p>Dictionaries are mutable but the keys must be of an immutable type while the value can be of any type.  The key and value are separated by a colon in the form of <code>key:value</code>.  To make a dictionary, we use the braces symbol.  We can also use the <code>dict()</code> function but it's a bit redundant as you need to use the braces inside of the function.  The only reason you might use the dict function is to differentiate it from a set.</p>
+<p>We access elements from a dictionary using indexing, only instead of just numbers, we use the key (which can be a number but doesn't represent a specific spot)</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">d <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"a"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">:</span><span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token string">"list"</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+d<span class="token punctuation">[</span><span class="token string">"a"</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">1
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">d<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">'b'
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">d<span class="token punctuation">[</span><span class="token string">'list'</span><span class="token punctuation">]</span>
+</pre><pre class="language-text">[1, 2, 3]
+</pre>
+<p>There's only a few operations that we can do, one of which I will give a brief example of as it is important for dynamic dictionary creation.</p>
+<p><strong>Indexing</strong></p>
+<p>This was demonstrated above but I feel it needs to be explained just a little bit more.  When you create a dictionary you assign a value to an arbitrary key.  That key is what is used to retrieve that value unlike lists which must be indexed using an integer.  Dictionaries can also use numbers for keys which includes floats and complex numbers, as long as the object types are immutable.</p>
+<p>Taking the example above, <code>"a":1</code> is one key-value pair in which the string <code>"a"</code> is mapped to the number <code>1</code>.  So we access the value using the square brackets on the dictionary object.  In the case of the example above that is <code>d["a"]</code> which returns <code>1</code>.</p>
+<p><strong>Key Creation</strong></p>
+<p>To make a key in a dictionary, you simply use the indexing operator and the assignment operator <code>=</code>.  If the key already exists, it will overwrite the value.  If it does not, it will create the key in the dictionary.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">d <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"first name"</span><span class="token punctuation">:</span> <span class="token string">"Brian-Thomas"</span><span class="token punctuation">,</span> <span class="token string">"last name"</span><span class="token punctuation">:</span><span class="token string">"Rogers"</span><span class="token punctuation">}</span>
+d
+</pre><pre class="language-text">{'first name': 'Brian-Thomas', 'last name': 'Rogers'}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">d<span class="token punctuation">[</span><span class="token string">"middle name"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Curtis"</span>
+d
+</pre><pre class="language-text">{'first name': 'Brian-Thomas', 'last name': 'Rogers', 'middle name': 'Curtis'}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">d<span class="token punctuation">[</span><span class="token string">"first name"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Tammy"</span>
+d
+</pre><pre class="language-text">{'first name': 'Tammy', 'last name': 'Rogers', 'middle name': 'Curtis'}
+</pre>
+<p><strong>len()</strong></p>
+<p>The built-in can be used for dictionaries to retrieve how many key-value pairs there are in the dictionary.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">d <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"a"</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">}</span>
+<span class="token builtin">len</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span>
+</pre><pre class="language-text">2
+</pre>
+<p><strong>Useful Methods</strong></p>
+<ul>
+<li>items(): Returns a list of tuples (Python 2) or a dict_items view containing the key as the first element and the value as the second.  Useful for looping.</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">d <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"a"</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">}</span>
+d<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">dict_items([('a', 1), ('b', 2)])
+</pre>
+<ul>
+<li>keys(): Returns a list or dict_keys view of the dictionary's keys.</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">d <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"a"</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">}</span>
+d<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">dict_keys(['a', 'b'])
+</pre>
+<ul>
+<li>values(): Returns a list or dict_values view of the dictionary's values.</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">d <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"a"</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">}</span>
+d<span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">dict_values([1, 2])
+</pre>
+<h5 class="mume-header" id="try-out-6">Try Out</h5>
+
+<ol>
+<li>Mess around with the functions and methods.</li>
+<li>Insert a dictionary within a dictionary and access the stuff inside the inner dictionary.  Add multiple dictionaries inside a single dictionary.  (This will become important when dealing with JSON)</li>
+</ol>
+<h3 class="mume-header" id="lecture-135-sets">Lecture 1.3.5: Sets</h3>
+
+<p>Sets are an unordered collection of unique objects.  Unique means not duplicated.  Unlike other collections, sets cannot be indexed.  This is because if something get's added to the set the order of the elements are changed so something at index 0 now might not be at index 0 later.  We can, however, convert the set to a list if this is needed.  Python provides two kinds of sets, a frozenset and a regular set.  The only difference between the two is that frozensets are immutable and sets are mutable.  Both of these can utilize the same operations which are listed below.  The operations are meant to replicate the functionality of mathematical sets.</p>
+<p>Sets can be created by either the curly braces, <code>{}</code> or the <code>set()</code> function.  For a majority of examples in the lectures, the set function will be used.  This is to prevent confusion of determining if the object is a dictionary or set.  To create a frozenset you MUST use the <code>frozenset()</code> function.</p>
+<p>[Python 3 Set Types](<a href="https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset">https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset</a> "Python 3 Set Documentation)</p>
+<h5 class="mume-header" id="set-operations">Set Operations</h5>
+
+<p><strong>Union</strong></p>
+<p>To perform a union with sets we can either use the pipe bar, <code>|</code>, or use the <code>union()</code> method.  A union will return a new set containing all the elements of the original set and any others.  You can chain multiple unions together separating the sets with an operator or a comma if using the method.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s2 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s3 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s1 <span class="token operator">|</span> s2
+</pre><pre class="language-text">{1, 2, 3, 4}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1<span class="token punctuation">.</span>union<span class="token punctuation">(</span>s3<span class="token punctuation">)</span>
+</pre><pre class="language-text">{1, 2, 3, 5, 6, 7}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1<span class="token punctuation">.</span>union<span class="token punctuation">(</span>s2<span class="token punctuation">,</span> s3<span class="token punctuation">)</span>
+</pre><pre class="language-text">{1, 2, 3, 4, 5, 6, 7}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1 <span class="token operator">|</span> s2 <span class="token operator">|</span> s3
+</pre><pre class="language-text">{1, 2, 3, 4, 5, 6, 7}
+</pre>
+<p><strong>Intersection</strong></p>
+<p>To perform an intersection operation, you can either use the ampersand, <code>&amp;</code>, or use the <code>intersection()</code> method.  Intersection will return a new set in which both sets contain the same elements.  If none contain the same elements, it will return an empty set.  You can chain multiple intersections with ampersands separating the sets or commas if using the method.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s2 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s3 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s1 <span class="token operator">&amp;</span> s2
+</pre><pre class="language-text">{2, 3}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1<span class="token punctuation">.</span>intersection<span class="token punctuation">(</span>s3<span class="token punctuation">)</span>
+</pre><pre class="language-text">set()
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1 <span class="token operator">&amp;</span> s2 <span class="token operator">&amp;</span> s3
+</pre><pre class="language-text">set()
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1<span class="token punctuation">.</span>intersection<span class="token punctuation">(</span>s1<span class="token punctuation">,</span> s2<span class="token punctuation">,</span> s3<span class="token punctuation">)</span>
+</pre><pre class="language-text">set()
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s4 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s1 <span class="token operator">&amp;</span> s2 <span class="token operator">&amp;</span> s4
+</pre><pre class="language-text">{2, 3}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s4 <span class="token operator">&amp;</span> s3
+</pre><pre class="language-text">{5, 6, 7}
+</pre>
+<p><strong>Difference</strong></p>
+<p>To perform a difference operation, you can either use the minus symbol, <code>-</code>, or use the <code>difference()</code> method.  The difference operator will return a new set with elements in the set that are not in the others.  You can chain multiple differences by repeating the operation separating the sets with a minus symbol or a comma if using the method.  In the case of this operation, we are taking the difference of the left set minus any common elements in the right set and only returning what is left from the left set.  In this case, it does matter the order of the sets.  If we want a set containing the different elements of both sets, use the symmetric difference.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s2 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s3 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s1 <span class="token operator">-</span> s2
+</pre><pre class="language-text">{1}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s2 <span class="token operator">-</span> s1
+</pre><pre class="language-text">{4}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1<span class="token punctuation">.</span>difference<span class="token punctuation">(</span>s3<span class="token punctuation">)</span>
+</pre><pre class="language-text">{1, 2, 3}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1 <span class="token operator">-</span> s2 <span class="token operator">-</span> s3
+</pre><pre class="language-text">{1}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s2<span class="token punctuation">.</span>difference<span class="token punctuation">(</span>s1<span class="token punctuation">,</span> s3<span class="token punctuation">)</span>
+</pre><pre class="language-text">{4}
+</pre>
+<p><strong>Symmetric Difference</strong></p>
+<p>To perform a symmetric difference, you can either use the caret symbol, <code>^</code>, or the <code>symmetric_difference()</code> method.  This operation will return a new set with elements in either sets but not in both.  You can chain this operation by separating sets with carets.  You cannot supply the method with multiple sets, however.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s2 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s3 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s1 <span class="token operator">^</span> s2
+</pre><pre class="language-text">{1, 4}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1<span class="token punctuation">.</span>symmetric_difference<span class="token punctuation">(</span>s3<span class="token punctuation">)</span>
+</pre><pre class="language-text">{1, 2, 3, 5, 6, 7}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1 <span class="token operator">^</span> s2 <span class="token operator">^</span> s3
+</pre><pre class="language-text">{1, 4, 5, 6, 7}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s3<span class="token punctuation">.</span>symmetric_difference<span class="token punctuation">(</span>s1<span class="token punctuation">,</span> s2<span class="token punctuation">)</span>
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-19-2fb1c69c70d5&gt; in &lt;module&gt;()
+----&gt; 1 s3.symmetric_difference(s1, s2)
+
+
+TypeError: symmetric_difference() takes exactly one argument (2 given)
+</pre>
+<p><strong>Update</strong></p>
+<p>You can perform an update by appending an equals symbol to any of the above operations.  This will then perform the operation and then assign the returned set to the variable.  You can also use their method equivalents which are <code>update()</code> for union update, <code>intersection_update()</code>, <code>difference_update()</code>, or <code>symmetric_difference_update()</code>.  The methods do NOT work for frozensets but you can still use the appending of the equals sign.  This is because the methods will work on the set in memory while the operators create a new set and returns that as a result.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s2 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s3 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s4 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s1 <span class="token operator">|</span><span class="token operator">=</span> s2 <span class="token comment">#Union update, update() also works</span>
+s1
+</pre><pre class="language-text">{1, 2, 3, 4, 5}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s2 <span class="token operator">&amp;</span><span class="token operator">=</span> s1 <span class="token comment">#Intersection update, intersection_update() also works</span>
+s2
+</pre><pre class="language-text">{2, 3, 4, 5}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s3 <span class="token operator">-=</span> s4 <span class="token comment">#Difference update, difference_update() also works</span>
+s3
+</pre><pre class="language-text">{5}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s4 <span class="token operator">^</span><span class="token operator">=</span> s3 <span class="token comment">#Symmetric Difference update, symmetric_difference_update() also works</span>
+s4
+</pre><pre class="language-text">{5, 6, 7, 8, 9}
+</pre>
+<p><strong>Any Iterable Function</strong></p>
+<p>Any function that accepts an iterable can receive a set.  The most common one being <code>len()</code>.</p>
+<h4 class="mume-header" id="lecture-1351-set">Lecture 1.3.5.1: Set</h4>
+
+<p>A regular set can be created by either braces <code>{}</code>, or with the <code>set()</code> built-in function.  If you want to create an empty set, you MUST use the <code>set()</code> built-in.  Let's take a look at what happens if you try to create an empty set using just the braces.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">empty_set <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token builtin">type</span><span class="token punctuation">(</span>empty_set<span class="token punctuation">)</span>
+</pre><pre class="language-text">dict
+</pre>
+<p>Notice what the Python interpreter thinks you meant?  If you then try to perform operations or set method calls on this object you will be given errors.  If you have initial elements you can start with inside the set then you can use the brace.  I will be using the set function, however, as it is clear what I am creating.  To use the function to create a set we can pass in an iterable.  An iterable is any type which has elements that can be iterated over.  All sequence types are iterable.  You have seen this in action above when I created the sets <code>s1</code>, <code>s2</code>, <code>s3</code>, and <code>s4</code>.  I use the function <code>set()</code> and I passed it a list.  Let's see what happens if I use another iterable like a string.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">string_set <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token string">"swingset"</span><span class="token punctuation">)</span>
+string_set
+</pre><pre class="language-text">{'e', 'g', 'i', 'n', 's', 't', 'w'}
+</pre>
+<p>Notice, first off, that the elements are not in the order they were added to the set.  This has to do with hashing and how sets are maintained in memory.  A good Data Structures class should cover this topic but is of no concern to us.  Just remember that sets are not ordered.  You might even have a different result than what is shown.  Also notice that, even though there are 2 s characters in the string, there is only one in the set.  Set's contain unique elements which means no duplicates.  Also note that a lowercase letters are different than an uppercase letters.</p>
+<p>If you want to keep the string element whole instead of broken apart like in above you can use the braces or wrap the string/other iterable with either square brackets (passing a list with a string) or parentheses (passing a tuple with a string).</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">string_set <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">"swingset"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+string_set
+</pre><pre class="language-text">{'swingset'}
+</pre>
+<p>Finally, these types of sets are mutable which means they can be modified in memory without needing to create a new set.  Here are some methods to do so.</p>
+<p><strong>Useful Methods</strong></p>
+<ul>
+<li>add(): Used to add a new element to the set.</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s1<span class="token punctuation">.</span>add<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+s1
+</pre><pre class="language-text">{1, 2, 3, 4}
+</pre>
+<ul>
+<li>remove(): Remove an element from the set if it exists. If it does not, raises an error.</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s1<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+s1
+</pre><pre class="language-text">{1, 3}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+KeyError                                  Traceback (most recent call last)
+
+&lt;ipython-input-31-87b930b55c5a&gt; in &lt;module&gt;()
+----&gt; 1 s1.remove(1000)
+
+
+KeyError: 1000
+</pre>
+<ul>
+<li>discard(): Remove element from the set if it is present. (Does not raise an error if element does not exist.)</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s1<span class="token punctuation">.</span>discard<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+s1
+</pre><pre class="language-text">{1, 3}
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1<span class="token punctuation">.</span>discard<span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span> <span class="token comment">#Notice no errors.</span>
+</pre><ul>
+<li>pop(): Remove and return an arbitrary element.  Raises an error if the set is empty.</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s1<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">1
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">empty <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+empty<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+KeyError                                  Traceback (most recent call last)
+
+&lt;ipython-input-35-e7392d046aaa&gt; in &lt;module&gt;()
+      1 empty = set()
+----&gt; 2 empty.pop()
+
+
+KeyError: 'pop from an empty set'
+</pre>
+<ul>
+<li>clear(): Removes all elements from the set.</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1 <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s1<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
+s1
+</pre><pre class="language-text">set()
+</pre>
+<h4 class="mume-header" id="lecture-1352-frozenset">Lecture 1.3.5.2: Frozenset</h4>
+
+<p>A frozenset is just an immutable set.  You can make a frozenset by using the <code>frozenset()</code> built-in.  You can do all the operators given to us for sets but we cannot change the set in memory.  If we wanted to modify the frozenset we would have to create a new frozenset.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">f_set <span class="token operator">=</span> <span class="token builtin">frozenset</span><span class="token punctuation">(</span><span class="token string">"Frozenset"</span><span class="token punctuation">)</span>
+f_set
+</pre><pre class="language-text">frozenset({'F', 'e', 'n', 'o', 'r', 's', 't', 'z'})
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">f_set<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">---------------------------------------------------------------------------
+
+AttributeError                            Traceback (most recent call last)
+
+&lt;ipython-input-38-4f00be13e50f&gt; in &lt;module&gt;()
+----&gt; 1 f_set.pop()
+
+
+AttributeError: 'frozenset' object has no attribute 'pop'
+</pre>
+<h5 class="mume-header" id="try-out-7">Try Out</h5>
+
+<ol>
+<li>Use a frozenset and try out any of the operators shown with just the regular set.</li>
+<li>Combine a frozenset and a regular set in the operations shown.  What are the types of the resulting objects returned if the frozen set is on the right or left side of the operator?</li>
+</ol>
+<h2 class="mume-header" id="lecture-14-input-output">Lecture 1.4: Input / Output</h2>
+
+<p>This is going to be a section about how to receive console input.  For this section, I suggest you create a .py file and type the code in it, save, and run the file from the console.  If you are unsure how to do that, read the first lecture and return here.  The name of the file I create is found in a comment at the top of the example.</p>
+<h3 class="mume-header" id="lecture-141-console-input">Lecture 1.4.1: Console Input</h3>
+
+<p>We only have one way to receive console input.  The function to receive input from the user is <code>input()</code>.  The function will wait for an EOL, usually created by pressing ENTER, and will return a string of what the user entered.</p>
+<p>NOTE: I know we are only focusing on Python 3 but if you work in a Python 2 environment I just want to warn you NOT to use the input() function.  It is a security risk.  Use raw_input() instead.  It works like input() for Python 3.</p>
+<p><strong>Script File</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment">#FILENAME: input_test.py</span>
+title <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Title: "</span><span class="token punctuation">)</span>
+last_name <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Last Name: "</span><span class="token punctuation">)</span>
+age <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Age: "</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">#Convert the returned string to an int</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Hello"</span><span class="token punctuation">,</span> title <span class="token operator">+</span> <span class="token string">"."</span><span class="token punctuation">,</span> last_name <span class="token operator">+</span> <span class="token string">". You are"</span><span class="token punctuation">,</span> age<span class="token punctuation">,</span> <span class="token string">"years old."</span><span class="token punctuation">)</span> 
+</pre><p><strong>Sample Run of input_test.py</strong></p>
+<pre>C:\Users\btcr\Desktop&gt;python input_test.py
+Title: Mr
+Last Name: Rogers
+Age: 27
+Hello Mr. Rogers. You are 27 years old.
+</pre>
+<p>You will notice that in some spots I use a comma to separate parts of the resulting string and in others I use concatenation.  Each separate argument (parts separated by a comma) is an argument to the print() function.  The function knows to take each part and put a space between them, however, in areas I don't require a space such as the title and the period I used concatenation.  If this looks confusing, don't worry.  There are certainly much better ways to format a string so we don't even need to worry about concatenation.  This is just a demonstration of how you can print using different arguments and concatenation.</p>
+<p><strong>Another Example</strong></p>
+<p><strong>Script File</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment">#FILENAME: print_test.py</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Hello Pythonistas."</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Isn't this easy?"</span><span class="token punctuation">)</span>
+</pre><p><strong>Sample Run</strong></p>
+<pre>C:\Users\broge2\Desktop&gt;python print_test.py
+Hello Pythonistas.
+Isn't this easy?
+</pre>
+<p>Each call to the print function will print the items on a new line. If we wanted to change that behavior we must pass in an optional argument to function <code>end</code>.  This is a nice feature because we can change the separation with different strings.</p>
+<p><strong>Script File</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment">#FILENAME: print_test.py</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Hello Pythonistas."</span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Isn't this easy?"</span><span class="token punctuation">)</span>
+</pre><p><strong>Sample Run</strong></p>
+<pre>C:\Users\broge2\Desktop&gt;python print_test.py
+Hello Pythonistas.Isn't this easy?
+</pre>
+<p>If we want a space between each print simply make end equal a space.  <code>end=" "</code>.  You can also do a tab, <code>end="\t"</code> and any other string you want not just single characters.</p>
+<h3 class="mume-header" id="lecture-142-files">Lecture 1.4.2: Files</h3>
+
+<p>Files are another form of input and output that we can perform.  To create a file object that we can read (r), write (w), or append (a) to we use the <code>open()</code> function.  When using the open function we pass in two arguments.  A string containing the location of the file we would like to open and a mode.  The modes are as follows:</p>
+<ul>
+<li>Read (r): Only allow reading a file.  If the file does  not exist it will throw an error.
+<ul>
+<li>(b): Append to mode to force binary mode. "rb"</li>
+<li>(+): Append to mode to allow writing. "r+"</li>
+</ul>
+</li>
+<li>Write (w): Only allow writing to a file.  If the file does not exist it will create a new one.  If the file does exist it will overwrite it so be careful and make sure this is what you want.
+<ul>
+<li>(b): Append to mode to force binary mode. "wb"</li>
+<li>(+): Append to mode to allow reading. "w+"</li>
+</ul>
+</li>
+<li>Append (a): Will open the file for writing at the end of the file.  If the file does not exist, it will create one.
+<ul>
+<li>(b): Append to mode to force binary mode. "ab"</li>
+<li>(+): Append to mode to allow reading. "a+"</li>
+</ul>
+</li>
+</ul>
+<p>You can append both + and b to the mode so <code>rb+</code> would be open the file for reading and writing in binary mode.</p>
+<p>To read from a file you can either use <code>read()</code> which takes the number of bytes you want to read or <code>readlines()</code> which returns a list of the lines in the file.  To write to a file, you can use <code>write()</code> which writes the object to the file or <code>writelines()</code> which takes a list of objects to write.  Finally, you should close your file object with <code>close()</code>.  I'm only giving basic examples of file objects as we will see easier ways to iterate over the file with looping later.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">outfile_handle <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"test.out"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span>
+outfile_handle<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"Sample"</span><span class="token punctuation">)</span>
+outfile_handle<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"Output"</span><span class="token punctuation">)</span>
+outfile_handle<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"\nPython File"</span><span class="token punctuation">)</span>
+outfile_handle<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+infile_handle <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"test.out"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span>
+infile_handle<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">'Sam'
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python">infile_handle<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">['pleOutput\n', 'Python File']
+</pre>
+<p>Not only can you can use the open function but you can also use the <code>with</code> block statement.  It is suggested you use this method of opening files but it's a bit more complex than what I've been showing thus far.  The reason this is more preferable is at the end of the block statement it will automatically close the file. If you don't understand how this is working, don't worry.  We will cover block statements in another lecture.  Just know that you need to indent stuff under a block for it to run under that block statement.  Also, the <code>as</code> keyword is used. This is used to set an alias for an object.  Since open returns a file object, we set that file object to a variable (AKA alias).</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"test.out"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> outfile_handle<span class="token punctuation">:</span>
+    outfile_handle<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"Another Sample"</span><span class="token punctuation">)</span>
+    outfile_handle<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">" Output\n"</span><span class="token punctuation">)</span>
+    outfile_handle<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"Python File"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"test.out"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> infile_handle<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>infile_handle<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><pre class="language-text">['Another Sample Output\n', 'Python File']
+</pre>
+<p><a href="https://docs.python.org/3/library/functions.html#open" title="Python 3 Open() Documentation">Python 3 Open() Documentation</a></p>
+<h4 class="mume-header" id="try-out-8">Try Out</h4>
+
+<ol>
+<li>Demonstrate to yourself the append mode of the open function by appending to the test.out file.  Notice the difference between this mode and write mode.</li>
+<li>For 1, use a with block.</li>
+</ol>
+<h2 class="mume-header" id="lecture-15-help-and-dir">Lecture 1.5: help() and dir()</h2>
+
+<p>Last, but not least, are the <code>help()</code> and <code>dir()</code> functions.  Both of these will be of massive use for learning Python or trying to figure out how to use a new module or function.  Simply pass the name of the object into the function and read through the documentation.  <code>help()</code> will display the modules docstrings in a readable format. <code>dir()</code> displays all the methods and functions available to you with zero explanation so you'll probably want to use help more but dir is great for a quick reference.</p>
+<p>When using help, the content will be paged inside the console.  To navigate through the help use the following</p>
+<ul>
+<li>space key: go to next page</li>
+<li>q key: exit the help screens</li>
+</ul>
+<p>Examples</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> random
+<span class="token builtin">dir</span><span class="token punctuation">(</span>random<span class="token punctuation">)</span>
+</pre><pre class="language-text">['BPF',
+ 'LOG4',
+ 'NV_MAGICCONST',
+ 'RECIP_BPF',
+ 'Random',
+ 'SG_MAGICCONST',
+ 'SystemRandom',
+ 'TWOPI',
+ '_BuiltinMethodType',
+ '_MethodType',
+ '_Sequence',
+ '_Set',
+ '__all__',
+ '__builtins__',
+ '__cached__',
+ '__doc__',
+ '__file__',
+ '__loader__',
+ '__name__',
+ '__package__',
+ '__spec__',
+ '_acos',
+ '_ceil',
+ '_cos',
+ '_e',
+ '_exp',
+ '_inst',
+ '_log',
+ '_pi',
+ '_random',
+ '_sha512',
+ '_sin',
+ '_sqrt',
+ '_test',
+ '_test_generator',
+ '_urandom',
+ '_warn',
+ 'betavariate',
+ 'choice',
+ 'expovariate',
+ 'gammavariate',
+ 'gauss',
+ 'getrandbits',
+ 'getstate',
+ 'lognormvariate',
+ 'normalvariate',
+ 'paretovariate',
+ 'randint',
+ 'random',
+ 'randrange',
+ 'sample',
+ 'seed',
+ 'setstate',
+ 'shuffle',
+ 'triangular',
+ 'uniform',
+ 'vonmisesvariate',
+ 'weibullvariate']
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">help</span><span class="token punctuation">(</span>random<span class="token punctuation">)</span> <span class="token comment">#Output not shown here.</span>
+</pre><pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">help</span><span class="token punctuation">(</span>random<span class="token punctuation">.</span>choice<span class="token punctuation">)</span>
+</pre><pre class="language-text">Help on method choice in module random:
+
+choice(seq) method of random.Random instance
+    Choose a random element from a non-empty sequence.
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">help</span><span class="token punctuation">(</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">)</span>
+</pre><pre class="language-text">Help on method randint in module random:
+
+randint(a, b) method of random.Random instance
+    Return random integer in range [a, b], including both end points.
+</pre>
+<p><a href="https://docs.python.org/3/library/functions.html#help" title="Python 3 Help Function Documentation">Python 3 help() Function</a></p>
+<p><a href="https://docs.python.org/3/library/functions.html#dir" title="Python 3 Dir Function Documentation">Python 3 dir() Function</a></p>
+<h4 class="mume-header" id="exercises">Exercises</h4>
+
+<p>Exercises are here for you to practice.  They are not for turning in.  They are here to give extra practice for you.  Only use what you learned in this lecture.  Use the docs to look up methods and functions for objects.  No looping or conditionals are necessary.</p>
+<ol>
+<li><code>isinstance</code> won't be introduced until we start talking about conditionals but it won't hurt to get a step ahead. Look at the Python docs <a href="https://docs.python.org/3.6/library/functions.html#isinstance">Python 3</a> and see if you can get <code>True</code> to print for these expressions using <code>isinstance()</code>.</li>
+</ol>
+<ul>
+<li>12</li>
+<li>"abc"</li>
+<li>[1,2,3,4]</li>
+<li>10e3 // 5</li>
+<li>{"a": 0, "b": 2}</li>
+<li>range(10, 100, 5)</li>
+</ul>
+<ol start="2">
+<li>
+<p>Write a program to calculate a tip based on amount owed and percentage to tip.  Don't worry about floating point precision.</p>
+</li>
+<li>
+<p>Write a program that prints the "Twinkle, Twinkle, Little Star" rhyme.</p>
+</li>
+<li>
+<p>Write a program that reads in a users input and prints the number of characters that they typed.</p>
+</li>
+<li>
+<p>Write a program which prompts the user for a string and prints the result of replacing every occurrence of the first character, except the first itself, with an <code>@</code>.  E.g. <code>illinois</code> results in <code>ill@no@s</code>. (string replace method)</p>
+</li>
+<li>
+<p>(Challenge) Write a program that checks to see if all the characters of the English alphabet are in the string. Use the <code>sorted()</code> function and the <code>==</code> operator. (Don't include punctuation marks in your test strings)</p>
+</li>
+<li>
+<p>Write a Python program to sum all the numbers in a list. (Use the sum() function)</p>
+</li>
+<li>
+<p>Write a Python program to remove the duplicates from a list. Do not use any loops and don't worry if elements of the list change positions at the end.</p>
+</li>
+<li>
+<p>Write a simple phonebook for yourself in which you search using a persons first and last name.</p>
+</li>
+<li>
+<p>Write a program to convert a list of strings to a single string.  (Look into the .join() method of strings)</p>
+</li>
+</ol>
+<p>Solutions to exercises can be found here: <a href="https://github.com/broge2/PythonExercises470/tree/master/Lecture1" title="Github Link to solutions">https://github.com/broge2/PythonExercises470/tree/master/Lecture1</a></p>
+<hr>
+<blockquote>
+<p>University of Illinois at Springfield<br><br>
+Instructor: Brian-Thomas Rogers<br><br>
+Course: CSC 470</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python"></pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

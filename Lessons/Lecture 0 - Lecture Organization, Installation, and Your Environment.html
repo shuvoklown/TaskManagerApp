@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<!-- saved from url=(0190)https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="stndz-style"></style>
+      <title>Lecture 0 - Lecture Organization, Installation, and Your Environment</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///C:/Users/Brian%20Rogers/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.3.13/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h1 class="mume-header" id="lecture-0-br-lecture-organization-installation-and-your-environment"><strong>Lecture 0</strong> <br> Lecture Organization, Installation, and Your Environment</h1>
+
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#lecture-0-br--lecture-organization-installation-and-your-environment"><strong>Lecture 0</strong> <br> Lecture Organization, Installation, and Your Environment</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#lecture-organization">Lecture Organization</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#lecture-sections">Lecture Sections</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#try-out-sections">Try Out Sections</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#exercise-sections">Exercise Sections</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#code-sections">Code Sections</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#fixing-errors-sections">Fixing Errors Sections</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#installation">Installation</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#notification-for-linux-and-mac-users">Notification for Linux and Mac Users</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#picking-a-version">Picking a version</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#installing-it-already">Installing It Already!</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#installing-on-windows">Installing on Windows</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#installing-on-mac-os">Installing on Mac OS</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#installing-on-linux">Installing on Linux</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#programming-environment">Programming Environment</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#text-editors">Text Editors</a></li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#integrated-development-environment-ide">Integrated Development Environment (IDE)</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#fixing-errors">Fixing Errors</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#windows-installation">Windows Installation</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#script-vs-interactive-shell">Script vs Interactive Shell</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#interactive-shell">Interactive Shell</a>
+<ul>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#the-python-command">The Python Command</a></li>
+</ul>
+</li>
+<li><a href="https://bb.uis.edu/bbcswebdav/pid-1391388-dt-content-rid-8477864_1/courses/192CSC47011314/Lecture%200%20-%20Lecture%20Organization%2C%20Installation%2C%20and%20Your%20Environment%283%29.html#script-files">Script Files</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="mume-header" id="lecture-organization">Lecture Organization</h2>
+
+<p>The lectures are separated into different sections.  These sections are described below.</p>
+<h3 class="mume-header" id="lecture-sections">Lecture Sections</h3>
+
+<p>Each lecture section will contain the topic that portion of the lecture covers, a try out section and a problem section which are discussed below.  At the end of each lecture section may be a reference link to a documentation page. It is recommended to at least skim the page so you know what it contains.  The documentation will be a huge part of learning Python since it is a community driven language.</p>
+<h3 class="mume-header" id="try-out-sections">Try Out Sections</h3>
+
+<p>These sections give you the opportunity to experiment with what you just learned.  Typically, these sections contain a snippet of code that is used to demonstrate a concept, give you some practice, or to show given behavior for certain syntax and usually it's all three.  Take the time during the try out portions of the lectures to change the code and see what happens inside the Python terminal.</p>
+<h3 class="mume-header" id="exercise-sections">Exercise Sections</h3>
+
+<p>These sections give you a chance to solve some problems with the new syntax you just learned.  If you have problems solving these reread the problem and make sure you understand what you are being asked.  If you are still struggling then go back through the lecture and reread any section of the lecture that didn't make sense to you.  If you are still struggling then you can check the end of the lecture for a possible solution.  Try to follow the solution on paper.</p>
+<h3 class="mume-header" id="code-sections">Code Sections</h3>
+
+<p>There are many code sections which show Python code either via a command prompt or in a script file.  If the code is in a script file, the name of the file will be at the top as a comment such as <code># scriptname.py</code>.  This is to indicate to you that you should write this code in a .py file (You don't have to name it the same as what is shown) and run it using the command <code>python scriptname.py</code>.</p>
+<p>The other code sections will be a command prompt.  These will not have a script name at the top.  Since I am writing these lectures using <a href="http://jupyter.org/">Jupyter Notebook</a> so I can convert them to different formats, you will see <code>IN[#]</code> for the code you should write in a prompt and <code>OUT[#]</code> for what result you should see.  In your prompt you won't see <code>IN</code> or <code>OUT</code> but <code>&gt;&gt;&gt;</code>.</p>
+<h3 class="mume-header" id="fixing-errors-sections">Fixing Errors Sections</h3>
+
+<p>Some lectures may contain a <em>Fixing Errors Section</em>.  This is where a list of the common problems that may occur while working through the lecture will appear, an explanation of why the error occurred, what to watch out for, and how to fix it.  Use this section to help you understand when problems arise so you can learn how to fix them.</p>
+<h2 class="mume-header" id="installation">Installation</h2>
+
+<h3 class="mume-header" id="notification-for-linux-and-mac-users">Notification for Linux and Mac Users</h3>
+
+<p>Linux and Mac OS already have Python installed.  To check which version, you should open a terminal and type <code>python --version</code> and press <strong>Enter</strong>.  You will see the version of Python installed.  If you do not see a 3.x.y, where x and y are other numbers, then you need to install 3.x.y.</p>
+<p>If you have Python installed but it is not Python 3 then you need to install Python 3.  See <strong>Picking a Version</strong> below.</p>
+<p>They both can coexist on the same machine, however, if you install 3 where 2 was the default then you will need to make sure to run <code>python3</code> at the command line to run both a script file and to start the interpreter shell.</p>
+<h3 class="mume-header" id="picking-a-version">Picking a version</h3>
+
+<p>We are using Python 3 for this course.  The reason being Python 2 is losing support in 2020 and there is no reason to teach you outdated information.  There was a large community that maintained Python 2 for the longest time but 3 has come so far that the new stuff added actually makes our lives easier as Python developers.  Python 2 will not be accepted for this course anymore.  More information on the loss of support for Python 2: <a href="https://pythonclock.org/">Python 2 Clock Countdown</a>.</p>
+<h3 class="mume-header" id="installing-it-already">Installing It Already!</h3>
+
+<h4 class="mume-header" id="installing-on-windows">Installing on Windows</h4>
+
+<p>Head over to the download page, click <strong>Download Python X.Y.Z</strong>, where x, y, and z are version numbers.  Depending on your selection, you will receive either a <em>.exe</em> or <em>.msi</em> for Windows.</p>
+<p><a href="https://www.python.org/downloads">Python Download Page</a></p>
+<p>Once you have downloaded the file, in your file explorer, head over to where the file downloaded (usually your Downloads folder).</p>
+<p><strong>Python 3</strong></p>
+<ol>
+<li>Double-click the Python Installer to start the installer wizard.</li>
+<li>When asked, <em>Do you want to run this file?</em>, click <strong>Run</strong>.</li>
+<li>Check the box at the bottom that indicates <em>Add Python 3.x to PATH</em>.</li>
+<li>Click <strong>Install Now</strong>.</li>
+<li>If <em>User Access Control</em> window appears, click <strong>Yes</strong> to run.</li>
+<li>Once the <em>Setup was successful!</em> screen appears click <strong>Close</strong></li>
+</ol>
+<p><strong><em>Validate Installed Correctly</em></strong></p>
+<ol>
+<li>Open up the Command Prompt by clicking on the <strong>Start Button</strong> and typing <code>cmd</code> in the search.  You should see a black icon with a <em>C:\_</em> inside.  Press <strong>ENTER</strong> or left-click it.</li>
+<li>You will now be presented with a prompt that starts with <em>C:\</em> and ends with &gt;. Type <code>python</code> and press <strong>ENTER</strong>.</li>
+<li>If Python was installed correctly, you should see the Python Header with version information and the prompt <code>&gt;&gt;&gt;</code>.  Congratulations!  You have installed Python.  However, if you did not get the Python prompt, look at the Fixing Errors section of this document.</li>
+</ol>
+<h4 class="mume-header" id="installing-on-mac-os">Installing on Mac OS</h4>
+
+<p>Python comes pre-installed on the Mac operating systems already, so if you are comfortable with the version you have (as long as it is 3.6.y) then stick with it.  If need to, instead, install Python 3, then download the .pkg file from the downloads page on the Python Site.  Simply click <strong>Download Python 3.6.y</strong> on the page.  Run the .pkg file and make sure to include Python in the path.</p>
+<p><a href="https://www.python.org/downloads">Python Download Page</a></p>
+<p><strong><em>Validate Python 3 Installed Correctly</em></strong></p>
+<p>Open the terminal application and type <code>python3</code> and press <strong>ENTER</strong>.  If Python was installed correctly, you should see the Python Header with version information and the prompt <code>&gt;&gt;&gt;</code>.  Congratulations!  You have installed Python 3 installed.</p>
+<p><em>Sorry to any Mac users.  I do not have a Mac to test stuff on so I will not be a big help in fixing any installation problems.  I will do my best, however, to give you as much guidance as I can. Best I can do is provide a link to the documentation.</em></p>
+<p><a href="https://docs.python.org/3/using/mac.html">Using Python on a Macintosh</a></p>
+<h4 class="mume-header" id="installing-on-linux">Installing on Linux</h4>
+
+<p>Python comes pre-installed on Linux already, so if you are comfortable with the version you have (as long as it is <strong>3.x.y</strong>) then stick with it.  If you have 2.7, follow the link provided below.  You will need Python 3.</p>
+<p><a href="https://docs.python.org/3/using/unix.html">Using Python 3 on Unix Platforms</a></p>
+<p><strong><em>Validate Python 3 Installed Correctly</em></strong></p>
+<p>Open up a terminal and type <code>python3</code> and press <strong>ENTER</strong>.  If Python was installed correctly, you should see the Python Header with version information and the prompt <code>&gt;&gt;&gt;</code>.  Congratulations!  You have installed Python 3.  Python 3 should automatically be added to your environment path.  If you installed it manually by compiling the source then you need to include it in your path variable.</p>
+<h2 class="mume-header" id="programming-environment">Programming Environment</h2>
+
+<p>Your programming environment is just as important as the language itself.  Picking the right editor can be a challenge as everyone has a different workflow and not all editors have the same features.  Some have so many features that it can be a difficult learning curve for just the editor.  Others are so limited that making anything beyond simple programs is a no go.  Try them and see what works for you.  Below, I will give my recommendations but for a more comprehensive list you can check out the following site.</p>
+<p><a href="https://wiki.python.org/moin/PythonEditors">Python Editors</a></p>
+<p><em>Note: The default IDE that comes installed with Python is Idle.  While Idle is fine to use I recommend getting another editor/IDE.</em></p>
+<h3 class="mume-header" id="text-editors">Text Editors</h3>
+
+<p>A text editor can be as plain as vim/notepad and as rich as Notepad++/VSCode.  A text editor is not a full fledged environment but can provide basic syntax highlighting and some code completion.  For the majority of the course, I use VSCode to write script files and use the terminal to run my program to demonstrate how one would go about doing this.  More than likely, you will be running your python programs from a terminal, anyways, so it makes for good practice.</p>
+<table>
+<thead>
+<tr>
+<th>Text Editor</th>
+<th>Operating systems</th>
+<th style="text-align:right">Download Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vim</td>
+<td>Windows, Linux, Mac OS</td>
+<td style="text-align:right"><a href="http://www.vim.org/download.php"> Vim Download </a></td>
+</tr>
+<tr>
+<td>Notepad++</td>
+<td>Windows, Linux with Wine</td>
+<td style="text-align:right"><a href="https://notepad-plus-plus.org/download/"> Notepad++ Download</a></td>
+</tr>
+<tr>
+<td>Atom</td>
+<td>Windows, Linux Mac OS</td>
+<td style="text-align:right"><a href="https://atom.io/"> Atom Download </a></td>
+</tr>
+<tr>
+<td>Geany</td>
+<td>Windows, Linux, Mac OS</td>
+<td style="text-align:right"><a href="https://www.geany.org/Download/Releases"> Geany Download </a></td>
+</tr>
+<tr>
+<td>VSCode</td>
+<td>Windows, Linux, Mac OS</td>
+<td style="text-align:right"><a href="https://code.visualstudio.com/"> VSCode Download </a></td>
+</tr>
+</tbody>
+</table>
+<h3 class="mume-header" id="integrated-development-environment-ide">Integrated Development Environment (IDE)</h3>
+
+<p>An IDE contains everything that a programmer needs to succeed.  The features may include those that are provided by a programming text editor such as code completion and syntax highlighting, however, will be more fit for software development including features like project management, debuggers, smart refactoring, and much more.  Some IDE's will require you to download a plugin for Python while others are native Python IDEs.  I will include the plugin if there is one.</p>
+<table>
+<thead>
+<tr>
+<th>IDE</th>
+<th>Operating System</th>
+<th style="text-align:right">Download Location</th>
+<th style="text-align:right">Plugin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Eclipse</td>
+<td>Windows, Linux, Mac OS</td>
+<td style="text-align:right"><a href="https://www.eclipse.org/downloads/">Eclipse Download</a></td>
+<td style="text-align:right"><a href="https://marketplace.eclipse.org/content/pydev-python-ide-eclipse"> PyDev </a></td>
+</tr>
+<tr>
+<td>PyCharm</td>
+<td>Windows, Linux, Mac OS</td>
+<td style="text-align:right"><a href="https://www.jetbrains.com/pycharm/"> PyCharm Download (Community Free Edition)</a></td>
+<td style="text-align:right">None needed</td>
+</tr>
+<tr>
+<td>Spyder</td>
+<td>Windows, Linux, Mac OS</td>
+<td style="text-align:right"><a href="https://pythonhosted.org/spyder/installation.html"> Spyder Download </a></td>
+<td style="text-align:right">None needed</td>
+</tr>
+<tr>
+<td>NetBeans</td>
+<td>Windows, Linux, Mac OS X</td>
+<td style="text-align:right"><a href="https://netbeans.org/downloads/index.html"> NetBeans Download </a></td>
+<td style="text-align:right"><a href="http://plugins.netbeans.org/plugin/61688/python"> Plugin </a></td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="fixing-errors">Fixing Errors</h2>
+
+<h3 class="mume-header" id="windows-installation">Windows Installation</h3>
+
+<p>If you installed Python but get the following error below</p>
+<pre data-role="codeBlock" data-info="batch" class="language-batch"><span class="token punctuation">'</span>python<span class="token punctuation">'</span> is not recognized as an internal or external command,
+<span class="token command"><span class="token keyword">operable</span> program or batch file.</span>
+</pre><p>then you may not have python.exe in your PATH environment.</p>
+<ol>
+<li>To get python.exe in your PATH navigate to where you have Python installed.  The default location is in the <em>C:\PythonXY</em> where XY is your version.  Copy the folder location.</li>
+<li>Now, open start and right-click  <strong>Computer</strong> and select <strong>Properties</strong>.</li>
+<li>On the left hand side bar, click on <strong>Advance System Settings</strong>.  Make sure you are on the <em>Advanced</em> tab.</li>
+<li>Click on the <strong>Environment Variables...</strong> button.</li>
+<li>Under system variables, scroll down until you see <em>Path</em>.  Select it by left-clicking it.</li>
+<li>Click <strong>Edit</strong>.  You will be presented with a window that contains a <em>Variable Name</em> and <em>Variable Value</em>.  It is important you do not change the variable name nor delete the variable value.</li>
+<li>Click inside the <em>Variable Value</em> text box and press the <strong>End</strong> key.  This will take you to the end of the list.</li>
+<li>At the cursor location, type a semicolon and the path to the Python folder.
+<ul>
+<li>Example:  <code>C:\Program Files\Calibre2\; C:\Python36\</code><br>
+The example shows what the Variable Value looks like at the end if you had, say, Calibre installed.  The folder that contains the python.exe is pasted after a semicolon.</li>
+</ul>
+</li>
+<li>Press <strong>OK</strong> then press <strong>OK</strong> again.</li>
+</ol>
+<p>Validate this worked by opening up the command prompt again, closing it if it was already open, and type <code>python</code> and press <strong>Enter</strong>.  You should see the Python header and the <code>&gt;&gt;&gt;</code> prompt.  If you do not, then you may need to reinstall Python.</p>
+<h2 class="mume-header" id="script-vs-interactive-shell">Script vs Interactive Shell</h2>
+
+<p>There are two modes of running Python and they are via a script file or in the interactive shell (also known as a REPL, read-eval-print-loop).  Both have their pros and cons and knowing when to use one over the other will make you a more productive programmer (and a more knowledgeable one at that).</p>
+<h3 class="mume-header" id="interactive-shell">Interactive Shell</h3>
+
+<p>The interactive shell can be started in either the Command Prompt (Windows) or Terminal (Linux/Unix) by typing <code>python</code> and nothing after it. (We will see the other options that can accompany it).  This should start a REPL and wait for input with the prompt <code>&gt;&gt;&gt;</code>.  From here, you can start to write snippets of python code.  This is great as you can easily test something you want to try like an algorithm, a new method, or to make sure you understand how something works.  Another benefit is that you don't need to use the <code>print()</code> function to get information from a variable, function, or method.  Try the following below.  (Normally, you would see <code>...</code> to indicate something has been removed for clarity, however, <code>...</code> has meaning in the interactive shell so I decided to use three tildes, <code>~~~</code>)</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token number">100</span> <span class="token operator">*</span> <span class="token number">200</span>
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span> <span class="token comment">#Do not write this.  This should be the output of the above math.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> a <span class="token operator">=</span> _ <span class="token operator">/</span> <span class="token number">10</span> <span class="token comment"># Take the output of the last call, the underscore, and divide by 100</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> a
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span> <span class="token comment">#Do not write this.  This should be the output of the value </span>
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span> <span class="token comment">#contained in variable a</span>
+</pre><p>This is great if you are just testing something, however, if you are writing a bigger project, if a bug occurs or there is a syntax error, you would have to rewrite all of that portion of broken code.  Try this. (For the line under the function, make sure to include 4 spaces in front.  We'll get more into Python blocks in later lecures.)</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword">print</span><span class="token punctuation">(</span>a <span class="token operator">+</span> <span class="token string">" * 2 = "</span> <span class="token operator">+</span> <span class="token punctuation">(</span>a <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> func<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span> <span class="token comment">#Should receive an error</span>
+</pre><p>Now, if we tried to fix this, we would have to rewrite the entire function starting with def func(a)...etc.  Imagine trying to do this with classes or libraries.  That's why we will only use the shell to demonstrate fundamentals and use script files for large projects.</p>
+<h4 class="mume-header" id="the-python-command">The Python Command</h4>
+
+<p>If you've never used a command prompt or terminal before, you'll want to get acquainted with it.  Even if you are using an IDE, when reading how to do something online, you might come across options you can pass to the <code>python</code> command called flags or switches that may or may not contain arguments. A good example is the <code>--help</code> flag.  In your command prompt/terminal type <code>python --help</code> and press enter.  Here, you will get a list of the flags and whether they require an argument and what they do.  A flag is preceded with either one or two hyphens (like in the help flag earlier).  An argument is just a name after the flag like the cmd argument that is part of the <code>-c</code> flag.  This means that when we use <code>-c</code> we have to pass it some argument (in this case, a Python expression).  Try the following</p>
+<p><code>python -c "print('a' * 100)"</code></p>
+<p>This will run the <code>print('a' * 100)</code> as actual Python code, not in an interactive shell nor in a script file, in the command prompt/terminal.  Explore, or Google, the Python command line environment and try out some of the flags, if you are able.</p>
+<p>For more information visit <a href="https://docs.python.org/3/using/cmdline.html">Command Line and Environment</a></p>
+<h3 class="mume-header" id="script-files">Script Files</h3>
+
+<p>To write a script file it is as easy as opening up a text editor, writing some code, and running it in the terminal.  If you use an IDE, then you don't even need to open a terminal to run it as the IDE should take care of that for you.  Just remember to give your files the .py extension.  Let me give an example and go from there.</p>
+<p>Create a projects folder somewhere on your system.  This is where all your projects will get stored.  If you are using an IDE this is typically called your <strong>workspace</strong>.  Inside that project folder, create a <strong>script_test</strong> folder.  Inside that folder create a <strong><a href="http://test.py/">test.py</a></strong> file.  Open that file in an editor of your choosing and write the following.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"This is easy"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Python is fun"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"My name is &lt;insert your name here&gt;"</span><span class="token punctuation">)</span>
+
+</pre><p>Now, open up a terminal and navigate to your directory. On all platforms, you will use the <code>cd</code> command to navigate your directory structure.  Use <code>ls</code> in linux or <code>dir</code> in windows to get a list of directories in the location of where you are located.  Here is an example using Windows and assuming the file is in <em>C:\Users\broge2\Documents\Python\script_test</em>:</p>
+<pre data-role="codeBlock" data-info="html" class="language-html">C:\Users\broge2&gt;dir
+~~~
+04/18/2017  07:13 PM    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DIR</span><span class="token punctuation">&gt;</span></span>          Documents
+~~~
+C:\Users\broge2&gt;cd Documents
+C:\Users\broge2\Documents&gt;dir
+~~~
+11/16/2016  05:13 PM    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DIR</span><span class="token punctuation">&gt;</span></span>          Python
+~~~
+C:\Users\broge2\Documents&gt;cd Python
+C:\Users\broge2\Documents\Python&gt;dir
+~~~
+07/04/2016  02:13 AM    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DIR</span><span class="token punctuation">&gt;</span></span>          script_test
+~~~
+C:\Users\broge2\Documents\Python&gt;cd script_test
+C:\Users\broge2\Documents\Python\script_test&gt;dir
+~~~
+04/27/2017  04:50 PM                71 test.py
+~~~
+</pre><p>Make sure to use <u>your</u> folder names when navigating the file system.  Now you can run the script file.  Type <code>python test.py</code> and press <strong>Enter</strong>.  May need to issue <code>python3</code> instead.  You should see the output of the print functions.</p>
+<p>Writing script files will become more useful when we start writing bigger programs.  By writing a script file, you can edit it witout need of rewriting all of the other code to make it run.  It is saved so you can come back to it later if you have to.  It allows you to organize your code better.</p>
+<p>Really, the only thing that I would say is a con, is you MUST use <code>print()</code> to write to standard out so if you want to see the result of a calculation or algorithm you have to <code>print()</code> it.</p>
+<hr>
+<blockquote>
+<p>University of Illinois at Springfield<br><br>
+Instructor: Brian-Thomas Rogers<br><br>
+Course: CSC 470</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python"></pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
